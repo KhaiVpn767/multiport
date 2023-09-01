@@ -3,7 +3,7 @@
 GitUser="KhaiVpn767"
 apt install rclone
 printf "q\n" | rclone config
-wget -O /root/.config/rclone/rclone.conf "https://raw.githubusercontent.com/${GitUser}/t-code/main/rclone.conf"
+wget -O /root/.config/rclone/rclone.conf "https://raw.githubusercontent.com/${GitUser}/multiport/main/rclone.conf"
 git clone https://github.com/magnific0/wondershaper.git &> /dev/null
 cd wondershaper
 make install
@@ -28,12 +28,12 @@ logfile ~/.msmtp.log
 EOF
 chown -R www-data:www-data /etc/msmtprc
 cd /usr/bin
-wget -O autobackup "https://raw.githubusercontent.com/${GitUser}/t-code/main/system/autobackup.sh"
-wget -O backup "https://raw.githubusercontent.com/${GitUser}/t-code/main/system/backup.sh"
-wget -O bckp "https://raw.githubusercontent.com/${GitUser}/t-code/main/system/bckp.sh"
-wget -O restore "https://raw.githubusercontent.com/${GitUser}/t-code/main/system/restore.sh"
-wget -O strt "https://raw.githubusercontent.com/${GitUser}/t-code/main/system/strt.sh"
-wget -O limit-speed "https://raw.githubusercontent.com/${GitUser}/t-code/main/limit-speed.sh"
+wget -O autobackup "https://raw.githubusercontent.com/${GitUser}/multiport/main/system/autobackup.sh"
+wget -O backup "https://raw.githubusercontent.com/${GitUser}/multiport/main/system/backup.sh"
+wget -O bckp "https://raw.githubusercontent.com/${GitUser}/multiport/main/system/bckp.sh"
+wget -O restore "https://raw.githubusercontent.com/${GitUser}/multiport/main/system/restore.sh"
+wget -O strt "https://raw.githubusercontent.com/${GitUser}/multiport/main/system/strt.sh"
+wget -O limit-speed "https://raw.githubusercontent.com/${GitUser}/multiport/main/limit-speed.sh"
 chmod +x autobackup
 chmod +x backup
 chmod +x bckp
