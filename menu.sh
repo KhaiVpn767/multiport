@@ -17,6 +17,31 @@ cores=$( awk -F: '/model name/ {core++} END {print core}' /proc/cpuinfo )
 freq=$( awk -F: ' /cpu MHz/ {freq=$2} END {print freq}' /proc/cpuinfo )
 tram=$( free -m | awk 'NR==2 {print $2}' )
 swap=$( free -m | awk 'NR==4 {print $2}' )
+# TOTAL ACC CREATE VMESS WS
+totalvm=$(grep -c -E "^### " "/usr/local/etc/xray/config.json" )
+# TOTAL ACC CREATE  VLESS WS
+totalvl=$(grep -c -E "^### " "/usr/local/etc/xray/vless.json")
+# TOTAL ACC CREATE  VLESS TCP XTLS
+totaltcp=$(grep -c -E "^### " "/usr/local/etc/xray/xtls.json")
+# TOTAL ACC CREATE  TROJAN
+totaltr=$(grep -c -E "^### " "/usr/local/etc/xray/trojanws.json")
+# TOTAL ACC CREATE  TROJAN GO
+totalgo=$(grep -c -E "^### " "/etc/trojan-go/akun.conf")
+# TOTAL ACC CREATE OVPN SSH
+total_ssh="$(awk -F: '$3 >= 1000 && $1 != "nobody" {print $1}' /etc/passwd | wc -l)"
+red=='\e[0;31m'
+#Download/Upload today
+dtoday="$(vnstat -i eth0 | grep "today" | awk '{print $2" "substr ($3, 1, 1)}')"
+utoday="$(vnstat -i eth0 | grep "today" | awk '{print $5" "substr ($6, 1, 1)}')"
+ttoday="$(vnstat -i eth0 | grep "today" | awk '{print $8" "substr ($9, 1, 1)}')"
+#Download/Upload yesterday
+dyest="$(vnstat -i eth0 | grep "yesterday" | awk '{print $2" "substr ($3, 1, 1)}')"
+uyest="$(vnstat -i eth0 | grep "yesterday" | awk '{print $5" "substr ($6, 1, 1)}')"
+tyest="$(vnstat -i eth0 | grep "yesterday" | awk '{print $8" "substr ($9, 1, 1)}')"
+#Download/Upload current month
+dmon="$(vnstat -i eth0 -m | grep "`date +"%b '%y"`" | awk '{print $3" "substr ($4, 1, 1)}')"
+umon="$(vnstat -i eth0 -m | grep "`date +"%b '%y"`" | awk '{print $6" "substr ($7, 1, 1)}')"
+tmon="$(vnstat -i eth0 -m | grep "`date +"%b '%y"`" | awk '{print $9" "substr ($10, 1, 1)}')"
 clear
 # OS Uptime
 uptime="$(uptime -p | cut -d " " -f 2-10)"
@@ -94,6 +119,14 @@ echo -e "  \e[$text Domain Name          : $domain\e[0m"
 echo -e "  \e[$text Version Name         : Websocket"
 echo -e "  \e[$text Certificate Status   : Lifetime"
 echo -e "  \e[$text Provided By          : $creditt"
+echo -e   " \e[$line════════════════════════════════════════════════════════════\e[m"
+echo -e   "  \e[1;33m Traffic\e[0m       \e[1;33mToday     Yesterday      Month   "
+echo -e   "  \e[1;33m Download\e[0m      $dtoday    $dyest       $dmon   \e[0m"
+echo -e   "  \e[1;33m Upload\e[0m        $utoday    $uyest       $umon   \e[0m"
+echo -e   "  \e[1;33m Total\e[0m       \033[0;36m  $ttoday    $tyest       $tmon  \e[0m "
+echo -e   " \e[$line════════════════════════════════════════════════════════════\e[m"
+echo -e  "  \e[$number Ssh/Ovpn    Vmess   Vless   VlessXtls   Trojan   Trojan-GO"
+echo -e  " \e[$below     $total_ssh          $totalvm       $totalvl         $totaltcp          $totaltr          $totalgo"
 echo -e   " \e[$line════════════════════════════════════════════════════════════\e[m"
 echo -e   " \e[$back_text                        \e[30m[\e[$box MAIN MENU\e[30m ]\e[1m                       \e[m"
 echo -e   " \e[$line════════════════════════════════════════════════════════════\e[m"
