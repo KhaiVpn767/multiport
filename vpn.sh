@@ -16,7 +16,7 @@ apt install openvpn easy-rsa unzip -y
 apt install openssl iptables iptables-persistent -y
 mkdir -p /etc/openvpn/server/easy-rsa/
 cd /etc/openvpn/
-wget https://raw.githubusercontent.com/${GitUser}/multiport/main/vpn.zip
+wget https://raw.githubusercontent.com/KhaiVpn767/multiport/main/vpn.zip
 unzip vpn.zip
 rm -f vpn.zip
 chown -R root:root /etc/openvpn/server/easy-rsa/
@@ -40,8 +40,8 @@ sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g' /etc/sysctl.conf
 
 # Buat config client TCP 1194
 cat > /etc/openvpn/client-tcp-1194.ovpn <<-END
-########## WELCOME ###########
-########### OVPN  ############
+############## WELCOME TO KhaiVPN ###############
+############## By KhaiVPN ###############
 setenv FRIENDLY_NAME "KhaiVPN TCP"
 client
 dev tun
