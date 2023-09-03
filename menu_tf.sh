@@ -6,10 +6,13 @@ NC='\e[0m'
 
 cpath="/etc/openvpn/server/server-tcp-1194.conf"
 dns=($(cat /etc/resolvconf/resolv.conf.d/head | awk '{print $2}'))
-echo -e "DEFAULT DNS ADALAH 8.8.8.8"
+echo -e "══════════════════════════\e[m"
+echo -e " Change DNS Script By KhaiVPN ⚡"
+echo -e "══════════════════════════\e[m"
+echo -e "DEFAULT DNS SERVER SEKARANG : 8.8.8.8"
 echo -e "DNS SERVER KINI= $dns"
 echo -e ""
-echo -e "${green}MASUKKAN DNS BARU ATAU TEKAN CTL C UTK EXIT${NC}"
+echo -e "${green}MASUKKAN DNS BARU ATAU TEKAN CTL C UTK KELUAR MENU${NC}"
 echo -e ""
 read -p "NEW DNS SERVER: " dns2
 if [ -z $dns2 ]; then
@@ -36,7 +39,7 @@ systemctl start resolvconf.service
 clear
 sleep 2
 echo -e "============================================="
-echo -e " ${green} PERTUKARAN DNS SERVER SELESAI${NC}"
+echo -e " ${green} PERTUKARAN DNS SERVER SIAP ✅${NC}"
 echo -e "============================================="
 echo ""
 echo -ne "[ ${yell}WARNING${NC} ] Do you want to reboot now ? (y/n)? "
