@@ -181,6 +181,9 @@ trafficxray
 12)
 info
 ;;
+99)
+mdns
+;;
 x)
 clear
 exit
