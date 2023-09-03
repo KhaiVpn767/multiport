@@ -264,7 +264,6 @@ cd /usr/bin
 wget -O add-host "https://raw.githubusercontent.com/${GitUser}/multiport/main/system/add-host.sh"
 wget -O about "https://raw.githubusercontent.com/${GitUser}/multiport/main/system/about.sh"
 wget -O menu "https://raw.githubusercontent.com/${GitUser}/multiport/main/menu.sh"
-wget -O mdns "https://raw.githubusercontent.com/${GitUser}/multiport/main/mdns.sh"
 wget -O add-ssh "https://raw.githubusercontent.com/${GitUser}/multiport/main/add-user/add-ssh.sh"
 wget -O trial "https://raw.githubusercontent.com/${GitUser}/multiport/main/add-user/trial.sh"
 wget -O del-ssh "https://raw.githubusercontent.com/${GitUser}/multiport/main/delete-user/del-ssh.sh"
@@ -312,7 +311,6 @@ wget -O system "https://raw.githubusercontent.com/${GitUser}/multiport/main/menu
 wget -O themes "https://raw.githubusercontent.com/${GitUser}/multiport/main/menu/themes.sh"
 chmod +x add-host
 chmod +x menu
-chmod +x mdns
 chmod +x add-ssh
 chmod +x trial
 chmod +x del-ssh
