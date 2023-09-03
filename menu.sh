@@ -111,6 +111,9 @@ echo -e "  \e[$text Number Of Core       : $cores"
 echo -e "  \e[$text Cpu Frequency        :$freq MHz"
 echo -e "  \e[$text Total Amount Of Ram  : $tram MB"
 echo -e "  \e[$text System Uptime        : $uptime"
+echo -e "  \e[$text Isp/Provider Name    : $ISP"
+echo -e "  \e[$text City Location        : $CITY"
+echo -e "  \e[$text Time Location        : $WKT"
 echo -e "  \e[$text Ip Vps/Address       : $IPVPS"
 echo -e "  \e[$text Domain Name          : $domain\e[0m"
 echo -e "  \e[$text Version Name         : Websocket"
@@ -133,8 +136,6 @@ echo -e   "  \e[$number (•3)\e[m \e[$below PANEL WIREGUARDS\e[m            \e[
 echo -e   "  \e[$number (•4)\e[m \e[$below PANEL SHADOWSOCKS\e[m           \e[$number (10)\e[m \e[$below CHECK RUNNING\e[m"
 echo -e   "  \e[$number (•5)\e[m \e[$below OPENSSH & OPENVPN\e[m           \e[$number (11)\e[m \e[$below TRAFFIC XRAY\e[m"
 echo -e   "  \e[$number (•6)\e[m \e[$below SYSTEM MENU\e[m                 \e[$number (12)\e[m \e[$below INFO ALL PORT\e[m"
-echo -e   ""
-echo -e   "  \e[$number (•99)\e[m \e[$below MENU DNS \e[m"
 echo -e   " \e[$line════════════════════════════════════════════════════════════\e[m"
 echo -e   "  \e[$below Premium VPS by $creditt"
 echo -e   "  \e[$below Thank you for using this script"
@@ -180,9 +181,6 @@ trafficxray
 ;;
 12)
 info
-;;
-99)
-mdns
 ;;
 x)
 clear
