@@ -54,8 +54,8 @@ chmod +x /usr/local/bin/xray
 # Make Folder XRay
 mkdir -p /var/log/xray/
 
-# Installation Xray Core 2023
-mv /usr/local/bin/xray /usr/local/bin/xray.bak && wget -q -O /usr/local/bin/xray "https://raw.githubusercontent.com/KhaiVpn767/xray-core/main/XRAY/xray" && chmod 755 /usr/local/bin/xray
+# Stop port 80
+sudo lsof -t -i tcp:80 -s tcp:listen | sudo xargs kill
 
 # generate certificates
 mkdir /root/.acme.sh
