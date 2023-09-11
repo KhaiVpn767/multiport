@@ -1,5 +1,5 @@
 #!/bin/bash
-#DNS Changer By Vinstechmy
+#DNS Changer By khaivpn
 #-------------------------
 P='\e[0;35m'
 B='\033[0;36m'
@@ -8,8 +8,8 @@ clear
 echo -e "\e[36m╒════════════════════════════════════════════╕\033[0m"
 echo -e " \E[0;41;36m                 DNS CHANGER                \E[0m"
 echo -e "\e[36m╘════════════════════════════════════════════╛\033[0m
-\033[1;37mDNS Changer By Vinstechmy\033[0m
-\033[1;37mTelegram : https://t.me/Vinstechmy / @Vinstechmy\033[0m
+\033[1;37mDNS Changer By Khaivpn\033[0m
+\033[1;37mTelegram : https://t.me/khaivpn / @khaivpn\033[0m
 
  [\033[1;36m•1 \033[0m]  Temporary DNS
  [\033[1;36m•2 \033[0m]  Permanent DNS
