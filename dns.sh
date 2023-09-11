@@ -5,15 +5,16 @@ P='\e[0;35m'
 B='\033[0;36m'
 N='\e[0m'
 clear
-echo -e "\e[36m╒════════════════════════════════════════════╕\033[0m"
+echo -e "\e[31m╒════════════════════════════════════════════╕\033[0m"
 echo -e " \E[0;47;30m                 DNS CHANGER                \E[0m"
-echo -e "\e[36m╘════════════════════════════════════════════╛\033[0m
-\033[1;37mDNS Changer By Khaivpn\033[0m
-\033[1;37mTelegram : https://t.me/khaivpn / @khaivpn\033[0m
-
- [\033[1;36m•1 \033[0m]  Temporary DNS
- [\033[1;36m•2 \033[0m]  Permanent DNS
- [\033[1;36m•3 \033[0m]  Back To Main Menu"
+echo -e "\e[31m╘════════════════════════════════════════════╛\033[0m
+\033[1;33m DNS Changer By Khaivpn\033[0m
+\033[1;33m Telegram : https://t.me/khaivpn / @khaivpn\033[0m
+\033[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m
+""
+ [\033[1;35m•1\033[0m]:  Temporary DNS
+ [\033[1;35m•2\033[0m]:  Permanent DNS
+ [\033[1;35m•3\033[0m]:  Back To Main Menu"
 echo""
 echo -e "\033[1;37mPress [ Ctrl+C ] • To-Exit-Script\033[0m"
 echo ""
