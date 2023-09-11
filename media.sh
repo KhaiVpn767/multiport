@@ -12,7 +12,7 @@ Font_Suffix="\033[0m";
 
 
 clear;
-echo -e "  \033[1;37m${Font_Purple}Media Stream Unlocker Test Mod By Vinstechmy${Font_Suffix}\033[0m";
+echo -e "  \033[1;37m${Font_Purple}Media Stream Unlocker Test Mod By khaiVPN${Font_Suffix}\033[0m";
 echo -e "  \033[1;37mVersion : ${Font_SkyBlue}${shell_version}${Font_Suffix}\033[0m";
 echo -e "  \033[1;37mTime    : $(date)\033[0m"
 
