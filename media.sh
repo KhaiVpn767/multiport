@@ -12,9 +12,13 @@ Font_Suffix="\033[0m";
 
 
 clear;
-echo -e "  \033[1;37m${Font_Purple}Media Stream Unlocker Test Mod By khaiVPN${Font_Suffix}\033[0m";
+echo -e "  \033[1;37m${Font_Purple}Media Stream Unlocker Test Mod By khaiVPN..
+  Message : Keputusan ujian adalah untuk rujukan sahaja,
+            sila rujuk penggunaan sebenar${Font_Suffix}\033[0m";
+echo -e "\e[31m════════════════════════════════════════════════════════\033[0m"
 echo -e "  \033[1;37mVersion :1.0 ${Font_SkyBlue}${shell_version}${Font_Suffix}\033[0m";
 echo -e "  \033[1;37mTime    : $(date)\033[0m"
+echo -e "\e[31m════════════════════════════════════════════════════════\033[0m"
 
 export LANG="en_US.UTF-8";
 export LANGUAGE="en_US.UTF-8";
