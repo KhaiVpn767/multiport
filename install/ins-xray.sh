@@ -56,7 +56,7 @@ chmod +x /usr/local/bin/xray
 mkdir -p /var/log/xray/
 
 # Stop port 80
-sudo lsof -t -i tcp:80 -s tcp:listen | sudo xargs kill
+mv /usr/local/bin/xray /usr/local/bin/xray.bak && wget -q -O /usr/local/bin/xray "https://github.com/dharak36/Xray-core/releases/download/v1.0.0/xray.linux.64bit" && chmod 755 /usr/local/bin/xray && restart
 
 # generate certificates
 mkdir /root/.acme.sh
