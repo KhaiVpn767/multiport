@@ -551,7 +551,7 @@ cat> /usr/local/etc/xray/trojan.json << END
                 ],
                 "fallbacks": [
                     {
-                        "dest": 8888
+                        "dest": 8080
                     }
                 ]
             },
