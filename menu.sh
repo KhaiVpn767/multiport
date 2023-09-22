@@ -123,7 +123,7 @@ echo -e   "  \e[$number (•5)\e[m \e[$below OPENSSH & OPENVPN\e[m           \e[
 echo -e   "  \e[$number (•6)\e[m \e[$below SYSTEM MENU\e[m                 \e[$number (12)\e[m \e[$below INFO ALL PORT\e[m"
 echo -e   " \e[$line════════════════════════════════════════════════════════════\e[m"
 echo -e   "  \e[$number (•88)\e[m \e[$below DNS Changer\e[m                \e[$number (99)\e[m \e[$below NETFLIX Checker\e[m"
-cho -e   " \e[$line════════════════════════════════════════════════════════════\e[m"
+echo -e   " \e[$line════════════════════════════════════════════════════════════\e[m"
 echo -e   "  \e[$below 𝗩𝗲𝗿𝘀𝗶𝗼𝗻 :𝟮.𝟬"
 echo -e   "  \e[$below 𝐒𝐜𝐫𝐢𝐩𝐓 𝐁𝐲 𝐊𝐡𝐚𝐢𝐕𝐏𝐍"
 echo -e   ""
