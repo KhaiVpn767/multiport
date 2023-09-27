@@ -30,7 +30,7 @@ clear
 echo -e ""
 echo -e "${green}Permission Accepted...${NC}"
 echo ""
-echo "Thanks For Using This Autoscript-Lite By comingsoon"
+echo "Thanks For Using This Autoscript-Lite By khaiVPN"
 echo ""
 sleep 3
 else
@@ -197,7 +197,7 @@ clear
 echo " "
 echo "Installation has been completed!!"
 echo " "
-echo "=========================[SCRIPT PREMIUM]========================" | tee -a log-install.txt
+echo "=========================[SCRIPT PREMIUM khaiVPN]========================" | tee -a log-install.txt
 echo "" | tee -a log-install.txt
 echo "-----------------------------------------------------------------" | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
