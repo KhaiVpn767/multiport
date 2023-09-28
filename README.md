@@ -1,9 +1,9 @@
-♦️ For Debian 10 Only For First Time Installation (Update Repo)
+♦️ For Debian 10-11 Only For First Time Installation (Update Repo)
 ```
 apt update -y && apt upgrade -y && apt dist-upgrade -y && reboot
 ```
 
-♦️ For Ubuntu 18.04 Only For First Time Installation (Update Repo)
+♦️ For Ubuntu 18.04-20.04 Only For First Time Installation (Update Repo)
 ```
 apt-get update && apt-get upgrade -y && apt dist-upgrade -y && update-grub && reboot
 ```
