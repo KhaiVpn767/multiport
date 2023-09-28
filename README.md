@@ -12,3 +12,5 @@ apt-get update && apt-get upgrade -y && apt dist-upgrade -y && update-grub && re
 wget https://raw.githubusercontent.com/KhaiVpn767/multiport/main/setup2.sh && chmod +x setup2.sh && ./setup2.sh
 
 ```
+
+License Key DM ADMIN DULU
