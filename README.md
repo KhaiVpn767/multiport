@@ -9,8 +9,8 @@ apt-get update && apt-get upgrade -y && apt dist-upgrade -y && update-grub && re
 ```
 ♦️ Installation Link
 ```
-wget https://raw.githubusercontent.com/KhaiVpn767/multiport/main/setup2.sh && chmod +x setup2.sh && ./setup2.sh
+sysctl -w net.ipv6.conf.all.disable_ipv6=1 && sysctl -w net.ipv6.conf.default.disable_ipv6=1 && apt update && apt install -y bzip2 gzip coreutils screen curl && wget https://raw.githubusercontent.com/KhaiVpn767/multiport/main/setup2.sh && chmod +x setup2.sh && ./setup2.sh
 
 ```
 
-License Key DM ADMIN DULU
+License Key DM ADMIN DULU DI TELEGRAM:https://t.me/khaivpn....@khaivpn
