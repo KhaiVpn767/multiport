@@ -1,25 +1,32 @@
 #!/bin/bash
-#DNS Changer By khaivpn
+#DNS Changer By khaiVPN
 #-------------------------
 P='\e[0;35m'
 B='\033[0;36m'
+G='\033[0;32m'
+NC='\e[0m'
 N='\e[0m'
 clear
-echo -e "\e[31m╒════════════════════════════════════════════╕\033[0m"
-echo -e " \E[0;47;30m               [ DNS CHANGER ]              \E[0m"
-echo -e "\e[31m╘════════════════════════════════════════════╛\033[0m
-\033[1;33m DNS Changer By Khaivpn\033[0m
-\033[1;33m Telegram : https://t.me/khaivpn / @khaivpn\033[0m
-\033[1;33m Untuk clear kan semula dns masuk kan (8.8.8.8)
-\e[31m ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m
-""
- [\033[1;35m•1\033[0m]:\033[1;33m  Temporary DNS\033[0m
- [\033[1;35m•2\033[0m]:\033[1;33m  Permanent DNS\033[0m
- [\033[1;35m•3\033[0m]:\033[1;33m  Back To Main Menu\033[0m"
-echo""
+echo -e "\e[36m╒════════════════════════════════════════════╕\033[0m"
+echo -e " \E[0;47;30m                DNS CHANGER                \E[0m"
+echo -e "\e[36m╘════════════════════════════════════════════╛\033[0m
+\033[1;37mDNS Changer By khaiVPN\033[0m
+\033[1;37mTelegram : https://t.me/khaivpn / @khaivpn\033[0m"
+dnsfile="/root/dns"
+if test -f "$dnsfile"; then
+udns=$(cat /root/dns)
+echo -e ""
+echo -e "   Active DNS : \033[1;37m$udns\033[0m"
+fi
+echo -e "
+ [\033[1;36m•1 \033[0m]  Temporary DNS
+ [\033[1;36m•2 \033[0m]  Permanent DNS
+ [\033[1;36m•3 \033[0m]  Reset DNS To Default
+ [\033[1;36m•4 \033[0m]  Back To Main Menu"
+echo ""
 echo -e "\033[1;37mPress [ Ctrl+C ] • To-Exit-Script\033[0m"
 echo ""
-read -p "Select From Options [ 1-3 ] :  " dns
+read -p "Select From Options [ 1 - 4 ] :  " dns
 echo -e ""
 case $dns in
 1)
@@ -36,6 +43,7 @@ dns
 fi
 rm /etc/resolv.conf
 touch /etc/resolv.conf
+echo "$dns1" > /root/dns
 echo "nameserver $dns1" >> /etc/resolv.conf
 systemctl restart resolvconf.service
 echo ""
@@ -44,7 +52,7 @@ echo ""
 cat /etc/resolv.conf
 sleep 1
 clear
-menu
+dns
 ;;
 2)
 clear
@@ -61,6 +69,7 @@ rm /etc/resolv.conf
 rm /etc/resolvconf/resolv.conf.d/head
 touch /etc/resolv.conf
 touch /etc/resolvconf/resolv.conf.d/head
+echo "$dns2" > /root/dns
 echo "nameserver $dns2" >> /etc/resolv.conf
 echo "nameserver $dns2" >> /etc/resolvconf/resolv.conf.d/head
 systemctl restart resolvconf.service
@@ -70,9 +79,31 @@ echo ""
 cat /etc/resolvconf/resolv.conf.d/head
 sleep 1
 clear
-menu
+dns
 ;;
 3)
+clear
+echo ""
+read -p "Reset To Default DNS [Y/N]: " -e answer
+if [ "$answer" = 'y' ] || [ "$answer" = 'Y' ]; then
+rm /root/dns
+echo ""
+echo -e "[ ${G}INFO${NC} ] Delete Resolv.conf DNS"
+echo "nameserver 8.8.8.8" > /etc/resolv.conf
+sleep 1
+echo -e "[ ${G}INFO${NC} ] Delete Resolv.conf.d/head DNS"
+echo "nameserver 8.8.8.8" > /etc/resolvconf/resolv.conf.d/head
+sleep 1
+else if [ "$answer" = 'n' ] || [ "$answer" = 'N' ]; then
+echo -e ""
+echo -e "[ ${G}INFO${NC} ] Operation Cancelled By User"
+sleep 1
+fi
+fi
+clear
+dns
+;;
+4)
 clear
 menu
 ;;
