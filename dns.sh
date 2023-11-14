@@ -11,7 +11,6 @@ echo -e " \E[0;47;30m               [ DNS CHANGER ]              \E[0m"
 echo -e "\e[31m╘════════════════════════════════════════════╛\033[0m
 \033[1;33m DNS Changer By KhaiVPN\033[0m
 \033[1;33m Telegram : https://t.me/khaivpn / @khaivpn\033[0m
-\033[1;33m Untuk clear kan semula dns masuk kan (8.8.8.8)
 \e[31m ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m
 ""
  [\033[1;35m•1\033[0m]\033[1;33m  Temporary DNS\033[0m
