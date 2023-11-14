@@ -186,11 +186,8 @@ trafficxray
 12)
 info
 ;;
-88)
-dns
-;;
 99)
-media
+dns
 ;;
 x)
 clear
