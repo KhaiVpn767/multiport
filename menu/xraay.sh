@@ -101,26 +101,25 @@ cat>/usr/local/etc/xray/$user-none.json<<EOF
       "tls": "none"
 }
 EOF
-cat>/usr/local/etc/xray/$user-MERAH.json<<EOF
+cat>/usr/local/etc/xray/$user-DIGI-APN.json<<EOF
       {
       "v": "2",
-      "ps": "VMESS-TLS-MERAH-${user}",
-      "add": "104.22.25.71",
-      "port": "${tls}",
+      "ps": "VMESS-NTLS-DIGI-APN-${user}",
+      "add": "api.useinsider.com",
+      "port": "${none}",
       "id": "${uuid}",
       "aid": "0",
       "net": "ws",
-      "path": "wss://italeem.iium.edu.my$patch",
+      "path": "$patch",
       "type": "none",
       "host": "${sts}${domain}",
-      "tls": "tls",
-	  "sni": "italeem.iium.edu.my"
+      "tls": "none"
 }
 EOF
-cat>/usr/local/etc/xray/$user-KUNING.json<<EOF
+cat>/usr/local/etc/xray/$user-DIGI-BOSSTER.json<<EOF
       {
       "v": "2",
-      "ps": "VMESS-NTLS-KUNING-${user}",
+      "ps": "VMESS-NTLS-DIGI-BOSSTER-${user}",
       "add": "162.159.134.61",
       "port": "${none}",
       "id": "${uuid}",
@@ -132,20 +131,34 @@ cat>/usr/local/etc/xray/$user-KUNING.json<<EOF
       "tls": "none"
 }
 EOF
-cat>/usr/local/etc/xray/$user-BIRU.json<<EOF
+cat>/usr/local/etc/xray/$user-UMOBILE-FUNZ.json<<EOF
       {
       "v": "2",
-      "ps": "VMESS-TLS-BIRU-${user}",
-      "add": "104.20.65.29",
-      "port": "${tls}",
+      "ps": "VMESS-NTLS-UMOBILE-FUNZ-${user}",
+      "add": "${sts}${domain}",
+      "port": "${none}",
       "id": "${uuid}",
       "aid": "0",
       "net": "ws",
-      "path": "wss://onlinepayment.celcom.com.my$patch",
+      "path": "$patch",
       "type": "none",
-      "host": "${sts}${domain}",
-      "tls": "tls",
-	  "sni": "onlinepayment.celcom.com.my"
+      "host": "m.pubgmobile.com"
+      "tls": "none"
+}
+EOF
+cat>/usr/local/etc/xray/$user-YES.json<<EOF
+      {
+      "v": "2",
+      "ps": "VMESS-NTLS-YES-${user}",
+      "add": "104.17.113.188",
+      "port": "${none}",
+      "id": "${uuid}",
+      "aid": "0",
+      "net": "ws",
+      "path": "$patch",
+      "type": "none",
+      "host": "cdn.who.int.${sts}${domain}",
+      "tls": "none"
 }
 EOF
 
@@ -172,23 +185,23 @@ dns:
   enhanced-mode: redir-host
   listen: 0.0.0.0:7874
 proxies:
-  - name: MERAH-$user
-    server: 104.22.25.71
-    port: ${tls}
+  - name: DIGI-APN-$user
+    server: api.useinsider.com
+    port: ${none}
     type: vmess
     uuid: ${uuid}
     alterId: 0
     cipher: auto
-    tls: true
+    tls: false
     skip-cert-verify: true
-    servername: italeem.iium.edu.my
+    servername: ${sts}${domain}
     network: ws
     ws-opts:
-      path: wss://italeem.iium.edu.my$patch
+      path: $patch
       headers:
         Host: ${sts}${domain}
     udp: true
-  - name: KUNING-$user
+  - name: DIGI-BOSSTER-$user
     server: 162.159.134.61
     port: ${none}
     type: vmess
@@ -204,29 +217,46 @@ proxies:
       headers:
         Host: ${sts}${domain}
     udp: true
-  - name: BIRU-$user
-    server: 104.20.65.29
-    port: ${tls}
+  - name: UMOBILE-FUNZ-$user
+    server: ${sts}${domain}
+    port: ${none}
     type: vmess
     uuid: ${uuid}
     alterId: 0
     cipher: auto
-    tls: true
+    tls: false
     skip-cert-verify: true
-    servername: onlinepayment.celcom.com.my
+    servername: ${sts}${domain}
     network: ws
     ws-opts:
-      path: wss://onlinepayment.celcom.com.my$patch
+      path: $patch
       headers:
-        Host: ${sts}${domain}
+        Host: m.pubgmobile.com
+    udp: true
+    - name: YES-$user
+    server: 104.17.113.188
+    port: ${none}
+    type: vmess
+    uuid: ${uuid}
+    alterId: 0
+    cipher: auto
+    tls: false
+    skip-cert-verify: true
+    servername: ${sts}${domain}
+    network: ws
+    ws-opts:
+      path: $patch
+      headers:
+        Host: cdn.who.int.${sts}${domain}
     udp: true
 proxy-groups:
-  - name: VMESS-AUTOSCRIPT-COMINGSOON
+  - name: VMESS-AUTOSCRIPT-KhaiVpn767
     type: select
     proxies:
-      - MERAH-$user
-      - KUNING-$user
-      - BIRU-$user
+      - DIGI-APN-$user
+      - DIGI-BOSSTER-$user
+      - UMOBILE-FUNZ-$user
+      - YES-$user
       - LOAD-BALANCE
       - DIRECT
   - name: LOAD-BALANCE
@@ -236,11 +266,12 @@ proxy-groups:
     url: http://www.gstatic.com/generate_204
     interval: '300'
     proxies:
-      - MERAH-$user
-      - KUNING-$user
-      - BIRU-$user
+      - DIGI-APN-$user
+      - DIGI-BOSSTER-$user
+      - UMOBILE-FUNZ-$user
+      - YES-$user
 rules:
-  - MATCH,VMESS-AUTOSCRIPT-COMINGSOON
+  - MATCH,VMESS-AUTOSCRIPT-KhaiVpn767
 END
 
 # Copy config Yaml client ke home directory root agar mudah didownload ( YAML )
@@ -249,9 +280,10 @@ vmess_base641=$( base64 -w 0 <<< $vmess_json1)
 vmess_base642=$( base64 -w 0 <<< $vmess_json2)
 vmesslink1="vmess://$(base64 -w 0 /usr/local/etc/xray/$user-tls.json)"
 vmesslink2="vmess://$(base64 -w 0 /usr/local/etc/xray/$user-none.json)"
-vmesslink3="vmess://$(base64 -w 0 /usr/local/etc/xray/$user-MERAH.json)"
-vmesslink4="vmess://$(base64 -w 0 /usr/local/etc/xray/$user-KUNING.json)"
-vmesslink5="vmess://$(base64 -w 0 /usr/local/etc/xray/$user-BIRU.json)"
+vmesslink3="vmess://$(base64 -w 0 /usr/local/etc/xray/$user-DIGI-APN.json)"
+vmesslink4="vmess://$(base64 -w 0 /usr/local/etc/xray/$user-DIGI-BOSSTER.json)"
+vmesslink5="vmess://$(base64 -w 0 /usr/local/etc/xray/$user-UMOBILE-FUNZ.json)"
+vmesslink6="vmess://$(base64 -w 0 /usr/local/etc/xray/$user-YES.json)"
 systemctl restart xray
 systemctl restart xray@none
 clear
@@ -268,15 +300,17 @@ echo -e "Network        : Ws"
 echo -e "Path           : $patch"
 echo -e "AllowInsecure  : True/Allow"
 echo -e "\e[$line═════════════════════════════════\e[m"
-echo -e "Link TLS       : ${vmesslink1}"
+echo -e "Link TLS          : ${vmesslink1}"
 echo -e "\e[$line═════════════════════════════════\e[m"
-echo -e "Link None TLS  : ${vmesslink2}"
+echo -e "Link None TLS     : ${vmesslink2}"
 echo -e "\e[$line═════════════════════════════════\e[m"
-echo -e "Link MERAH     : ${vmesslink3}"
+echo -e "Link DIGI-APN     : ${vmesslink3}"
 echo -e "\e[$line═════════════════════════════════\e[m"
-echo -e "Link KUNING    : ${vmesslink4}"
+echo -e "Link DIGI-BOSSTER : ${vmesslink4}"
 echo -e "\e[$line═════════════════════════════════\e[m"
-echo -e "Link BIRU      : ${vmesslink5}"
+echo -e "Link UMOBILE-FUNZ : ${vmesslink5}"
+echo -e "\e[$line═════════════════════════════════\e[m"
+echo -e "Link YES          : ${vmesslink6}"
 echo -e "\e[$line═════════════════════════════════\e[m"
 echo -e "Link Yaml  : http://$MYIP:81/$user-VMESS-WS.yaml"
 echo -e "\e[$line═════════════════════════════════\e[m"
@@ -344,22 +378,22 @@ dns:
   enhanced-mode: redir-host
   listen: 0.0.0.0:7874
 proxies:
-  - name: MERAH-${user}
-    server: 104.22.25.71
-    port: $tls
+  - name: DIGI-APN-${user}
+    server: api.useinsider.com
+    port: $none
     type: vless
     uuid: ${uuid}
     cipher: auto
-    tls: true
+    tls: false
     skip-cert-verify: true
-    servername: italeem.iium.edu.my
+    servername: ${sts}${domain}
     network: ws
     ws-opts:
-      path: wss://italeem.iium.edu.my$patch
+      path: $patch
       headers:
         Host: ${sts}${domain}
     udp: true
-  - name: KUNING-${user}
+  - name: DIGI-BOSSTER-${user}
     server: 162.159.134.61
     port: $none
     type: vless
@@ -374,28 +408,44 @@ proxies:
       headers:
         Host: ${sts}${domain}
     udp: true
-  - name: BIRU-${user}
-    server: 104.20.65.29
-    port: $tls
+  - name: UMOBILE-FUNZ-${user}
+    server: ${sts}${domain}
+    port: $none
     type: vless
     uuid: ${uuid}
     cipher: auto
-    tls: true
+    tls: false
     skip-cert-verify: true
-    servername: onlinepayment.celcom.com.my
+    servername: ${sts}${domain}
     network: ws
     ws-opts:
-      path: wss://onlinepayment.celcom.com.my$patch
+      path: $patch
       headers:
-        Host: ${sts}${domain}
+        Host: m.pubgmobile.com
+    udp: true
+    - name: YES-${user}
+    server: 104.17.113.188
+    port: $none
+    type: vless
+    uuid: ${uuid}
+    cipher: auto
+    tls: false
+    skip-cert-verify: true
+    servername: ${sts}${domain}
+    network: ws
+    ws-opts:
+      path: $patch
+      headers:
+        Host: cdn.who.int.${sts}${domain}
     udp: true
 proxy-groups:
-  - name: VLESS-AUTOSCRIPT-COMINGSOON
+  - name: VLESS-AUTOSCRIPT-KhaiVpn767
     type: select
     proxies:
-      - MERAH-$user
-      - KUNING-$user
-      - BIRU-$user
+      - DIGI-APN-$user
+      - DIGI-BOSSTER-$user
+      - UMOBILE-FUNZ-$user
+      - YES-$user
       - LOAD-BALANCE
       - DIRECT
   - name: LOAD-BALANCE
@@ -405,20 +455,22 @@ proxy-groups:
     url: http://www.gstatic.com/generate_204
     interval: '300'
     proxies:
-      - MERAH-$user
-      - KUNING-$user
-      - BIRU-$user
+      - DIGI-APN-$user
+      - DIGI-BOSSTER-$user
+      - UMOBILE-FUNZ-$user
+      - YES-$user
 rules:
-  - MATCH,VLESS-AUTOSCRIPT-COMINGSOON
+  - MATCH,VLESS-AUTOSCRIPT-KhaiVpn767
 EOF
 
 # Copy config Yaml client ke home directory root agar mudah didownload ( YAML )
 mv /usr/local/etc/xray/$user-VLESS-WS.yaml /home/vps/public_html/$user-VLESS-WS.yaml
 vlesslink1="vless://${uuid}@${sts}${domain}:$tls?type=ws&encryption=none&security=tls&host=${sts}${domain}&path=$patch&allowInsecure=1&sni=$sni#VLESS-TLS-${user}"
 vlesslink2="vless://${uuid}@${sts}${domain}:$none?type=ws&encryption=none&security=none&host=$sni&path=$patch#VLESS-NTLS-${user}"
-vlesslink3="vless://${uuid}@104.22.25.71:$tls?type=ws&encryption=none&security=tls&host=${sts}${domain}&path=wss://italeem.iium.edu.my$patch&allowInsecure=1&sni=italeem.iium.edu.my#VLESS-TLS-MERAH-${user}"
-vlesslink4="vless://${uuid}@162.159.134.61:$none?type=ws&encryption=none&security=none&host=${sts}${domain}&path=$patch#VLESS-NTLS-KUNING-${user}"
-vlesslink5="vless://${uuid}@104.20.65.29:$tls?type=ws&encryption=none&security=tls&host=${sts}${domain}&path=wss://onlinepayment.celcom.com.my$patch&allowInsecure=1&sni=onlinepayment.celcom.com.my#VLESS-TLS-BIRU-${user}"
+vlesslink3="vless://${uuid}@api.useinsider.com:$none?type=ws&encryption=none&security=none&host=${sts}${domain}&path=$patch#VLESS-NTLS-DIGI-APN-${user}"
+vlesslink4="vless://${uuid}@162.159.134.61:$none?type=ws&encryption=none&security=none&host=${sts}${domain}&path=$patch#VLESS-NTLS-DIGI-BOSSTER-${user}"
+vlesslink5="vless://${uuid}@${sts}${domain}:$none?type=ws&encryption=none&security=none&host=m.pubgmobile.com&path=$patch#VLESS-NTLS-UMOBILE-FUNZ-${user}"
+vlesslink6="vless://${uuid}@104.17.113.188:$none?type=ws&encryption=none&security=none&host=cdn.who.int.${sts}${domain}&path=$patch#VLESS-NTLS-YES-${user}"
 systemctl restart xray@vless
 systemctl restart xray@vnone
 clear
@@ -439,11 +491,13 @@ echo -e "Link TLS         : ${vlesslink1}"
 echo -e "\e[$line═════════════════════════════════\e[m"
 echo -e "Link None TLS    : ${vlesslink2}"
 echo -e "\e[$line═════════════════════════════════\e[m"
-echo -e "Link MERAH       : ${vlesslink3}"
+echo -e "Link DIGI-APN    : ${vlesslink3}"
 echo -e "\e[$line═════════════════════════════════\e[m"
-echo -e "Link KUNING      : ${vlesslink4}"
+echo -e "Link DIGI-BOSSTER: ${vlesslink4}"
 echo -e "\e[$line═════════════════════════════════\e[m"
-echo -e "Link BIRU        : ${vlesslink5}"
+echo -e "Link UMOBILE-FUNZ: ${vlesslink5}"
+echo -e "\e[$line═════════════════════════════════\e[m"
+echo -e "Link YES         : ${vlesslink6}"
 echo -e "\e[$line═════════════════════════════════\e[m"
 echo -e "Link Yaml  : http://$MYIP:81/$user-VLESS-WS.yaml"
 echo -e "\e[$line═════════════════════════════════\e[m"
@@ -543,7 +597,7 @@ sed -i "/^### $user $exp $harini $uuid/,/^},{/d" /usr/local/etc/xray/none.json
 rm -f /usr/local/etc/xray/$user-tls.json
 rm -f /usr/local/etc/xray/$user-none.json
 rm -f /usr/local/etc/xray/$user-MERAH.json
-rm -f /usr/local/etc/xray/$user-KUNING.json
+rm -f /usr/local/etc/xray/$user-DIGI-BOSSTER.json
 rm -f /usr/local/etc/xray/$user-BIRU.json
 rm -f /usr/local/etc/xray/$user-VMESS-WS.yaml
 rm -f /home/vps/public_html/$user-VMESS-WS.yaml
@@ -838,26 +892,25 @@ cat>/usr/local/etc/xray/$user-none.json<<EOF
       "tls": "none"
 }
 EOF
-cat>/usr/local/etc/xray/$user-MERAH.json<<EOF
+cat>/usr/local/etc/xray/$user-DIGI-APN.json<<EOF
       {
       "v": "2",
-      "ps": "VMESS-TLS-MERAH-${user}",
-      "add": "104.22.25.71",
-      "port": "${tls}",
+      "ps": "VMESS-NTLS-DIGI-APN-${user}",
+      "add": "api.useinsider.com",
+      "port": "${none}",
       "id": "${uuid}",
       "aid": "0",
       "net": "ws",
-      "path": "wss://italeem.iium.edu.my$patch",
+      "path": "$patch",
       "type": "none",
       "host": "${sts}${domain}",
-      "tls": "tls",
-	  "sni": "italeem.iium.edu.my"
+      "tls": "none"
 }
 EOF
-cat>/usr/local/etc/xray/$user-KUNING.json<<EOF
+cat>/usr/local/etc/xray/$user-DIGI-BOSSTER.json<<EOF
       {
       "v": "2",
-      "ps": "VMESS-NTLS-KUNING-${user}",
+      "ps": "VMESS-NTLS-DIGI-BOSSTER-${user}",
       "add": "162.159.134.61",
       "port": "${none}",
       "id": "${uuid}",
@@ -869,20 +922,34 @@ cat>/usr/local/etc/xray/$user-KUNING.json<<EOF
       "tls": "none"
 }
 EOF
-cat>/usr/local/etc/xray/$user-BIRU.json<<EOF
+cat>/usr/local/etc/xray/$user-UMOBILE-FUNZ.json<<EOF
       {
       "v": "2",
-      "ps": "VMESS-TLS-BIRU-${user}",
-      "add": "104.20.65.29",
-      "port": "${tls}",
+      "ps": "VMESS-NTLS-UMOBILE-FUNZ-${user}",
+      "add": "${sts}${domain}",
+      "port": "${none}",
       "id": "${uuid}",
       "aid": "0",
       "net": "ws",
-      "path": "wss://onlinepayment.celcom.com.my$patch",
+      "path": "$patch",
       "type": "none",
-      "host": "${sts}${domain}",
-      "tls": "tls",
-	  "sni": "onlinepayment.celcom.com.my"
+      "host": "m.pubgmobile.com",
+      "tls": "none"
+}
+EOF
+cat>/usr/local/etc/xray/$user-YES.json<<EOF
+      {
+      "v": "2",
+      "ps": "VMESS-NTLS-YES-${user}",
+      "add": "104.17.113.188",
+      "port": "${none}",
+      "id": "${uuid}",
+      "aid": "0",
+      "net": "ws",
+      "path": "$patch",
+      "type": "none",
+      "host": "cdn.who.int.${sts}${domain}",
+      "tls": "none"
 }
 EOF
 
@@ -909,23 +976,23 @@ dns:
   enhanced-mode: redir-host
   listen: 0.0.0.0:7874
 proxies:
-  - name: MERAH-$user
-    server: 104.22.25.71
-    port: ${tls}
+  - name: DIGI-APN-$user
+    server: api.useinsider.com
+    port: ${none}
     type: vmess
     uuid: ${uuid}
     alterId: 0
     cipher: auto
-    tls: true
+    tls: false
     skip-cert-verify: true
-    servername: italeem.iium.edu.my
+    servername: ${sts}${domain}
     network: ws
     ws-opts:
-      path: wss://italeem.iium.edu.my$patch
+      path: $patch
       headers:
         Host: ${sts}${domain}
     udp: true
-  - name: KUNING-$user
+  - name: DIGI-BOSSTER-$user
     server: 162.159.134.61
     port: ${none}
     type: vmess
@@ -941,29 +1008,46 @@ proxies:
       headers:
         Host: ${sts}${domain}
     udp: true
-  - name: BIRU-$user
-    server: 104.20.65.29
-    port: ${tls}
+  - name: UMOBILE-FUNZ-$user
+    server: ${sts}${domain}
+    port: ${none}
     type: vmess
     uuid: ${uuid}
     alterId: 0
     cipher: auto
-    tls: true
+    tls: false
     skip-cert-verify: true
-    servername: onlinepayment.celcom.com.my
+    servername: ${sts}${domain}
     network: ws
     ws-opts:
-      path: wss://onlinepayment.celcom.com.my$patch
+      path: $patch
       headers:
-        Host: ${sts}${domain}
+        Host: m.pubgmobile.com
+    udp: true
+    - name: YES-$user
+    server: 104.17.113.188
+    port: ${none}
+    type: vmess
+    uuid: ${uuid}
+    alterId: 0
+    cipher: auto
+    tls: false
+    skip-cert-verify: true
+    servername: ${sts}${domain}
+    network: ws
+    ws-opts:
+      path: $patch
+      headers:
+        Host: cdn.who.int.${sts}${domain}
     udp: true
 proxy-groups:
-  - name: VMESS-AUTOSCRIPT-COMINGSOON
+  - name: VMESS-AUTOSCRIPT-KhaiVpn767
     type: select
     proxies:
-      - MERAH-$user
-      - KUNING-$user
-      - BIRU-$user
+      - DIGI-APN-$user
+      - DIGI-BOSSTER-$user
+      - UMOBILE-FUNZ-$user
+      - YES-$user
       - LOAD-BALANCE
       - DIRECT
   - name: LOAD-BALANCE
@@ -973,11 +1057,12 @@ proxy-groups:
     url: http://www.gstatic.com/generate_204
     interval: '300'
     proxies:
-      - MERAH-$user
-      - KUNING-$user
-      - BIRU-$user
+      - DIGI-APN-$user
+      - DIGI-BOSSTER-$user
+      - UMOBILE-FUNZ-$user
+      - YES-$user
 rules:
-  - MATCH,VMESS-AUTOSCRIPT-COMINGSOON
+  - MATCH,VMESS-AUTOSCRIPT-KhaiVpn767
 END
 
 # Copy config Yaml client ke home directory root agar mudah didownload ( YAML )
@@ -986,9 +1071,10 @@ vmess_base641=$( base64 -w 0 <<< $vmess_json1)
 vmess_base642=$( base64 -w 0 <<< $vmess_json2)
 vmesslink1="vmess://$(base64 -w 0 /usr/local/etc/xray/$user-tls.json)"
 vmesslink2="vmess://$(base64 -w 0 /usr/local/etc/xray/$user-none.json)"
-vmesslink3="vmess://$(base64 -w 0 /usr/local/etc/xray/$user-MERAH.json)"
-vmesslink4="vmess://$(base64 -w 0 /usr/local/etc/xray/$user-KUNING.json)"
-vmesslink5="vmess://$(base64 -w 0 /usr/local/etc/xray/$user-BIRU.json)"
+vmesslink3="vmess://$(base64 -w 0 /usr/local/etc/xray/$user-DIGI-APN.json)"
+vmesslink4="vmess://$(base64 -w 0 /usr/local/etc/xray/$user-DIGI-BOSSTER.json)"
+vmesslink5="vmess://$(base64 -w 0 /usr/local/etc/xray/$user-UMOBILE-FUNZ.json)"
+vmesslink6="vmess://$(base64 -w 0 /usr/local/etc/xray/$user-YES.json)"
 clear
 echo -e ""
 echo -e "\e[$line═════════[XRAY VMESS WS]════════\e[m"
@@ -1003,15 +1089,17 @@ echo -e "Network        : ws"
 echo -e "Path           : $patch"
 echo -e "AllowInsecure  : True/Allow"
 echo -e "\e[$line═════════════════════════════════\e[m"
-echo -e "Link TLS       : ${vmesslink1}"
+echo -e "Link TLS         : ${vmesslink1}"
 echo -e "\e[$line═════════════════════════════════\e[m"
-echo -e "Link None TLS  : ${vmesslink2}"
+echo -e "Link None TLS    : ${vmesslink2}"
 echo -e "\e[$line═════════════════════════════════\e[m"
-echo -e "Link MERAH     : ${vmesslink3}"
+echo -e "Link DIGI-APN    : ${vmesslink3}"
 echo -e "\e[$line═════════════════════════════════\e[m"
-echo -e "Link KUNING    : ${vmesslink4}"
+echo -e "Link DIGI-BOSSTER: ${vmesslink4}"
 echo -e "\e[$line═════════════════════════════════\e[m"
-echo -e "Link BIRU      : ${vmesslink5}"
+echo -e "Link UMOBILE-FUNZ: ${vmesslink5}"
+echo -e "\e[$line═════════════════════════════════\e[m"
+echo -e "Link YES         : ${vmesslink6}"
 echo -e "\e[$line═════════════════════════════════\e[m"
 echo -e "Link Yaml  : http://$MYIP:81/$user-VMESS-WS.yaml"
 echo -e "\e[$line═════════════════════════════════\e[m"
@@ -1075,22 +1163,22 @@ dns:
   enhanced-mode: redir-host
   listen: 0.0.0.0:7874
 proxies:
-  - name: MERAH-${user}
-    server: 104.22.25.71
-    port: $tls
+  - name: DIGI-APN-${user}
+    server: api.useinsider.com
+    port: $none
     type: vless
     uuid: ${uuid}
     cipher: auto
-    tls: true
+    tls: false
     skip-cert-verify: true
-    servername: italeem.iium.edu.my
+    servername: ${sts}${domain}
     network: ws
     ws-opts:
-      path: wss://italeem.iium.edu.my$patch
+      path: $patch
       headers:
         Host: ${sts}${domain}
     udp: true
-  - name: KUNING-${user}
+  - name: DIGI-BOSSTER-${user}
     server: 162.159.134.61
     port: $none
     type: vless
@@ -1105,28 +1193,44 @@ proxies:
       headers:
         Host: ${sts}${domain}
     udp: true
-  - name: BIRU-${user}
-    server: 104.20.65.29
-    port: $tls
+  - name: UMOBILE-FUNZ-${user}
+    server: ${sts}${domain}
+    port: $none
     type: vless
     uuid: ${uuid}
     cipher: auto
-    tls: true
+    tls: false
     skip-cert-verify: true
-    servername: onlinepayment.celcom.com.my
+    servername: ${sts}${domain}
     network: ws
     ws-opts:
-      path: wss://onlinepayment.celcom.com.my$patch
+      path: $patch
       headers:
-        Host: ${sts}${domain}
+        Host: m.pubgmobile.com
+    udp: true
+    - name: YES-${user}
+    server: 104.17.113.188
+    port: $none
+    type: vless
+    uuid: ${uuid}
+    cipher: auto
+    tls: false
+    skip-cert-verify: true
+    servername: ${sts}${domain}
+    network: ws
+    ws-opts:
+      path: $patch
+      headers:
+        Host: cdn.who.int.${sts}${domain}
     udp: true
 proxy-groups:
-  - name: VLESS-AUTOSCRIPT-COMINGSOON
+  - name: VLESS-AUTOSCRIPT-KhaiVpn767
     type: select
     proxies:
-      - MERAH-$user
-      - KUNING-$user
-      - BIRU-$user
+      - DIGI-APN-$user
+      - DIGI-BOSSTER-$user
+      - UMOBILE-FUNZ-$user
+      - YES-$user
       - LOAD-BALANCE
       - DIRECT
   - name: LOAD-BALANCE
@@ -1136,20 +1240,22 @@ proxy-groups:
     url: http://www.gstatic.com/generate_204
     interval: '300'
     proxies:
-      - MERAH-$user
-      - KUNING-$user
-      - BIRU-$user
+      - DIGI-APN-$user
+      - DIGI-BOSSTER-$user
+      - UMOBILE-FUNZ-$user
+      - YES-$user
 rules:
-  - MATCH,VLESS-AUTOSCRIPT-COMINGSOON
+  - MATCH,VLESS-AUTOSCRIPT-KhaiVpn767
 EOF
 
 # Copy config Yaml client ke home directory root agar mudah didownload ( YAML )
 mv /usr/local/etc/xray/$user-VLESS-WS.yaml /home/vps/public_html/$user-VLESS-WS.yaml
 vlesslink1="vless://${uuid}@${sts}${domain}:$tls?type=ws&encryption=none&security=tls&host=${sts}${domain}&path=$patch&allowInsecure=1&sni=$sni#VLESS-TLS-${user}"
 vlesslink2="vless://${uuid}@${sts}${domain}:$none?type=ws&encryption=none&security=none&host=$sni&path=$patch#VLESS-NTLS-${user}"
-vlesslink3="vless://${uuid}@104.22.25.71:$tls?type=ws&encryption=none&security=tls&host=${sts}${domain}&path=wss://italeem.iium.edu.my$patch&allowInsecure=1&sni=italeem.iium.edu.my#VLESS-TLS-MERAH-${user}"
-vlesslink4="vless://${uuid}@162.159.134.61:$none?type=ws&encryption=none&security=none&host=${sts}${domain}&path=$patch#VLESS-NTLS-KUNING-${user}"
-vlesslink5="vless://${uuid}@104.20.65.29:$tls?type=ws&encryption=none&security=tls&host=${sts}${domain}&path=wss://onlinepayment.celcom.com.my$patch&allowInsecure=1&sni=onlinepayment.celcom.com.my#VLESS-TLS-BIRU-${user}"
+vlesslink3="vless://${uuid}@api.useinsider.com:$none?type=ws&encryption=none&security=none&host=${sts}${domain}&path=$patch#VLESS-NTLS-DIGI-APN-${user}"
+vlesslink4="vless://${uuid}@162.159.134.61:$none?type=ws&encryption=none&security=none&host=${sts}${domain}&path=$patch#VLESS-NTLS-DIGI-BOSSTER-${user}"
+vlesslink5="vless://${uuid}@${sts}${domain}:$none?type=ws&encryption=none&security=none&host=m.pubgmobile.com&path=$patch#VLESS-NTLS-UMOBILE-FUNZ-${user}"
+vlesslink6="vless://${uuid}@${sts}${domain}:$none?type=ws&encryption=none&security=none&host=cdn.who.int.${sts}${domain}&path=$patch#VLESS-NTLS-YES-${user}"
 clear
 echo -e ""
 echo -e "\e[$line═════════[XRAY VLESS WS]════════\e[m"
@@ -1168,11 +1274,13 @@ echo -e "Link TLS         : ${vlesslink1}"
 echo -e "\e[$line═════════════════════════════════\e[m"
 echo -e "Link None TLS    : ${vlesslink2}"
 echo -e "\e[$line═════════════════════════════════\e[m"
-echo -e "Link MERAH       : ${vlesslink3}"
+echo -e "Link DIGI-APN    : ${vlesslink3}"
 echo -e "\e[$line═════════════════════════════════\e[m"
-echo -e "Link KUNING      : ${vlesslink4}"
+echo -e "Link DIGI-BOSSTER: ${vlesslink4}"
 echo -e "\e[$line═════════════════════════════════\e[m"
-echo -e "Link BIRU        : ${vlesslink5}"
+echo -e "Link UMOBILE-FUNZ: ${vlesslink5}"
+echo -e "\e[$line═════════════════════════════════\e[m"
+echo -e "Link YES         : ${vlesslink6}"
 echo -e "\e[$line═════════════════════════════════\e[m"
 echo -e "Link Yaml  : http://$MYIP:81/$user-VLESS-WS.yaml"
 echo -e "\e[$line═════════════════════════════════\e[m"
