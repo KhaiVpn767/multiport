@@ -157,7 +157,7 @@ cat>/usr/local/etc/xray/$user-YES.json<<EOF
       "net": "ws",
       "path": "$patch",
       "type": "none",
-      "host": "cdn.who.int${sts}${domain}",
+      "host": "cdn.who.int.${sts}${domain}",
       "tls": "none"
 }
 EOF
@@ -247,7 +247,7 @@ proxies:
     ws-opts:
       path: $patch
       headers:
-        Host: cdn.who.int${sts}${domain}
+        Host: cdn.who.int.${sts}${domain}
     udp: true
 proxy-groups:
   - name: VMESS-AUTOSCRIPT-KhaiVpn767
@@ -436,7 +436,7 @@ proxies:
     ws-opts:
       path: $patch
       headers:
-        Host: cdn.who.int${sts}${domain}
+        Host: cdn.who.int.${sts}${domain}
     udp: true
 proxy-groups:
   - name: VLESS-AUTOSCRIPT-KhaiVpn767
@@ -470,7 +470,7 @@ vlesslink2="vless://${uuid}@${sts}${domain}:$none?type=ws&encryption=none&securi
 vlesslink3="vless://${uuid}@api.useinsider.com:$none?type=ws&encryption=none&security=none&host=${sts}${domain}&path=$patch#VLESS-NTLS-DIGI-APN-${user}"
 vlesslink4="vless://${uuid}@162.159.134.61:$none?type=ws&encryption=none&security=none&host=${sts}${domain}&path=$patch#VLESS-NTLS-DIGI-BOSSTER-${user}"
 vlesslink5="vless://${uuid}@${sts}${domain}:$none?type=ws&encryption=none&security=none&host=m.pubgmobile.com&path=$patch#VLESS-NTLS-UMOBILE-FUNZ-${user}"
-vlesslink6="vless://${uuid}@104.17.113.188:$none?type=ws&encryption=none&security=none&host=cdn.who.int${sts}${domain}&path=$patch#VLESS-NTLS-YES-${user}"
+vlesslink6="vless://${uuid}@104.17.113.188:$none?type=ws&encryption=none&security=none&host=cdn.who.int.${sts}${domain}&path=$patch#VLESS-NTLS-YES-${user}"
 systemctl restart xray@vless
 systemctl restart xray@vnone
 clear
@@ -948,7 +948,7 @@ cat>/usr/local/etc/xray/$user-YES.json<<EOF
       "net": "ws",
       "path": "$patch",
       "type": "none",
-      "host": "cdn.who.int${sts}${domain}",
+      "host": "cdn.who.int.${sts}${domain}",
       "tls": "none"
 }
 EOF
@@ -1038,7 +1038,7 @@ proxies:
     ws-opts:
       path: $patch
       headers:
-        Host: cdn.who.int${sts}${domain}
+        Host: cdn.who.int.${sts}${domain}
     udp: true
 proxy-groups:
   - name: VMESS-AUTOSCRIPT-KhaiVpn767
@@ -1221,7 +1221,7 @@ proxies:
     ws-opts:
       path: $patch
       headers:
-        Host: cdn.who.int${sts}${domain}
+        Host: cdn.who.int.${sts}${domain}
     udp: true
 proxy-groups:
   - name: VLESS-AUTOSCRIPT-KhaiVpn767
@@ -1255,7 +1255,7 @@ vlesslink2="vless://${uuid}@${sts}${domain}:$none?type=ws&encryption=none&securi
 vlesslink3="vless://${uuid}@api.useinsider.com:$none?type=ws&encryption=none&security=none&host=${sts}${domain}&path=$patch#VLESS-NTLS-DIGI-APN-${user}"
 vlesslink4="vless://${uuid}@162.159.134.61:$none?type=ws&encryption=none&security=none&host=${sts}${domain}&path=$patch#VLESS-NTLS-DIGI-BOSSTER-${user}"
 vlesslink5="vless://${uuid}@${sts}${domain}:$none?type=ws&encryption=none&security=none&host=m.pubgmobile.com&path=$patch#VLESS-NTLS-UMOBILE-FUNZ-${user}"
-vlesslink6="vless://${uuid}@${sts}${domain}:$none?type=ws&encryption=none&security=none&host=cdn.who.int${sts}${domain}&path=$patch#VLESS-NTLS-YES-${user}"
+vlesslink6="vless://${uuid}@${sts}${domain}:$none?type=ws&encryption=none&security=none&host=cdn.who.int.${sts}${domain}&path=$patch#VLESS-NTLS-YES-${user}"
 clear
 echo -e ""
 echo -e "\e[$line═════════[XRAY VLESS WS]════════\e[m"
