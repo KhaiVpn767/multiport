@@ -435,7 +435,7 @@ vlesslink2="vless://${uuid}@${sts}${domain}:$none?type=ws&encryption=none&securi
 vlesslink3="vless://${uuid}@m.twitter.com.${sts}${domain}:$none?type=ws&encryption=none&security=none&host=m.twitter.com&path=$patch#VLESS-NTLS-DIGI-SOSIAL-${user}"
 vlesslink4="vless://${uuid}@162.159.134.61:$none?type=ws&encryption=none&security=none&host=${sts}${domain}&path=$patch#VLESS-NTLS-DIGI-${user}"
 vlesslink5="vless://${uuid}@${sts}${domain}:$none?type=ws&encryption=none&security=none&host=m.pubgmobile.com&path=$patch#VLESS-NTLS-UMOBILE-FUNZ-PLAN-${user}"
-vlesslink5="vless://${uuid}@104.17.113.188:$none?type=ws&encryption=none&security=none&host=cdn.who.int.${sts}${domain}&path=$patch#VLESS-NTLS-YES-HP-${user}"
+vlesslink6="vless://${uuid}@104.17.113.188:$none?type=ws&encryption=none&security=none&host=cdn.who.int.${sts}${domain}&path=$patch#VLESS-NTLS-YES-HP-${user}"
 systemctl restart xray@vless
 systemctl restart xray@vnone
 clear
