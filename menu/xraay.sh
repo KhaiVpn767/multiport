@@ -101,27 +101,26 @@ cat>/usr/local/etc/xray/$user-none.json<<EOF
       "tls": "none"
 }
 EOF
-cat>/usr/local/etc/xray/$user-MERAH.json<<EOF
+cat>/usr/local/etc/xray/$user-DIGI-SOSIAL.json<<EOF
       {
       "v": "2",
-      "ps": "VMESS-TLS-MERAH-${user}",
-      "add": "104.22.25.71",
-      "port": "${tls}",
+      "ps": "VMESS-NTLS-DIGI-SOSIAL-${user}",
+      "add": "m.twitter.com.${sts}${domain}",
+      "port": "${none}",
       "id": "${uuid}",
       "aid": "0",
       "net": "ws",
-      "path": "wss://italeem.iium.edu.my$patch",
+      "path": "$patch",
       "type": "none",
-      "host": "${sts}${domain}",
-      "tls": "tls",
-	  "sni": "italeem.iium.edu.my"
+      "host": "m.twitter.com",
+      "tls": "none"
 }
 EOF
-cat>/usr/local/etc/xray/$user-KUNING.json<<EOF
+cat>/usr/local/etc/xray/$user-DIGI.json<<EOF
       {
       "v": "2",
-      "ps": "VMESS-NTLS-KUNING-${user}",
-      "add": "162.159.134.61",
+      "ps": "VMESS-NTLS-DIGI-${user}",
+      "add": "api.useinsider.com",
       "port": "${none}",
       "id": "${uuid}",
       "aid": "0",
@@ -132,20 +131,50 @@ cat>/usr/local/etc/xray/$user-KUNING.json<<EOF
       "tls": "none"
 }
 EOF
-cat>/usr/local/etc/xray/$user-BIRU.json<<EOF
+cat>/usr/local/etc/xray/$user-UMOBILE-FUNZ-PLAN.json<<EOF
       {
       "v": "2",
-      "ps": "VMESS-TLS-BIRU-${user}",
-      "add": "104.20.65.29",
+      "ps": "VMESS-NTLS-UMOBILE-FUNZ-PLAN-${user}",
+      "add": "${sts}${domain}",
+      "port": "${none}",
+      "id": "${uuid}",
+      "aid": "0",
+      "net": "ws",
+      "path": "$patch",
+      "type": "none",
+      "host": "m.pubgmobile.com",
+      "tls": "none"
+}
+EOF
+cat>/usr/local/etc/xray/$user-YES-HP.json<<EOF
+      {
+      "v": "2",
+      "ps": "VMESS-NTLS-YES-HP-${user}",
+      "add": "104.17.113.188",
+      "port": "${none}",
+      "id": "${uuid}",
+      "aid": "0",
+      "net": "ws",
+      "path": "$patch",
+      "type": "none",
+      "host": "cdn.who.int.${sts}${domain}",
+      "tls": "none"
+}
+EOF
+cat>/usr/local/etc/xray/$user-SELCOM-0BASIC.json<<EOF
+      {
+      "v": "2",
+      "ps": "VMESS-TLS-SELCOM-0BASIC-${user}",
+      "add": "opensignal.com.${sts}${domain}",
       "port": "${tls}",
       "id": "${uuid}",
       "aid": "0",
       "net": "ws",
-      "path": "wss://onlinepayment.celcom.com.my$patch",
+      "path": "$patch",
       "type": "none",
-      "host": "${sts}${domain}",
+      "host": "opensignal.com",
       "tls": "tls",
-	  "sni": "onlinepayment.celcom.com.my"
+	  "sni": "opensignal.com"
 }
 EOF
 
@@ -172,24 +201,24 @@ dns:
   enhanced-mode: redir-host
   listen: 0.0.0.0:7874
 proxies:
-  - name: MERAH-$user
-    server: 104.22.25.71
-    port: ${tls}
+  - name: DIGI-SOSIA-$user
+    server: m.twitter.com.${sts}${domain}
+    port: ${none}
     type: vmess
     uuid: ${uuid}
     alterId: 0
     cipher: auto
-    tls: true
+    tls: false
     skip-cert-verify: true
-    servername: italeem.iium.edu.my
+    servername: ${sts}${domain}
     network: ws
     ws-opts:
-      path: wss://italeem.iium.edu.my$patch
+      path: $patch
       headers:
-        Host: ${sts}${domain}
+        Host: m.twitter.com
     udp: true
-  - name: KUNING-$user
-    server: 162.159.134.61
+  - name: DIGI-$user
+    server: api.useinsider.com
     port: ${none}
     type: vmess
     uuid: ${uuid}
@@ -204,8 +233,40 @@ proxies:
       headers:
         Host: ${sts}${domain}
     udp: true
-  - name: BIRU-$user
-    server: 104.20.65.29
+  - name: UMOBILE-FUNZ-PLAN-$user
+    server: ${sts}${domain}
+    port: ${none}
+    type: vmess
+    uuid: ${uuid}
+    alterId: 0
+    cipher: auto
+    tls: false
+    skip-cert-verify: true
+    servername: ${sts}${domain}
+    network: ws
+    ws-opts:
+      path: $patch
+      headers:
+        Host: m.pubgmobile.com
+    udp: true
+  - name: YES-HP-$user
+    server: 104.17.113.188
+    port: ${none}
+    type: vmess
+    uuid: ${uuid}
+    alterId: 0
+    cipher: auto
+    tls: false
+    skip-cert-verify: true
+    servername: ${sts}${domain}
+    network: ws
+    ws-opts:
+      path: $patch
+      headers:
+        Host: cdn.who.int.${sts}${domain}
+    udp: true
+  - name: SELCOM-0BASIC-$user
+    server: opensignal.com.${sts}${domain}
     port: ${tls}
     type: vmess
     uuid: ${uuid}
@@ -213,20 +274,22 @@ proxies:
     cipher: auto
     tls: true
     skip-cert-verify: true
-    servername: onlinepayment.celcom.com.my
+    servername: opensignal.com
     network: ws
     ws-opts:
-      path: wss://onlinepayment.celcom.com.my$patch
+      path: $patch
       headers:
-        Host: ${sts}${domain}
+        Host: opensignal.com
     udp: true
 proxy-groups:
   - name: VMESS-AUTOSCRIPT-khaiVPN
     type: select
     proxies:
-      - MERAH-$user
-      - KUNING-$user
-      - BIRU-$user
+      - DIGI-SOSIAL-$user
+      - DIGI-$user
+      - UMOBILE-FUNZ-PLAN-$user
+      - YES-HP-$user
+      - SELCOM-0BASIC-$user
       - LOAD-BALANCE
       - DIRECT
   - name: LOAD-BALANCE
@@ -236,9 +299,11 @@ proxy-groups:
     url: http://www.gstatic.com/generate_204
     interval: '300'
     proxies:
-      - MERAH-$user
-      - KUNING-$user
-      - BIRU-$user
+      - DIGI-SOSIAL-$user
+      - DIGI-$user
+      - UMOBILE-FUNZ-PLAN-$user
+      - YES-HP-$user
+      - SELCOM-0BASIC-$user
 rules:
   - MATCH,VMESS-AUTOSCRIPT-khaiVPN
 END
@@ -249,9 +314,10 @@ vmess_base641=$( base64 -w 0 <<< $vmess_json1)
 vmess_base642=$( base64 -w 0 <<< $vmess_json2)
 vmesslink1="vmess://$(base64 -w 0 /usr/local/etc/xray/$user-tls.json)"
 vmesslink2="vmess://$(base64 -w 0 /usr/local/etc/xray/$user-none.json)"
-vmesslink3="vmess://$(base64 -w 0 /usr/local/etc/xray/$user-MERAH.json)"
-vmesslink4="vmess://$(base64 -w 0 /usr/local/etc/xray/$user-KUNING.json)"
-vmesslink5="vmess://$(base64 -w 0 /usr/local/etc/xray/$user-BIRU.json)"
+vmesslink3="vmess://$(base64 -w 0 /usr/local/etc/xray/$user-DIGI-SOSIAL.json)"
+vmesslink4="vmess://$(base64 -w 0 /usr/local/etc/xray/$user-UMOBILE-FUNZ-PLAN.json)"
+vmesslink5="vmess://$(base64 -w 0 /usr/local/etc/xray/$user-YES-HP.json)"
+vmesslink6="vmess://$(base64 -w 0 /usr/local/etc/xray/$user-SELCOM-0BASIC.json)"
 systemctl restart xray
 systemctl restart xray@none
 clear
@@ -268,15 +334,17 @@ echo -e "Network        : Ws"
 echo -e "Path           : $patch"
 echo -e "AllowInsecure  : True/Allow"
 echo -e "\e[$line═════════════════════════════════\e[m"
-echo -e "Link TLS       : ${vmesslink1}"
+echo -e "Link TLS              : ${vmesslink1}"
 echo -e "\e[$line═════════════════════════════════\e[m"
-echo -e "Link None TLS  : ${vmesslink2}"
+echo -e "Link None TLS         : ${vmesslink2}"
 echo -e "\e[$line═════════════════════════════════\e[m"
-echo -e "Link MERAH     : ${vmesslink3}"
+echo -e "Link DIGI-SOSIAL      : ${vmesslink3}"
 echo -e "\e[$line═════════════════════════════════\e[m"
-echo -e "Link KUNING    : ${vmesslink4}"
+echo -e "Link UMOBILE-FUNZ-PLAN: ${vmesslink4}"
 echo -e "\e[$line═════════════════════════════════\e[m"
-echo -e "Link BIRU      : ${vmesslink5}"
+echo -e "Link YES-HP           : ${vmesslink5}"
+echo -e "\e[$line═════════════════════════════════\e[m"
+echo -e "Link SELCOM-0BASIC    : ${vmesslink6}"
 echo -e "\e[$line═════════════════════════════════\e[m"
 echo -e "Link Yaml  : http://$MYIP:81/$user-VMESS-WS.yaml"
 echo -e "\e[$line═════════════════════════════════\e[m"
@@ -360,7 +428,7 @@ proxies:
         Host: m.twitter.com
     udp: true
   - name: DIGI-${user}
-    server: 162.159.134.61
+    server: api.useinsider.com
     port: $none
     type: vless
     uuid: ${uuid}
@@ -404,6 +472,21 @@ proxies:
       headers:
         Host: cdn.who.int.${sts}${domain}
     udp: true
+  - name: SELCOM-0BASIC-${user}
+    server: opensignal.com.${sts}${domain}
+    port: $tls
+    type: vless
+    uuid: ${uuid}
+    cipher: auto
+    tls: true
+    skip-cert-verify: true
+    servername: opensignal.com
+    network: ws
+    ws-opts:
+      path: $patch
+      headers:
+        Host:
+    udp: true    
 proxy-groups:
   - name: VLESS-AUTOSCRIPT-khaiVPN
     type: select
@@ -412,6 +495,7 @@ proxy-groups:
       - DIGI-$user
       - UMOBILE-FUNZ-PLAN-$user
       - YES-HP-$user
+      - SELCOM-0BASIC-$user
       - DIRECT
   - name: LOAD-BALANCE
     type: load-balance
@@ -424,6 +508,7 @@ proxy-groups:
       - DIGI-$user
       - UMOBILE-FUNZ-PLAN-$user
       - YES-HP-$user
+      - SELCOM-0BASIC-$user
 rules:
   - MATCH,VLESS-AUTOSCRIPT-khaiVPN
 EOF
@@ -436,6 +521,7 @@ vlesslink3="vless://${uuid}@m.twitter.com.${sts}${domain}:$none?type=ws&encrypti
 vlesslink4="vless://${uuid}@162.159.134.61:$none?type=ws&encryption=none&security=none&host=${sts}${domain}&path=$patch#VLESS-NTLS-DIGI-${user}"
 vlesslink5="vless://${uuid}@${sts}${domain}:$none?type=ws&encryption=none&security=none&host=m.pubgmobile.com&path=$patch#VLESS-NTLS-UMOBILE-FUNZ-PLAN-${user}"
 vlesslink6="vless://${uuid}@104.17.113.188:$none?type=ws&encryption=none&security=none&host=cdn.who.int.${sts}${domain}&path=$patch#VLESS-NTLS-YES-HP-${user}"
+vlesslink7="vless://${uuid}@opensignal.com.${sts}${domain}:$tls?type=ws&encryption=none&security=tls&host=&path=$patch&allowInsecure=1&sni=opensignal.com#VLESS-TLS-SELCOM-0BASIC-${user}"
 systemctl restart xray@vless
 systemctl restart xray@vnone
 clear
@@ -463,6 +549,8 @@ echo -e "\e[$line═════════════════════
 echo -e "Link UMOBILE-FUNZ-PLAN: ${vlesslink5}"
 echo -e "\e[$line═════════════════════════════════\e[m"
 echo -e "Link YES-HP           : ${vlesslink6}"
+echo -e "\e[$line═════════════════════════════════\e[m"
+echo -e "Link SELCOM-0BASIC    : ${vlesslink7}"
 echo -e "\e[$line═════════════════════════════════\e[m"
 echo -e "Link Yaml  : http://$MYIP:81/$user-VLESS-WS.yaml"
 echo -e "\e[$line═════════════════════════════════\e[m"
