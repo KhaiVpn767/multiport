@@ -54,6 +54,7 @@ Feedback to owner on Telegram khaiVPN<a href="https://t.me/khaivpn" target=”_b
   - OHP Dropbear            : 8585
   - OHP SSH                 : 8686
   - OHP OpenVPN             : 8787
+  - SlowDNS                 : 22,80,443,53,5300
   - Websocket SSH(HTTP)     : 2081
   - Websocket SSL(HTTPS)    : 222
   - Websocket OpenVPN       : 2084
