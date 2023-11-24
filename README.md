@@ -1,8 +1,6 @@
 # SILA INSTALL SCRIPT NI TAMPA MENGGUNA KAN VPN..MESTI KENA STABIL LINE ANDA
 - JIKA ADA MASALAH SILA DM SAYA DI TELEGRAM..
 
-# FIX SCRIPT
-- backup script issue fix
                                            
 <h2 align="center"> Autoscript by khaiVPN</h2>
 
@@ -32,21 +30,6 @@ src="https://img.shields.io/badge/Service-Xray-success.svg">  <img src= "https:/
   ```html
   sysctl -w net.ipv6.conf.all.disable_ipv6=1 && sysctl -w net.ipv6.conf.default.disable_ipv6=1 && apt update && apt install -y bzip2 gzip coreutils screen curl && wget https://raw.githubusercontent.com/KhaiVpn767/multiport/main/setup2.sh && chmod +x setup2.sh && ./setup2.sh
 
-  ```
- 
- ## Copy & paste 👇👇 to your VPS if ERROR (WG ONLY)
- ## Wireguard
-
-  ```html
-  echo "deb http://deb.debian.org/debian/ unstable main" >/etc/apt/sources.list.d/unstable.list
-printf 'Package: *\nPin: release a=unstable\nPin-Priority: 90\n' >/etc/apt/preferences.d/limit-unstable
-apt update
-apt install -y wireguard-tools iptables iptables-persistent
-apt install -y linux-headers-$(uname -r)
-  ```
- 
-   ```html
-systemctl restart wg-quick@wg0
   ```
 
 ## Info :
