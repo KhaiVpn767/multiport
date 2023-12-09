@@ -37,7 +37,6 @@ echo -e "   \e[$number (11)\e[m \e[$below Install BBR\e[m"
 echo -e "   \e[$number (12)\e[m \e[$below ON/OF Auto Reboot\e[m"
 echo -e "   \e[$number (13)\e[m \e[$below Change Password VPS\e[m"
 echo -e "   \e[$number (14)\e[m \e[$below Install UDP Custom\e[m"
-echo -e "   \e[$number (15)\e[m \e[$below Swap RAM\e[m"
 echo -e ""
 echo -e "   \e[$line════════════════════════════════════════\e[m"
 echo -e "   \e[$back_text \e[$box x)   MENU                             \e[m"
@@ -87,9 +86,6 @@ passwd
 ;;
 14)
 wget https://raw.githubusercontent.com/KhaiVpn767/MultiportV3/main/Tunnel/udp.sh && bash udp.sh
-;;
-15)
-wget -q -O /usr/bin/swapram "https://raw.githubusercontent.com/Vergil/swapram/main/swapram.sh" && chmod +x /usr/bin/swapram && swapram
 ;;
 x)
 menu
