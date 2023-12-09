@@ -110,6 +110,7 @@ echo -e   " \e[$line════════════════════
 echo -e "  \e[$text Cpu Model            :$cname"
 echo -e "  \e[$text Number Of Core       : $cores"
 echo -e "  \e[$text Cpu Frequency        :$freq MHz"
+echo -e "  \e[$text CPU Usage            : $cpu_usage"
 echo -e "  \e[$text Total Amount Of Ram  : $tram MB"
 echo -e "  \e[$text System Uptime        : $uptime"
 echo -e "  \e[$text Ip Vps/Address       : $IPVPS"
