@@ -30,7 +30,7 @@ clear
 echo -e ""
 echo -e "${green}Permission Accepted...${NC}"
 echo ""
-echo "Thanks For Using This Autoscript-Lite By khaiVPN"
+echo "Thanks For Using This Autoscript-Lite By comingsoon"
 echo ""
 sleep 3
 else
@@ -238,8 +238,8 @@ echo "    ----------------" | tee -a log-install.txt
 echo "   - Xray Vmess Ws Tls       : 443"  | tee -a log-install.txt
 echo "   - Xray Vless Ws Tls       : 443"  | tee -a log-install.txt
 echo "   - Xray Vless Xtls         : 443"  | tee -a log-install.txt
-echo "   - Xray Vmess Ws None Tls  : 8080"  | tee -a log-install.txt
-echo "   - Xray Vless Ws None Tls  : 80"  | tee -a log-install.txt
+echo "   - Xray Vmess Ws None Tls  : 80"  | tee -a log-install.txt
+echo "   - Xray Vless Ws None Tls  : 8080"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "    [INFORMASI TROJAN]" | tee -a log-install.txt
 echo "    ------------------" | tee -a log-install.txt
@@ -270,7 +270,7 @@ echo "   - Auto Delete Expired Account" | tee -a log-install.txt
 echo "   - Full Orders For Various Services" | tee -a log-install.txt
 echo "   - White Label" | tee -a log-install.txt
 echo "   - Installation Log --> /root/log-install.txt"  | tee -a log-install.txt
-echo "------------------------Script By khaiVPN---------------------" | tee -a log-install.txt
+echo "------------------------Script By comingsoon---------------------" | tee -a log-install.txt
 clear
 echo ""
 echo ""
