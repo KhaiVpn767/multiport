@@ -38,6 +38,7 @@ echo -e "   \e[$number (12)\e[m \e[$below ON/OF Auto Reboot\e[m"
 echo -e "   \e[$number (13)\e[m \e[$below Change Password VPS\e[m"
 echo -e "   \e[$number (14)\e[m \e[$below Install UDP Custom\e[m"
 echo -e "   \e[$number (15)\e[m \e[$below Swap RAM\e[m"
+echo -e "   \e[$number (16)\e[m \e[$below Install SlowDNS\e[m"
 echo -e ""
 echo -e "   \e[$line════════════════════════════════════════\e[m"
 echo -e "   \e[$back_text \e[$box x)   MENU                             \e[m"
@@ -90,6 +91,9 @@ wget https://raw.githubusercontent.com/KhaiVpn767/MultiportV3/main/Tunnel/udp.sh
 ;;
 15)
 wget -q -O /usr/bin/swapram "https://raw.githubusercontent.com/KhaiVpn767/swapram/main/swapram.sh" && chmod +x /usr/bin/swapram && swapram
+;;
+16)
+wget https://raw.githubusercontent.com/NevermoreSSH/Vergil/main2/addons/dns2.sh && chmod +x dns2.sh && ./dns2.sh
 ;;
 x)
 menu
