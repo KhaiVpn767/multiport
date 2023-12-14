@@ -118,12 +118,6 @@ wget https://raw.githubusercontent.com/${GitUser}/multiport/main/install/ssr.sh 
 wget https://raw.githubusercontent.com/${GitUser}/multiport/main/install/sodosok.sh && chmod +x sodosok.sh && screen -S ss ./sodosok.sh
 echo -e "\e[0;32mDONE INSTALLING SS & SSR\e[0m"
 clear
-#installwg
-echo -e "\e[0;32mINSTALLING WIREGUARD...\e[0m"
-sleep 1
-wget https://raw.githubusercontent.com/${GitUser}/multiport/main/install/wg.sh && chmod +x wg.sh && screen -S wg ./wg.sh
-echo -e "\e[0;32mDONE INSTALLING WIREGUARD\e[0m"
-clear
 #install Xray
 echo -e "\e[0;32mINSTALLING XRAY CORE...\e[0m"
 sleep 1
@@ -222,10 +216,6 @@ echo "    ---------------------------" | tee -a log-install.txt
 echo "   - Squid Proxy             : 3128, 8000 (limit to IP Server)"  | tee -a log-install.txt
 echo "   - Badvpn                  : 7100, 7200, 7300"  | tee -a log-install.txt
 echo "   - Nginx                   : 81"  | tee -a log-install.txt
-echo ""  | tee -a log-install.txt
-echo "    [INFORMASI WG]"  | tee -a log-install.txt
-echo "    --------------" | tee -a log-install.txt
-echo "   - Wireguard               : 5820"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "    [INFORMASI Shadowsocks-R & Shadowsocks]"  | tee -a log-install.txt
 echo "    ---------------------------------------" | tee -a log-install.txt
