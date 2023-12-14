@@ -26,19 +26,18 @@ echo -e "   \e[$line════════════════════
 echo -e "   \e[$number (•1)\e[m \e[$below Add New Subdomain\e[m"
 echo -e "   \e[$number (•2)\e[m \e[$below Renew Cert Xray Core\e[m"
 echo -e "   \e[$number (•3)\e[m \e[$below Panel Domain\e[m"
-echo -e "   \e[$number (•4)\e[m \e[$below DNS Changer\e[m"
-echo -e "   \e[$number (•5)\e[m \e[$below Backup Vps\e[m"
-echo -e "   \e[$number (•6)\e[m \e[$below Restore Vps\e[m"
-echo -e "   \e[$number (•7)\e[m \e[$below Install Webmin\e[m"
-echo -e "   \e[$number (•8)\e[m \e[$below Setup Speed VPS\e[m"
-echo -e "   \e[$number (•9)\e[m \e[$below Restart VPN\e[m"
-echo -e "   \e[$number (10)\e[m \e[$below Speedtest VPS\e[m"
-echo -e "   \e[$number (11)\e[m \e[$below Install BBR\e[m"
-echo -e "   \e[$number (12)\e[m \e[$below ON/OF Auto Reboot\e[m"
-echo -e "   \e[$number (13)\e[m \e[$below Change Password VPS\e[m"
-echo -e "   \e[$number (14)\e[m \e[$below Install UDP Custom\e[m"
-echo -e "   \e[$number (15)\e[m \e[$below Swap RAM\e[m"
-echo -e "   \e[$number (16)\e[m \e[$below Install SlowDNS\e[m"
+echo -e "   \e[$number (•4)\e[m \e[$below Backup Vps\e[m"
+echo -e "   \e[$number (•5)\e[m \e[$below Restore Vps\e[m"
+echo -e "   \e[$number (•6)\e[m \e[$below Install Webmin\e[m"
+echo -e "   \e[$number (•7)\e[m \e[$below Setup Speed VPS\e[m"
+echo -e "   \e[$number (•8)\e[m \e[$below Restart VPN\e[m"
+echo -e "   \e[$number (9)\e[m \e[$below Speedtest VPS\e[m"
+echo -e "   \e[$number (10)\e[m \e[$below Install BBR\e[m"
+echo -e "   \e[$number (11)\e[m \e[$below ON/OF Auto Reboot\e[m"
+echo -e "   \e[$number (12)\e[m \e[$below Change Password VPS\e[m"
+echo -e "   \e[$number (13)\e[m \e[$below Install UDP Custom\e[m"
+echo -e "   \e[$number (14)\e[m \e[$below Swap RAM\e[m"
+echo -e "   \e[$number (15)\e[m \e[$below Install SlowDNS\e[m"
 echo -e ""
 echo -e "   \e[$line════════════════════════════════════════\e[m"
 echo -e "   \e[$back_text \e[$box x)   MENU                             \e[m"
@@ -57,43 +56,40 @@ certv2ray
 panel-domain
 ;;
 4)
-dns
-;;
-5)
 backup
 ;;
-6)
+5)
 restore
 ;;
-7)
+6)
 wbmn
 ;;
-8)
+7)
 limit-speed
 ;;
-9)
+8)
 restart
 ;;
-10)
+9)
 speedtest
 ;;
-11)
+10)
 bbr
 ;;
-12)
+11)
 autoreboot
 ;;
-13)
+12)
 passwd
 ;;
-14)
+13)
 wget https://raw.githubusercontent.com/KhaiVpn767/MultiportV3/main/Tunnel/udp.sh && bash udp.sh
 ;;
-15)
+14)
 wget -q -O /usr/bin/swapram "https://raw.githubusercontent.com/KhaiVpn767/swapram/main/swapram.sh" && chmod +x /usr/bin/swapram && swapram
 ;;
-16)
-wget https://raw.githubusercontent.com/KhaiVpn767/SlowDns/main/autoscript-ssh-slowdns/slowdns.sh && chmod +x slowdns.sh && ./slowdns.sh
+15)
+wget https://raw.githubusercontent.com/NevermoreSSH/Vergil/main2/addons/dns2.sh && chmod +x dns2.sh && ./dns2.sh
 ;;
 x)
 menu
