@@ -98,9 +98,10 @@ echo -e "PAYLOAD WEBSOCKET 2 : GET wss://bug.com/ HTTP/1.1[crlf]Host: bug.com.$d
 echo -e ""
 echo -e "Script By $creditt"
 echo -e  ""
+echo -e  " \e[$number (•0)\e[m \e[$below back/menu\e[m
 echo -e  "  \e[$below [Ctrl + C] For exit from main menu\e[m"
 echo -e  "\e[$below "
-read -p  "   Select From Options [1-12 or x] :  " menu
+read -p  "   Select From Options [0] :  " menu
 echo -e  ""
 case $menu in
 0)
