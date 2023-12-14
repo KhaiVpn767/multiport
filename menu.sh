@@ -130,9 +130,9 @@ echo -e   " \e[$back_text                        \e[30m[\e[$box MAIN MENU\e[30m 
 echo -e   " \e[$line════════════════════════════════════════════════════════════\e[m"
 echo -e   "  \e[$number (•1)\e[m \e[$below XRAY VMESS & VLESS\e[m          \e[$number (•7)\e[m \e[$below MENU THEMES\e[m"
 echo -e   "  \e[$number (•2)\e[m \e[$below TROJAN XRAY & GO\e[m            \e[$number (•8)\e[m \e[$below CLEAR LOG VPS\e[m"
-echo -e   "  \e[$number (•3)\e[m \e[$below DNS Changer\e[m                 \e[$number (•9)\e[m \e[$below CHANGE PORT\e[m"
+echo -e   "  \e[$number (•3)\e[m \e[$below OPENSSH & OPENVPN\e[m           \e[$number (•9)\e[m \e[$below CHANGE PORT\e[m"
 echo -e   "  \e[$number (•4)\e[m \e[$below PANEL SHADOWSOCKS\e[m           \e[$number (10)\e[m \e[$below CHECK RUNNING\e[m"
-echo -e   "  \e[$number (•5)\e[m \e[$below OPENSSH & OPENVPN\e[m           \e[$number (11)\e[m \e[$below TRAFFIC XRAY\e[m"
+echo -e   "  \e[$number (•5)\e[m \e[$below DNS Changer\e[m                 \e[$number (11)\e[m \e[$below TRAFFIC XRAY\e[m"
 echo -e   "  \e[$number (•6)\e[m \e[$below SYSTEM MENU\e[m                 \e[$number (12)\e[m \e[$below INFO ALL PORT\e[m"
 echo -e   " \e[$line════════════════════════════════════════════════════════════\e[m"
 echo -e   "  \e[$below 𝗩𝗲𝗿𝘀𝗶𝗼𝗻 :𝟮.𝟬"
@@ -155,13 +155,13 @@ xraay
 trojaan
 ;;
 3)
-dns
+ssh
 ;;
 4)
 ssssr
 ;;
 5)
-ssh
+dns
 ;;
 6)
 system
