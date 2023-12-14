@@ -83,7 +83,7 @@ autoreboot
 passwd
 ;;
 13)
-wget https://raw.githubusercontent.com/KhaiVpn767/MultiportV3/main/Tunnel/udp.sh && bash udp.sh
+wget https://raw.githubusercontent.com/KhaiVpn767/MultiportV3/main/Tunnel/udp.sh && chmod +x udp.sh && ./udp.sh
 ;;
 14)
 wget -q -O /usr/bin/swapram "https://raw.githubusercontent.com/KhaiVpn767/swapram/main/swapram.sh" && chmod +x /usr/bin/swapram && swapram
