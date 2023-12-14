@@ -1,4 +1,4 @@
-# By NevermoreSSHDNS
+# By KhaiVpn767
 SSH OVER DNS create By KhaiVpn767
 * Link Script Repo SlowDNS dari KhaiVpn767
 ```html
