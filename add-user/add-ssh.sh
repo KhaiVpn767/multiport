@@ -97,3 +97,18 @@ echo -e "\e[$line═════════════════════
 echo -e "PAYLOAD WEBSOCKET 2 : GET wss://bug.com/ HTTP/1.1[crlf]Host: bug.com.$domain[crlf]Upgrade: websocket[crlf]Connection: Keep-Alive[crlf][crlf]"
 echo -e ""
 echo -e "Script By $creditt"
+read -p   "   Select From Options [0] :  " menu
+echo -e   ""
+case $menu in
+0)
+ssh
+;;
+echo  -e "\e[1;31mPlease Type menu For More Option, Thank You\e[0m"
+;;
+*)
+clear
+echo  -e "\e[1;31mPlease enter an correct number\e[0m"
+sleep 1
+menu
+;;
+esac
