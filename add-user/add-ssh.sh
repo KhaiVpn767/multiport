@@ -97,25 +97,17 @@ echo -e "\e[$line═════════════════════
 echo -e "PAYLOAD WEBSOCKET 2 : GET wss://bug.com/ HTTP/1.1[crlf]Host: bug.com.$domain[crlf]Upgrade: websocket[crlf]Connection: Keep-Alive[crlf][crlf]"
 echo -e ""
 echo -e "Script By $creditt"
-echo -e  ""
-echo -e  " \e[$number (•0)\e[m \e[$below back/menu\e[m
-echo -e  "  \e[$below [Ctrl + C] For exit from main menu\e[m"
-echo -e  "\e[$below "
-read -p  "   Select From Options [0] :  " menu
-echo -e  ""
-case $menu in
-0)
-ssh
+echo -e   " \e[$number (00)\e[m \e[$below BACK MENU\e[m
+read -n 1 -s -r -p "Press any key to back on menu"
+menu
 ;;
-x)
-clear
-exit
-echo  -e "\e[1;31mPlease Type menu For More Option, Thank You\e[0m"
+00)
+ssh
+menu
 ;;
 *)
+echo "Please enter an correct number"
 clear
-echo  -e "\e[1;31mPlease enter an correct number\e[0m"
-sleep 1
-menu
+ssh
 ;;
 esac
