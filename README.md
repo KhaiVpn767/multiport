@@ -92,14 +92,5 @@ Feedback to owner on Telegram khaiVPN<a href="https://t.me/khaivpn" target=”_b
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 
-![photo_2023-12-12_00-03-40](https://github.com/KhaiVpn767/multiport/assets/112326124/ce6b7435-90a7-47f1-afd6-54eb16b757a0)
-
-
-![photo_2023-12-11_23-59-13](https://github.com/KhaiVpn767/multiport/assets/112326124/1fe83d09-9b3a-4be6-ad41-450966ceff42)
-
-
-![photo_2023-12-11_23-59-19](https://github.com/KhaiVpn767/multiport/assets/112326124/3667529c-e2e0-4d81-9f8e-85c4adb85966)
-
-
 
 
