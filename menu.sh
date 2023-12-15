@@ -164,7 +164,7 @@ ssssr
 dns
 ;;
 6)
-system
+system.sh
 ;;
 7)
 themes
