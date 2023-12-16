@@ -89,7 +89,7 @@ wget https://raw.githubusercontent.com/KhaiVpn767/MultiportV3/main/Tunnel/udp.sh
 wget -q -O /usr/bin/swapram "https://raw.githubusercontent.com/KhaiVpn767/swapram/main/swapram.sh" && chmod +x /usr/bin/swapram && swapram
 ;;
 15)
-wget https://raw.githubusercontent.com/KhaiVpn767/SlowDns/main/addons/dns2.sh && chmod +x dns2.sh && ./dns2.sh
+wget https://raw.githubusercontent.com/NevermoreSSH/Vergil/main/autoscript-ssh-slowdns/slowdns && chmod +x slowdns && ./slowdns
 ;;
 x)
 menu
