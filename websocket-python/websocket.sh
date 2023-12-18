@@ -1,87 +1,50 @@
+#!/bin/bash
 clear
 echo Installing Websocket-SSH Python
 sleep 1
 echo Sila Tunggu Sebentar...
 sleep 0.5
 cd
-
-# // GIT USER
+#Buat name user github dan nama folder
 GitUser="KhaiVpn767"
 namafolder="websocket-python"
+#wget https://github.com/${GitUser}/main/${namafolder}/
 
-# // SYSTEM WEBSOCKET HTTPS 443
-cat <<EOF> /etc/systemd/system/ws-https.service
-[Unit]
-Description=Python Proxy
-Documentation=https://github.com/KhaiVpn767/
-After=network.target nss-lookup.target
+#System Websocket
+cd
+cd /etc/systemd/system/
+wget -O /etc/systemd/system/cdn-ssl.service https://raw.githubusercontent.com/${GitUser}/t-code/main/${namafolder}/cdn-ssl.service
+#System Websocket-Ovpn Service
+cd /etc/systemd/system/
+wget -O /etc/systemd/system/cdn-ovpn.service https://raw.githubusercontent.com/${GitUser}/t-code/main/${namafolder}/cdn-ovpn.service
+#System Websocket-Dropbear Service
+cd /etc/systemd/system/
+wget -O /etc/systemd/system/cdn-dropbear.service https://raw.githubusercontent.com/${GitUser}/t-code/main/${namafolder}/cdn-dropbear.service
 
-[Service]
-Type=simple
-User=root
-CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
-AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
-NoNewPrivileges=true
-Restart=on-failure
-ExecStart=/usr/bin/python -O /usr/local/bin/ws-https
+#Install WS-SSL
+wget -q -O /usr/local/bin/cdn-ssl https://raw.githubusercontent.com/${GitUser}/t-code/main/${namafolder}/cdn-ssl.py
+chmod +x /usr/local/bin/cdn-ssl
+#Install WS-OpenVPN
+wget -q -O /usr/local/bin/cdn-ovpn https://raw.githubusercontent.com/${GitUser}/t-code/main/${namafolder}/cdn-ovpn.py
+chmod +x /usr/local/bin/cdn-ovpn
+#Install WS-Dropbear
+wget -q -O /usr/local/bin/cdn-dropbear https://raw.githubusercontent.com/${GitUser}/t-code/main/${namafolder}/cdn-dropbear.py
+chmod +x /usr/local/bin/cdn-dropbear
 
-[Install]
-WantedBy=multi-user.target
-EOF
-
-# // SYSTEM WEBSOCKET HTTP 80
-cat <<EOF> /etc/systemd/system/ws-http.service
-[Unit]
-Description=Python Proxy
-Documentation=https://github.com/KhaiVpn767/
-After=network.target nss-lookup.target
-
-[Service]
-Type=simple
-User=root
-CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
-AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
-NoNewPrivileges=true
-ExecStart=/usr/bin/python -O /usr/local/bin/ws-http
-Restart=on-failure
-[Install]
-WantedBy=multi-user.target
-EOF
-
-# // SYSTEM WEBSOCKET OVPN
-cat <<EOF> /etc/systemd/system/ws-ovpn.service
-[Unit]
-Description=Python Proxy
-Documentation=https://github.com/KhaiVpn767/
-After=network.target nss-lookup.target
-
-[Service]
-Type=simple
-User=root
-CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
-AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
-NoNewPrivileges=true
-ExecStart=/usr/bin/python -O /usr/local/bin/ws-ovpn 2097
-Restart=on-failure
-
-[Install]
-WantedBy=multi-user.target
-EOF
-
-# // PYTHON WEBSOCKET TLS && NONE
-wget -q -O /usr/local/bin/ws-https https://raw.githubusercontent.com/${GitUser}/multiport/main/${namafolder}/ws-https; chmod +x /usr/local/bin/ws-https
-
-# // PYTHON WEBSOCKET DROPBEAR
-wget -q -O /usr/local/bin/ws-http https://raw.githubusercontent.com/${GitUser}/multiport/main/${namafolder}/ws-http; chmod +x /usr/local/bin/ws-http
-
-# // PYTHON WEBSOCKET OVPN
-wget -q -O /usr/local/bin/ws-ovpn https://raw.githubusercontent.com/${GitUser}/multiport/main/${namafolder}/ws-ovpn; chmod +x /usr/local/bin/ws-ovpn
-
-# // RESTART && ENABLE SSHVPN WEBSOCKET TLS 
+#Enable & Start & Restart ws-stunnel service
 systemctl daemon-reload
-systemctl enable ws-https
-systemctl restart ws-https
-systemctl enable ws-http
-systemctl restart ws-http
-systemctl enable ws-ovpn
-systemctl restart ws-ovpn
+systemctl enable cdn-ssl
+systemctl start cdn-ssl
+systemctl restart cdn-ssl
+
+#Enable & Start & Restart ws-ovpn service
+systemctl daemon-reload
+systemctl enable cdn-ovpn
+systemctl start cdn-ovpn
+systemctl restart cdn-ovpn
+
+#Enable & Start & Restart ws-dropbear service
+systemctl daemon-reload
+systemctl enable cdn-dropbear
+systemctl start cdn-dropbear
+systemctl restart cdn-dropbear
