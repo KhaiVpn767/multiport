@@ -1,7 +1,7 @@
 # /usr/local/bin/cdn-openssh
 [Unit]
-Description=Python WS-OpenSSH By khaiVPN
-Documentation=https://khaiVPN.xyz
+Description=Python WS-OpenSSH By comingsoon
+Documentation=https://comingsoon.xyz
 After=network.target nss-lookup.target
 
 [Service]

@@ -1,7 +1,7 @@
 # /usr/local/bin/cdn-dropbear
 [Unit]
-Description=Python WS-Dropbear By khaiVPN
-Documentation=https://khaiVPN.xyz
+Description=Python WS-Dropbear By comingsoon
+Documentation=https://comingsoon.xyz
 After=network.target nss-lookup.target
 
 [Service]
