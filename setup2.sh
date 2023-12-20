@@ -30,7 +30,7 @@ clear
 echo -e ""
 echo -e "${green}Permission Accepted...${NC}"
 echo ""
-echo "Thanks For Using This Autoscript-Lite By khaiVPN"
+echo "Thanks For Using This Autoscript-Lite By khaivpn"
 echo ""
 sleep 3
 else
@@ -118,6 +118,12 @@ wget https://raw.githubusercontent.com/${GitUser}/multiport/main/install/ssr.sh 
 wget https://raw.githubusercontent.com/${GitUser}/multiport/main/install/sodosok.sh && chmod +x sodosok.sh && screen -S ss ./sodosok.sh
 echo -e "\e[0;32mDONE INSTALLING SS & SSR\e[0m"
 clear
+#installwg
+echo -e "\e[0;32mINSTALLING WIREGUARD...\e[0m"
+sleep 1
+wget https://raw.githubusercontent.com/${GitUser}/multiport/main/install/wg.sh && chmod +x wg.sh && screen -S wg ./wg.sh
+echo -e "\e[0;32mDONE INSTALLING WIREGUARD\e[0m"
+clear
 #install Xray
 echo -e "\e[0;32mINSTALLING XRAY CORE...\e[0m"
 sleep 1
@@ -184,14 +190,14 @@ echo "47m" > /etc/back
 echo "1;35m" > /etc/number
 echo 3d > /usr/bin/test
 # Version
-ver=$( curl https://raw.githubusercontent.com/${GitUser}/multiport/main/version.conf )
+ver=$( curl https://raw.githubusercontent.com/${GitUser}/version-t/main/version.conf )
 history -c
 echo "$ver" > /home/ver
 clear
 echo " "
 echo "Installation has been completed!!"
 echo " "
-echo "=========================[SCRIPT PREMIUM khaiVPN]========================" | tee -a log-install.txt
+echo "=========================[SCRIPT PREMIUM]========================" | tee -a log-install.txt
 echo "" | tee -a log-install.txt
 echo "-----------------------------------------------------------------" | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
@@ -216,6 +222,10 @@ echo "    ---------------------------" | tee -a log-install.txt
 echo "   - Squid Proxy             : 3128, 8000 (limit to IP Server)"  | tee -a log-install.txt
 echo "   - Badvpn                  : 7100, 7200, 7300"  | tee -a log-install.txt
 echo "   - Nginx                   : 81"  | tee -a log-install.txt
+echo ""  | tee -a log-install.txt
+echo "    [INFORMASI WG]"  | tee -a log-install.txt
+echo "    --------------" | tee -a log-install.txt
+echo "   - Wireguard               : 5820"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "    [INFORMASI Shadowsocks-R & Shadowsocks]"  | tee -a log-install.txt
 echo "    ---------------------------------------" | tee -a log-install.txt
@@ -260,7 +270,7 @@ echo "   - Auto Delete Expired Account" | tee -a log-install.txt
 echo "   - Full Orders For Various Services" | tee -a log-install.txt
 echo "   - White Label" | tee -a log-install.txt
 echo "   - Installation Log --> /root/log-install.txt"  | tee -a log-install.txt
-echo "------------------------Script By khaiVPN---------------------" | tee -a log-install.txt
+echo "------------------------Script By khaivpn---------------------" | tee -a log-install.txt
 clear
 echo ""
 echo ""
