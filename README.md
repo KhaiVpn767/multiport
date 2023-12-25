@@ -92,16 +92,3 @@ Feedback to owner on Telegram hazzuan <a href="https://t.me/khaivpn" target=”_
    - Full Orders For Various Services
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-## Credit :
-
-*   Hazzuan
-*   Vinstechmy
-*   V-code
-*   ꜱᴀᴍꜱꜰx
-
-
-<p align="center">
-  <a><img src="https://img.shields.io/badge/Copyright%20©-HazzuanHashim%20AutoScriptVPN%202022.%20All%20rights%20reserved...-blueviolet.svg" style="max-width:200%;">
-    </p>
-   </p>
