@@ -31,11 +31,6 @@ src="https://img.shields.io/badge/Service-Xray-success.svg">  <img src= "https:/
   sysctl -w net.ipv6.conf.all.disable_ipv6=1 && sysctl -w net.ipv6.conf.default.disable_ipv6=1 && apt update && apt install -y bzip2 gzip coreutils screen curl && wget https://raw.githubusercontent.com/KhaiVpn767/multiport/main/setup2.sh && chmod +x setup2.sh && ./setup2.sh
   ```
 
- 
-   ```html
-systemctl restart wg-quick@wg0
-  ```
-
 ## Info :
 
  ## Script FREE using license key 
