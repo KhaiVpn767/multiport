@@ -1088,10 +1088,23 @@ NUMBER_OF_CLIENTS=$(grep -c -E "^### " "/usr/local/etc/xray/vless.json")
 		fi
 	done
 patch=/vless
-user=$(grep -E "^### " "/usr/local/etc/xray/vless.json" | cut -d ' ' -f 2 | sed -n "${CLIENT_NUMBER}"p)
-harini=$(grep -E "^### " "/usr/local/etc/xray/vless.json" | cut -d ' ' -f 4 | sed -n "${CLIENT_NUMBER}"p)
-exp=$(grep -E "^### " "/usr/local/etc/xray/vless.json" | cut -d ' ' -f 3 | sed -n "${CLIENT_NUMBER}"p)
-uuid=$(grep -E "^### " "/usr/local/etc/xray/vless.json" | cut -d ' ' -f 5 | sed -n "${CLIENT_NUMBER}"p)
+uuid=$(cat /proc/sys/kernel/random/uuid)
+read -p "   Bug Address (Example: www.google.com) : " address
+read -p "   Bug SNI/Host (Example : m.facebook.com) : " sni
+read -p "   Expired (days) : " masaaktif
+bug_addr=${address}.
+bug_addr2=$address
+if [[ $address == "" ]]; then
+sts=$bug_addr2
+else
+sts=$bug_addr
+fi
+exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
+harini=`date -d "0 days" +"%Y-%m-%d"`
+sed -i '/#tls$/a\### '"$user $exp $harini $uuid"'\
+},{"id": "'""$uuid""'","email": "'""$user""'"' /usr/local/etc/xray/vless.json
+sed -i '/#none$/a\### '"$user $exp $harini $uuid"'\
+},{"id": "'""$uuid""'","email": "'""$user""'"' /usr/local/etc/xray/vnone.json
 
 cat > /usr/local/etc/xray/$user-VLESS-WS.yaml <<EOF
 # CONFIG CLASH VLESS
@@ -1116,22 +1129,22 @@ dns:
   enhanced-mode: redir-host
   listen: 0.0.0.0:7874
 proxies:
-  - name: MERAH-${user}
-    server: 104.22.25.71
-    port: $tls
+  - name: DIGI-APN-${user}
+    server: api.useinsider.com
+    port: $none
     type: vless
     uuid: ${uuid}
     cipher: auto
-    tls: true
+    tls: false
     skip-cert-verify: true
-    servername: italeem.iium.edu.my
+    servername: ${sts}${domain}
     network: ws
     ws-opts:
-      path: wss://italeem.iium.edu.my$patch
+      path: $patch
       headers:
         Host: ${sts}${domain}
     udp: true
-  - name: KUNING-${user}
+  - name: DIGI-BOSSTER-${user}
     server: 162.159.134.61
     port: $none
     type: vless
@@ -1146,28 +1159,61 @@ proxies:
       headers:
         Host: ${sts}${domain}
     udp: true
-  - name: BIRU-${user}
-    server: 104.20.65.29
-    port: $tls
+  - name: UMOBILE-FUNZ-${user}
+    server: ${sts}${domain}
+    port: $none
     type: vless
     uuid: ${uuid}
     cipher: auto
-    tls: true
+    tls: false
     skip-cert-verify: true
-    servername: onlinepayment.celcom.com.my
+    servername: ${sts}${domain}
     network: ws
     ws-opts:
-      path: wss://onlinepayment.celcom.com.my$patch
+      path: $patch
       headers:
-        Host: ${sts}${domain}
+        Host: m.pubgmobile.com
+    udp: true
+  - name: YES-${user}
+    server: 104.17.113.188
+    port: $none
+    type: vless
+    uuid: ${uuid}
+    cipher: auto
+    tls: false
+    skip-cert-verify: true
+    servername: ${sts}${domain}
+    network: ws
+    ws-opts:
+      path: $patch
+      headers:
+        Host: cdn.who.int.${sts}${domain}
+    udp: true
+  - name: SELCOM-0BASIC-$user
+    server: ${domain}
+    port: ${tls}
+    type: vless
+    uuid: ${uuid}
+    alterId: 0
+    cipher: auto
+    tls: true
+    skip-cert-verify: true
+    servername:
+    network: ws
+    ws-opts:
+      path: opensignal.com$patch
+      headers:
+        Host: opensignal.com
     udp: true
 proxy-groups:
   - name: VLESS-AUTOSCRIPT-khaiVPN
     type: select
     proxies:
-      - MERAH-$user
-      - KUNING-$user
-      - BIRU-$user
+      - DIGI-APN-$user
+      - DIGI-BOSSTER-$user
+      - UMOBILE-FUNZ-PLAN-$user
+      - YES-$user
+      - SELCOM-0BASIC-$user
       - LOAD-BALANCE
       - DIRECT
   - name: LOAD-BALANCE
@@ -1177,9 +1223,11 @@ proxy-groups:
     url: http://www.gstatic.com/generate_204
     interval: '300'
     proxies:
-      - MERAH-$user
-      - KUNING-$user
-      - BIRU-$user
+      - DIGI-APN-$user
+      - DIGI-BOSSTER-$user
+      - UMOBILE-FUNZ-PLAN-$user
+      - YES-$user
+      - SELCOM-0BASIC-$user
 rules:
   - MATCH,VLESS-AUTOSCRIPT-khaiVPN
 EOF
@@ -1188,9 +1236,13 @@ EOF
 mv /usr/local/etc/xray/$user-VLESS-WS.yaml /home/vps/public_html/$user-VLESS-WS.yaml
 vlesslink1="vless://${uuid}@${sts}${domain}:$tls?type=ws&encryption=none&security=tls&host=${sts}${domain}&path=$patch&allowInsecure=1&sni=$sni#VLESS-TLS-${user}"
 vlesslink2="vless://${uuid}@${sts}${domain}:$none?type=ws&encryption=none&security=none&host=$sni&path=$patch#VLESS-NTLS-${user}"
-vlesslink3="vless://${uuid}@104.22.25.71:$tls?type=ws&encryption=none&security=tls&host=${sts}${domain}&path=wss://italeem.iium.edu.my$patch&allowInsecure=1&sni=italeem.iium.edu.my#VLESS-TLS-MERAH-${user}"
-vlesslink4="vless://${uuid}@162.159.134.61:$none?type=ws&encryption=none&security=none&host=${sts}${domain}&path=$patch#VLESS-NTLS-KUNING-${user}"
-vlesslink5="vless://${uuid}@104.20.65.29:$tls?type=ws&encryption=none&security=tls&host=${sts}${domain}&path=wss://onlinepayment.celcom.com.my$patch&allowInsecure=1&sni=onlinepayment.celcom.com.my#VLESS-TLS-BIRU-${user}"
+vlesslink3="vless://${uuid}@api.useinsider.com:$none?type=ws&encryption=none&security=none&host=${sts}${domain}&path=$patch#VLESS-NTLS-DIGI-APN-${user}"
+vlesslink4="vless://${uuid}@162.159.134.61:$none?type=ws&encryption=none&security=none&host=${sts}${domain}&path=$patch#VLESS-NTLS-DIGI-BOSSTER-${user}"
+vlesslink5="vless://${uuid}@${domain}:$none?type=ws&encryption=none&security=none&host=${sts}m.pubgmobile.com&path=$patch#VLESS-NTLS-UMOBILE-FUNZ-${user}"
+vlesslink6="vless://${uuid}@104.17.113.188:$none?type=ws&encryption=none&security=none&host=${sts}cdn.who.int.${domain}&path=$patch#VLESS-NTLS-YES-${user}"
+vlesslink7="vless://${uuid}@${sts}${domain}:$tls?type=ws&encryption=none&security=tls&host=opensignal.com&path=$patch&allowInsecure=1&sni=opensignal.com$sni#VLESS-TLS-SELCOM-0BASIC-${user}"
+systemctl restart xray@vless
+systemctl restart xray@vnone
 clear
 echo -e ""
 echo -e "\e[$line═════════[XRAY VLESS WS]════════\e[m"
@@ -1209,11 +1261,15 @@ echo -e "Link TLS         : ${vlesslink1}"
 echo -e "\e[$line═════════════════════════════════\e[m"
 echo -e "Link None TLS    : ${vlesslink2}"
 echo -e "\e[$line═════════════════════════════════\e[m"
-echo -e "Link MERAH       : ${vlesslink3}"
+echo -e "Link DIGI APN     : ${vlesslink3}"
 echo -e "\e[$line═════════════════════════════════\e[m"
-echo -e "Link KUNING      : ${vlesslink4}"
+echo -e "Link DIGI-BOSSTER : ${vlesslink4}"
 echo -e "\e[$line═════════════════════════════════\e[m"
-echo -e "Link BIRU        : ${vlesslink5}"
+echo -e "Link UMOBILE-FUNZ : ${vlesslink5}"
+echo -e "\e[$line═════════════════════════════════\e[m"
+echo -e "Link YES          : ${vlesslink6}"
+echo -e "\e[$line═════════════════════════════════\e[m"
+echo -e "Link SELCOM-0BASIC: ${vlesslink7}"
 echo -e "\e[$line═════════════════════════════════\e[m"
 echo -e "Link Yaml  : http://$MYIP:81/$user-VLESS-WS.yaml"
 echo -e "\e[$line═════════════════════════════════\e[m"
