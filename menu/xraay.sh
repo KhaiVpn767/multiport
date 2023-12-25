@@ -221,7 +221,7 @@ proxies:
         Host: ${sts}${domain}
     udp: true
 proxy-groups:
-  - name: VMESS-AUTOSCRIPT-COMINGSOON
+  - name: VMESS-AUTOSCRIPT-khaiVPN
     type: select
     proxies:
       - MERAH-$user
@@ -240,7 +240,7 @@ proxy-groups:
       - KUNING-$user
       - BIRU-$user
 rules:
-  - MATCH,VMESS-AUTOSCRIPT-COMINGSOON
+  - MATCH,VMESS-AUTOSCRIPT-khaiVPN
 END
 
 # Copy config Yaml client ke home directory root agar mudah didownload ( YAML )
@@ -405,23 +405,23 @@ proxies:
         Host: cdn.who.int.${sts}${domain}
     udp: true
   - name: SELCOM-0BASIC-$user
-    server: ${sts}${domain}
+    server: ${domain}
     port: ${tls}
-    type: vmess
+    type: vless
     uuid: ${uuid}
     alterId: 0
     cipher: auto
     tls: true
     skip-cert-verify: true
-    servername: opensignal.com
+    servername:
     network: ws
     ws-opts:
-      path: opensignal.com
+      path: opensignal.com$patch
       headers:
         Host: opensignal.com
     udp: true
 proxy-groups:
-  - name: VLESS-AUTOSCRIPT-COMINGSOON
+  - name: VLESS-AUTOSCRIPT-khaiVPN
     type: select
     proxies:
       - DIGI-APN-$user
@@ -438,22 +438,24 @@ proxy-groups:
     url: http://www.gstatic.com/generate_204
     interval: '300'
     proxies:
-      - MERAH-$user
-      - KUNING-$user
-      - BIRU-$user
+      - DIGI-APN-$user
+      - DIGI-BOSSTER-$user
+      - UMOBILE-FUNZ-PLAN-$user
+      - YES-$user
+      - SELCOM-0BASIC-$user
 rules:
-  - MATCH,VLESS-AUTOSCRIPT-COMINGSOON
+  - MATCH,VLESS-AUTOSCRIPT-khaiVPN
 EOF
 
 # Copy config Yaml client ke home directory root agar mudah didownload ( YAML )
 mv /usr/local/etc/xray/$user-VLESS-WS.yaml /home/vps/public_html/$user-VLESS-WS.yaml
 vlesslink1="vless://${uuid}@${sts}${domain}:$tls?type=ws&encryption=none&security=tls&host=${sts}${domain}&path=$patch&allowInsecure=1&sni=$sni#VLESS-TLS-${user}"
 vlesslink2="vless://${uuid}@${sts}${domain}:$none?type=ws&encryption=none&security=none&host=$sni&path=$patch#VLESS-NTLS-${user}"
-vlesslink4="vless://${uuid}@api.useinsider.com:$none?type=ws&encryption=none&security=none&host=${sts}${domain}&path=$patch#VLESS-NTLS-DIGI-APN-${user}"
-vlesslink5="vless://${uuid}@162.159.134.61:$none?type=ws&encryption=none&security=none&host=${sts}${domain}&path=$patch#VLESS-NTLS-DIGI-BOSSTER-${user}"
-vlesslink6="vless://${uuid}@${domain}:$none?type=ws&encryption=none&security=none&host=${sts}m.pubgmobile.com&path=$patch#VLESS-NTLS-UMOBILE-FUNZ-${user}"
-vlesslink7="vless://${uuid}@104.17.113.188:$none?type=ws&encryption=none&security=none&host=${sts}cdn.who.int.${domain}&path=$patch#VLESS-NTLS-UMOBILE-FUNZ-${user}"
-vlesslink8="vless://${uuid}@${domain}:$tls?type=ws&encryption=none&security=tls&host=${sts}opensignal.com&path=wss://opensignal.com$patch&allowInsecure=1&sni=opensignal.com#VLESS-TLS-SELCOM-0BASIC-${user}"
+vlesslink3="vless://${uuid}@api.useinsider.com:$none?type=ws&encryption=none&security=none&host=${sts}${domain}&path=$patch#VLESS-NTLS-DIGI-APN-${user}"
+vlesslink4="vless://${uuid}@162.159.134.61:$none?type=ws&encryption=none&security=none&host=${sts}${domain}&path=$patch#VLESS-NTLS-DIGI-BOSSTER-${user}"
+vlesslink5="vless://${uuid}@${domain}:$none?type=ws&encryption=none&security=none&host=${sts}m.pubgmobile.com&path=$patch#VLESS-NTLS-UMOBILE-FUNZ-${user}"
+vlesslink6="vless://${uuid}@104.17.113.188:$none?type=ws&encryption=none&security=none&host=${sts}cdn.who.int.${domain}&path=$patch#VLESS-NTLS-YES-${user}"
+vlesslink7="vless://${uuid}@${sts}${domain}:$tls?type=ws&encryption=none&security=tls&host=opensignal.com&path=$patch&allowInsecure=1&sni=opensignal.com$sni#VLESS-TLS-SELCOM-0BASIC-${user}"
 systemctl restart xray@vless
 systemctl restart xray@vnone
 clear
@@ -997,7 +999,7 @@ proxies:
         Host: ${sts}${domain}
     udp: true
 proxy-groups:
-  - name: VMESS-AUTOSCRIPT-COMINGSOON
+  - name: VMESS-AUTOSCRIPT-khaiVPN
     type: select
     proxies:
       - MERAH-$user
@@ -1016,7 +1018,7 @@ proxy-groups:
       - KUNING-$user
       - BIRU-$user
 rules:
-  - MATCH,VMESS-AUTOSCRIPT-COMINGSOON
+  - MATCH,VMESS-AUTOSCRIPT-khaiVPN
 END
 
 # Copy config Yaml client ke home directory root agar mudah didownload ( YAML )
@@ -1160,7 +1162,7 @@ proxies:
         Host: ${sts}${domain}
     udp: true
 proxy-groups:
-  - name: VLESS-AUTOSCRIPT-COMINGSOON
+  - name: VLESS-AUTOSCRIPT-khaiVPN
     type: select
     proxies:
       - MERAH-$user
@@ -1179,7 +1181,7 @@ proxy-groups:
       - KUNING-$user
       - BIRU-$user
 rules:
-  - MATCH,VLESS-AUTOSCRIPT-COMINGSOON
+  - MATCH,VLESS-AUTOSCRIPT-khaiVPN
 EOF
 
 # Copy config Yaml client ke home directory root agar mudah didownload ( YAML )
