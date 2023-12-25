@@ -39,7 +39,7 @@ src="https://img.shields.io/badge/Service-Xray-success.svg">  <img src= "https:/
   khaivpnking
   ```
  
-Feedback to owner on Telegram hazzuan <a href="https://t.me/khaivpn" target=”_blank”><img src="https://img.shields.io/static/v1?style=for-the-badge&logo=Telegram&label=Telegram&message=Click%20Here&color=blue"></a> to fix BUG (slow respond)
+Feedback to owner on Telegram khaiVPN <a href="https://t.me/khaivpn" target=”_blank”><img src="https://img.shields.io/static/v1?style=for-the-badge&logo=Telegram&label=Telegram&message=Click%20Here&color=blue"></a> to fix BUG (slow respond)
 
 # Description :
 
