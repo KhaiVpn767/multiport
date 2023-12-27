@@ -1088,23 +1088,10 @@ NUMBER_OF_CLIENTS=$(grep -c -E "^### " "/usr/local/etc/xray/vless.json")
 		fi
 	done
 patch=/vless
-uuid=$(cat /proc/sys/kernel/random/uuid)
-read -p "   Bug Address (Example: www.google.com) : " address
-read -p "   Bug SNI/Host (Example : m.facebook.com) : " sni
-read -p "   Expired (days) : " masaaktif
-bug_addr=${address}.
-bug_addr2=$address
-if [[ $address == "" ]]; then
-sts=$bug_addr2
-else
-sts=$bug_addr
-fi
-exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
-harini=`date -d "0 days" +"%Y-%m-%d"`
-sed -i '/#tls$/a\### '"$user $exp $harini $uuid"'\
-},{"id": "'""$uuid""'","email": "'""$user""'"' /usr/local/etc/xray/vless.json
-sed -i '/#none$/a\### '"$user $exp $harini $uuid"'\
-},{"id": "'""$uuid""'","email": "'""$user""'"' /usr/local/etc/xray/vnone.json
+user=$(grep -E "^### " "/usr/local/etc/xray/vless.json" | cut -d ' ' -f 2 | sed -n "${CLIENT_NUMBER}"p)
+harini=$(grep -E "^### " "/usr/local/etc/xray/vless.json" | cut -d ' ' -f 4 | sed -n "${CLIENT_NUMBER}"p)
+exp=$(grep -E "^### " "/usr/local/etc/xray/vless.json" | cut -d ' ' -f 3 | sed -n "${CLIENT_NUMBER}"p)
+uuid=$(grep -E "^### " "/usr/local/etc/xray/vless.json" | cut -d ' ' -f 5 | sed -n "${CLIENT_NUMBER}"p)
 
 cat > /usr/local/etc/xray/$user-VLESS-WS.yaml <<EOF
 # CONFIG CLASH VLESS
