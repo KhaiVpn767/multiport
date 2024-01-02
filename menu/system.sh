@@ -87,7 +87,7 @@ passwd
 wget -q -O /usr/bin/swapram "https://raw.githubusercontent.com/NevermoreSSH/swapram/main/swapram.sh" && chmod +x /usr/bin/swapram && swapram
 ;;
 14)
-wget https://raw.githubusercontent.com/NevermoreSSH/Vergil/main/Tunnel/udp.sh && bash udp.sh
+wget https://raw.githubusercontent.com/KhaiVpn767/multiport/main/Tunnel/udp.sh && chmod +x udp.sh && ./udp.sh
 ;;
 15)
 wget https://raw.githubusercontent.com/NevermoreSSH/Vergil/main2/addons/dns2.sh && chmod +x dns2.sh && ./dns2.sh
