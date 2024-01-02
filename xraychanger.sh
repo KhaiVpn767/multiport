@@ -3,7 +3,7 @@
 # Quick Setup | Script Setup Manager
 # Edition : Stable Edition V1.0
 # Auther  : KhaiVpn767
-# (C) Copyright 2022
+# (C) Copyright 2024
 # =========================================
 R='\e[1;31m'
 P='\e[0;35m'
