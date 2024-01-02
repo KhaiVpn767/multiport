@@ -25,27 +25,27 @@ latest_version="$(curl -s https://api.github.com/repos/XTLS/Xray-core/releases |
 # / / Installation Xray Core
 xraycore_link="https://github.com/XTLS/Xray-core/releases/download/v$latest_version/Xray-linux-64.zip"
 clear
-echo -e "\e[36m╒════════════════════════════════════════════╕\033[0m"
+echo -e "\e[31m╒════════════════════════════════════════════╕\033[0m"
 echo -e " \E[0;47;30m               XRAY-CORE CHANGER            \E[0m"
-echo -e "\e[36m╘════════════════════════════════════════════╛\033[0m
+echo -e "\e[31m╘════════════════════════════════════════════╛\033[0m
 \033[1;37mXray-core Changer By KhaiVpn767\033[0m
 \033[1;37mTelegram : https://t.me/khaivpn \033[0m"
 echo -e 
 echo -e "
 \033[1;36m\033[0m Current version : ${orange}v${current_version} ${NC}
  
- [\033[1;36m• 1\033[0m]  Xray-core v1.5.4
- [\033[1;36m• 2\033[0m]  Xray-core v1.6.1
- [\033[1;36m• 3\033[0m]  Xray-core v1.7.2
- [\033[1;36m• 4\033[0m]  Xray-core v1.7.5
- [\033[1;36m• 5\033[0m]  Xray-core v1.8.4
- [\033[1;36m• 6\033[0m]  Xray-core v${latest_version} ${green} << Latest ${NC}
+ [\033[1;31m• 1\033[0m]  Xray-core v1.5.4
+ [\033[1;31m• 2\033[0m]  Xray-core v1.6.1
+ [\033[1;31m• 3\033[0m]  Xray-core v1.7.2
+ [\033[1;31m• 4\033[0m]  Xray-core v1.7.5
+ [\033[1;31m• 5\033[0m]  Xray-core v1.8.4
+ [\033[1;31m• 6\033[0m]  Xray-core v${latest_version} ${green} << Latest ${NC}
  
- [\033[1;36m•77\033[0m]  Xray-core MOD v1.6.5   
- [\033[1;36m•88\033[0m]  Xray-core MOD v1.7.2-1
+ [\033[1;31m•77\033[0m]  Xray-core MOD v1.6.5   
+ [\033[1;31m•88\033[0m]  Xray-core MOD v1.7.2-1
 
- [\033[1;36m•99\033[0m]  Check Xray-core version
- [\033[1;36m• 0\033[0m]  Back To Main Menu
+ [\033[1;31m•99\033[0m]  Check Xray-core version
+ [\033[1;31m• 0\033[0m]  Back To Main Menu
 
  Notes: 
 ❇️ Please restart / reboot server after change Xray-core.
