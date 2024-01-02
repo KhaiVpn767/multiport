@@ -93,7 +93,7 @@ wget https://raw.githubusercontent.com/KhaiVpn767/multiport/main/Tunnel/udp.sh &
 wget https://raw.githubusercontent.com/NevermoreSSH/Vergil/main2/addons/dns2.sh && chmod +x dns2.sh && ./dns2.sh
 ;;
 16)
-wget https://raw.githubusercontent.com/KhaiVpn767/multiport/main/xraychanger.sh && chmod +x xraychanger.sh && ./xraychanger.sh
+wget -q -O /usr/bin/xraychanger "https://raw.githubusercontent.com/NevermoreSSH/Xcore-custompath/main/xraychanger.sh" && chmod +x /usr/bin/xraychanger && xraychanger
 ;;
 x)
 menu
