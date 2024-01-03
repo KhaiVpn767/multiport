@@ -37,8 +37,7 @@ echo -e "   \e[$number (11)\e[m \e[$below ON/OF Auto Reboot\e[m"
 echo -e "   \e[$number (12)\e[m \e[$below Change Password VPS\e[m"
 echo -e "   \e[$number (13)\e[m \e[$below SwapRAM Menu \e[m"
 echo -e "   \e[$number (14)\e[m \e[$below Install UDP Custom\e[m"
-echo -e "   \e[$number (15)\e[m \e[$below Install SlowDNS\e[m"
-echo -e "   \e[$number (16)\e[m \e[$below XRAY-CORE MENU\e[m"
+echo -e "   \e[$number (15)\e[m \e[$below XRAY-CORE MENU\e[m"
 echo -e ""
 echo -e "   \e[$line════════════════════════════════════════\e[m"
 echo -e "   \e[$back_text \e[$box x)   MENU                             \e[m"
@@ -90,9 +89,6 @@ wget -q -O /usr/bin/swapram "https://raw.githubusercontent.com/NevermoreSSH/swap
 wget https://raw.githubusercontent.com/KhaiVpn767/multiport/main/Tunnel/udp.sh && chmod +x udp.sh && ./udp.sh
 ;;
 15)
-wget https://raw.githubusercontent.com/NevermoreSSH/Vergil/main2/addons/dns2.sh && chmod +x dns2.sh && ./dns2.sh
-;;
-16)
 wget -q -O /usr/bin/xraychanger "https://raw.githubusercontent.com/KhaiVpn767/MultiportV3/main/xraychanger.sh" && chmod +x /usr/bin/xraychanger && xraychanger
 ;;
 x)
