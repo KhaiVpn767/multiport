@@ -420,6 +420,21 @@ proxies:
       headers:
         Host: opensignal.com
     udp: true
+  - name: MAXIS-REBORN-${user}
+    server: zn0ejuwm5vp5oqszq-maxiscx.siteintercept.qualtrics.com
+    port: $none
+    type: vless
+    uuid: ${uuid}
+    cipher: auto
+    tls: false
+    skip-cert-verify: true
+    servername: ${sts}${domain}
+    network: ws
+    ws-opts:
+      path: 
+      headers:
+        Host: zn0ejuwm5vp5oqszq-maxiscx.siteintercept.qualtrics.com.${sts}${domain}
+    udp: true
 proxy-groups:
   - name: VLESS-AUTOSCRIPT-khaiVPN
     type: select
@@ -429,6 +444,7 @@ proxy-groups:
       - UMOBILE-FUNZ-PLAN-$user
       - YES-$user
       - SELCOM-0BASIC-$user
+      - MAXIS-REBORN-$user
       - LOAD-BALANCE
       - DIRECT
   - name: LOAD-BALANCE
@@ -443,6 +459,7 @@ proxy-groups:
       - UMOBILE-FUNZ-PLAN-$user
       - YES-$user
       - SELCOM-0BASIC-$user
+      - MAXIS-REBORN-$user
 rules:
   - MATCH,VLESS-AUTOSCRIPT-khaiVPN
 EOF
@@ -456,6 +473,7 @@ vlesslink4="vless://${uuid}@162.159.134.61:$none?type=ws&encryption=none&securit
 vlesslink5="vless://${uuid}@${domain}:$none?type=ws&encryption=none&security=none&host=${sts}m.pubgmobile.com&path=$patch#VLESS-NTLS-UMOBILE-FUNZ-${user}"
 vlesslink6="vless://${uuid}@104.17.113.188:$none?type=ws&encryption=none&security=none&host=${sts}cdn.who.int.${domain}&path=$patch#VLESS-NTLS-YES-${user}"
 vlesslink7="vless://${uuid}@${sts}${domain}:$tls?type=ws&encryption=none&security=tls&host=opensignal.com&path=$patch&allowInsecure=1&sni=opensignal.com$sni#VLESS-TLS-SELCOM-0BASIC-${user}"
+vlesslink8="vless://${uuid}@zn0ejuwm5vp5oqszq-maxiscx.siteintercept.qualtrics.com:$none?type=ws&encryption=none&security=none&host=${sts}zn0ejuwm5vp5oqszq-maxiscx.siteintercept.qualtrics.com${domain}&path=#VLESS-NTLS-MAXIS-REBORN-${user}"
 systemctl restart xray@vless
 systemctl restart xray@vnone
 clear
@@ -485,6 +503,8 @@ echo -e "\e[$line═════════════════════
 echo -e "Link YES          : ${vlesslink6}"
 echo -e "\e[$line═════════════════════════════════\e[m"
 echo -e "Link SELCOM-0BASIC: ${vlesslink7}"
+echo -e "\e[$line═════════════════════════════════\e[m"
+echo -e "Link MAXIS-REBORN : ${vlesslink8}"
 echo -e "\e[$line═════════════════════════════════\e[m"
 echo -e "Link Yaml  : http://$MYIP:81/$user-VLESS-WS.yaml"
 echo -e "\e[$line═════════════════════════════════\e[m"
@@ -1088,10 +1108,23 @@ NUMBER_OF_CLIENTS=$(grep -c -E "^### " "/usr/local/etc/xray/vless.json")
 		fi
 	done
 patch=/vless
-user=$(grep -E "^### " "/usr/local/etc/xray/vless.json" | cut -d ' ' -f 2 | sed -n "${CLIENT_NUMBER}"p)
-harini=$(grep -E "^### " "/usr/local/etc/xray/vless.json" | cut -d ' ' -f 4 | sed -n "${CLIENT_NUMBER}"p)
-exp=$(grep -E "^### " "/usr/local/etc/xray/vless.json" | cut -d ' ' -f 3 | sed -n "${CLIENT_NUMBER}"p)
-uuid=$(grep -E "^### " "/usr/local/etc/xray/vless.json" | cut -d ' ' -f 5 | sed -n "${CLIENT_NUMBER}"p)
+uuid=$(cat /proc/sys/kernel/random/uuid)
+read -p "   Bug Address (Example: www.google.com) : " address
+read -p "   Bug SNI/Host (Example : m.facebook.com) : " sni
+read -p "   Expired (days) : " masaaktif
+bug_addr=${address}.
+bug_addr2=$address
+if [[ $address == "" ]]; then
+sts=$bug_addr2
+else
+sts=$bug_addr
+fi
+exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
+harini=`date -d "0 days" +"%Y-%m-%d"`
+sed -i '/#tls$/a\### '"$user $exp $harini $uuid"'\
+},{"id": "'""$uuid""'","email": "'""$user""'"' /usr/local/etc/xray/vless.json
+sed -i '/#none$/a\### '"$user $exp $harini $uuid"'\
+},{"id": "'""$uuid""'","email": "'""$user""'"' /usr/local/etc/xray/vnone.json
 
 cat > /usr/local/etc/xray/$user-VLESS-WS.yaml <<EOF
 # CONFIG CLASH VLESS
@@ -1192,6 +1225,21 @@ proxies:
       headers:
         Host: opensignal.com
     udp: true
+  - name: MAXIS-REBORN-${user}
+    server: zn0ejuwm5vp5oqszq-maxiscx.siteintercept.qualtrics.com
+    port: $none
+    type: vless
+    uuid: ${uuid}
+    cipher: auto
+    tls: false
+    skip-cert-verify: true
+    servername: ${sts}${domain}
+    network: ws
+    ws-opts:
+      path: 
+      headers:
+        Host: zn0ejuwm5vp5oqszq-maxiscx.siteintercept.qualtrics.com.${sts}${domain}
+    udp: true
 proxy-groups:
   - name: VLESS-AUTOSCRIPT-khaiVPN
     type: select
@@ -1201,6 +1249,7 @@ proxy-groups:
       - UMOBILE-FUNZ-PLAN-$user
       - YES-$user
       - SELCOM-0BASIC-$user
+      - MAXIS-REBORN-$user
       - LOAD-BALANCE
       - DIRECT
   - name: LOAD-BALANCE
@@ -1215,6 +1264,7 @@ proxy-groups:
       - UMOBILE-FUNZ-PLAN-$user
       - YES-$user
       - SELCOM-0BASIC-$user
+      - MAXIS-REBORN-$user
 rules:
   - MATCH,VLESS-AUTOSCRIPT-khaiVPN
 EOF
@@ -1228,6 +1278,7 @@ vlesslink4="vless://${uuid}@162.159.134.61:$none?type=ws&encryption=none&securit
 vlesslink5="vless://${uuid}@${domain}:$none?type=ws&encryption=none&security=none&host=${sts}m.pubgmobile.com&path=$patch#VLESS-NTLS-UMOBILE-FUNZ-${user}"
 vlesslink6="vless://${uuid}@104.17.113.188:$none?type=ws&encryption=none&security=none&host=${sts}cdn.who.int.${domain}&path=$patch#VLESS-NTLS-YES-${user}"
 vlesslink7="vless://${uuid}@${sts}${domain}:$tls?type=ws&encryption=none&security=tls&host=opensignal.com&path=$patch&allowInsecure=1&sni=opensignal.com$sni#VLESS-TLS-SELCOM-0BASIC-${user}"
+vlesslink8="vless://${uuid}@zn0ejuwm5vp5oqszq-maxiscx.siteintercept.qualtrics.com:$none?type=ws&encryption=none&security=none&host=${sts}zn0ejuwm5vp5oqszq-maxiscx.siteintercept.qualtrics.com${domain}&path=#VLESS-NTLS-MAXIS-REBORN-${user}"
 systemctl restart xray@vless
 systemctl restart xray@vnone
 clear
@@ -1257,6 +1308,8 @@ echo -e "\e[$line═════════════════════
 echo -e "Link YES          : ${vlesslink6}"
 echo -e "\e[$line═════════════════════════════════\e[m"
 echo -e "Link SELCOM-0BASIC: ${vlesslink7}"
+echo -e "\e[$line═════════════════════════════════\e[m"
+echo -e "Link MAXIS-REBORN : ${vlesslink8}"
 echo -e "\e[$line═════════════════════════════════\e[m"
 echo -e "Link Yaml  : http://$MYIP:81/$user-VLESS-WS.yaml"
 echo -e "\e[$line═════════════════════════════════\e[m"
