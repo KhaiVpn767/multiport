@@ -33,20 +33,19 @@ src="https://img.shields.io/badge/Service-Xray-success.svg">  <img src= "https:/
 
 ## Info :
 
- ## Script FREE using license key 
-
-   ```html
-  khaivpnking
-  ```
  
 Feedback to owner on Telegram khaiVPN <a href="https://t.me/khaivpn" target=”_blank”><img src="https://img.shields.io/static/v1?style=for-the-badge&logo=Telegram&label=Telegram&message=Click%20Here&color=blue"></a> to fix BUG (slow respond)
 
 # Description :
 
+# Saport multipath custom
+
   ## Service & Port
 
   - OpenSSH                 : 22
   - OpenVPN                 : TCP 1194, UDP 2200, SSL 110
+  - SlowDNS                 : 22,80,443,53,5300
+  - SSH-UDP                 : 1-65535
   - Stunnel4                : 222, 777
   - Dropbear                : 442, 109
   - OHP Dropbear            : 8585
