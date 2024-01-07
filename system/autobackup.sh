@@ -1,35 +1,20 @@
-#wget https://github.com/${GitUser}/
-GitUser="KhaiVpn767"
-#IZIN SCRIPT
-MYIP=$(curl -sS ipv4.icanhazip.com)
-MYIP=$(curl -s ipinfo.io/ip )
-MYIP=$(curl -sS ipv4.icanhazip.com)
-MYIP=$(curl -sS ifconfig.me )
-echo -e "\e[32mloading...\e[0m"
+#!/bin/bash
+# By KhaiVpn767
+# ==========================================
+# Color
+RED='\033[0;31m'
+NC='\033[0m'
+GREEN='\033[0;32m'
+ORANGE='\033[0;33m'
+BLUE='\033[0;34m'
+PURPLE='\033[0;35m'
+CYAN='\033[0;36m'
+LIGHT='\033[0;37m'
+# ==========================================
+# Getting
 clear
-# Valid Script
-VALIDITY () {
-    today=`date -d "0 days" +"%Y-%m-%d"`
-    Exp1=$(curl https://raw.githubusercontent.com/${GitUser}/allow/main/ipvps.conf | grep $MYIP | awk '{print $4}')
-    if [[ $today < $Exp1 ]]; then
-    echo -e "\e[32mYOUR SCRIPT ACTIVE..\e[0m"
-    else
-    echo -e "\e[31mYOUR SCRIPT HAS EXPIRED!\e[0m";
-    echo -e "\e[31mPlease renew your ipvps first\e[0m"
-    exit 0
-fi
-}
-IZIN=$(curl https://raw.githubusercontent.com/${GitUser}/allow/main/ipvps.conf | awk '{print $5}' | grep $MYIP)
-if [ $MYIP = $IZIN ]; then
-echo -e "\e[32mPermission Accepted...\e[0m"
-VALIDITY
-else
-echo -e "\e[31mPermission Denied!\e[0m";
-echo -e "\e[31mPlease buy script first\e[0m"
-exit 0
-fi
-echo -e "\e[32mloading...\e[0m"
-clear
+IP=$(wget -qO- ipinfo.io/ip);
+date=$(date +"%Y-%m-%d");
 Green_font_prefix="\033[32m" && Red_font_prefix="\033[31m" && Green_background_prefix="\033[42;37m" && Red_background_prefix="\033[41;37m" && Font_color_suffix="\033[0m"
 Info="${Green_font_prefix}[ON]${Font_color_suffix}"
 Error="${Red_font_prefix}[OFF]${Font_color_suffix}"
@@ -43,7 +28,7 @@ function start() {
 email=$(cat /home/email)
 if [[ "$email" = "" ]]; then
 echo "Please enter your email"
-read -rp "Email: " -e email
+read -rp "Email : " -e email
 cat <<EOF>>/home/email
 $email
 EOF
@@ -58,7 +43,7 @@ sleep 1
 echo " Please Wait"
 clear
 echo " Autobackup Has Been Started"
-echo " Data Will Be Backed Up Automatically at 00:05 GMT +8"
+echo " Data Will Be Backed Up Automatically at 00:05 GMT +7"
 exit 0
 }
 function stop() {
@@ -72,21 +57,76 @@ clear
 echo " Autobackup Has Been Stopped"
 exit 0
 }
-clear
-echo -e " =============================="
-echo -e "         Autobackup Data       "
-echo -e " =============================="
-echo -e " Status $sts"
-echo -e "  1. Start Autobackup"
-echo -e "  2. Stop Autobackup"
-echo -e " Press CTRL+C to return"
-read -rp " Please Enter The Correct Number : " -e num
-if [[ "$num" = "1" ]]; then
+
+function gantipenerima() {
+rm -rf /home/email
+echo "Please enter your email"
+read -rp "Email : " -e email
+cat <<EOF>>/home/email
+$email
+EOF
+}
+function gantipengirim() {
+echo "Please enter your email"
+read -rp "Email : " -e email
+echo "Please enter your Password email"
+read -rp "Password : " -e pwdd
+rm -rf /etc/msmtprc
+cat<<EOF>>/etc/msmtprc
+defaults
+tls on
+tls_starttls on
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+account default
+host smtp.gmail.com
+port 587
+auth on
+user $email
+from $email
+password $pwdd
+logfile ~/.msmtp.log
+EOF
+}
+function testemail() {
+email=$(cat /home/email)
+if [[ "$email" = "" ]]; then
 start
-elif [[ "$num" = "2" ]]; then
-stop
-else
-clear
-echo " You Entered The Wrong Number"
-menu
 fi
+email=$(cat /home/email)
+echo -e "
+Ini adalah isi email percobaaan kirim email dari vps
+IP VPS : $IP
+Tanggal : $date
+" | mail -s "Percobaan Pengiriman Email" $email
+}
+clear
+echo -e "=============================="
+echo -e "     Autobackup Data $sts     "
+echo -e "=============================="
+echo -e "1. Start Autobackup"
+echo -e "2. Stop Autobackup"
+echo -e "3. Ganti Email Penerima"
+echo -e "4. Ganti Email Pengirim"
+echo -e "5. Test kirim Email"
+echo -e "=============================="
+read -rp "Please Enter The Correct Number : " -e num
+case $num in
+1)
+start
+;;
+2)
+stop
+;;
+3)
+gantipenerima
+;;
+4)
+gantipengirim
+;;
+5)
+testemail
+;;
+*)
+clear
+;;
+esac
