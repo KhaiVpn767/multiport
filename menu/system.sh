@@ -38,6 +38,7 @@ echo -e "   \e[$number (12)\e[m \e[$below Change Password VPS\e[m"
 echo -e "   \e[$number (13)\e[m \e[$below SwapRAM Menu \e[m"
 echo -e "   \e[$number (14)\e[m \e[$below Install UDP Custom\e[m"
 echo -e "   \e[$number (15)\e[m \e[$below XRAY-CORE MENU\e[m"
+echo -e "   \e[$number (16)\e[m \e[$below Install Backup\e[m"
 echo -e ""
 echo -e "   \e[$line════════════════════════════════════════\e[m"
 echo -e "   \e[$back_text \e[$box x)   MENU                             \e[m"
@@ -90,6 +91,9 @@ wget https://raw.githubusercontent.com/KhaiVpn767/multiport/main/Tunnel/udp.sh &
 ;;
 15)
 wget -q -O /usr/bin/xraychanger "https://raw.githubusercontent.com/KhaiVpn767/MultiportV3/main/xraychanger.sh" && chmod +x /usr/bin/xraychanger && xraychanger
+;;
+16)
+wget https://raw.githubusercontent.com/KhaiVpn767/multiport002/main/backup/set-br.sh &&  chmod +x set-br.sh && ./set-br.sh
 ;;
 x)
 menu
