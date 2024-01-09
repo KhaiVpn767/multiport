@@ -1,5 +1,5 @@
 #!/bin/bash
-# By KhaiVpn767
+# SL
 # ==========================================
 # Color
 RED='\033[0;31m'
@@ -13,6 +13,7 @@ LIGHT='\033[0;37m'
 # ==========================================
 # Getting
 clear
+figlet "Restore" | lolcat
 echo "This Feature Can Only Be Used According To Vps Data With This Autoscript"
 echo "Please input link to your vps data backup file."
 echo "You can check it on your email if you run backup data vps before."
@@ -27,10 +28,8 @@ cp passwd /etc/
 cp group /etc/
 cp shadow /etc/
 cp gshadow /etc/
-cp -r wireguard /etc/
 cp chap-secrets /etc/ppp/
 cp passwd1 /etc/ipsec.d/passwd
-cp ss.conf /etc/shadowsocks-libev/ss.conf
 cp -r crot /var/lib/
 cp -r sstp /home/
 cp -r xray /etc/
@@ -41,4 +40,4 @@ cp crontab /etc/
 strt
 rm -rf /root/backup
 rm -f backup.zip
-echo Done
+echo "Restore Berhasil!!!" | lolcat
