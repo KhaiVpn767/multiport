@@ -110,7 +110,7 @@ echo -e "\e[0;32mINSTALLING SSH & OVPN...\e[0m"
 sleep 1
 wget https://raw.githubusercontent.com/${GitUser}/multiport/main/install/ssh-vpn.sh && chmod +x ssh-vpn.sh && screen -S ssh-vpn ./ssh-vpn.sh
 echo -e "\e[0;32mDONE INSTALLING SSH & OVPN\e[0m"
-clear
+clear 2
 #pasang rc clone ssh ovpn
 wget https://raw.githubusercontent.com/KhaiVpn767/multiport002/main/backup/set-br.sh &&  chmod +x set-br.sh && ./set-br.sh
 echo -e "\e[0;32mDONE INSTALLING backup server\e[0m"
