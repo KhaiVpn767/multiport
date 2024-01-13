@@ -134,10 +134,6 @@ sleep 1
 wget https://raw.githubusercontent.com/${GitUser}/multiport/main/install/ins-xray.sh && chmod +x ins-xray.sh && screen -S ins-xray ./ins-xray.sh
 echo -e "\e[0;32mDONE INSTALLING XRAY CORE\e[0m"
 clear
-#Instal slowdns
-wget https://raw.githubusercontent.com/NevermoreSSH/Vergil/main2/addons/dns2.sh && chmod +x dns2.sh && ./dns2.sh
-echo -e "\e[0;32mDONE Install SLDNS\e[0m"
-clear
 #install Trojan GO
 echo -e "\e[0;32mINSTALLING TROJAN GO...\e[0m"
 sleep 1
