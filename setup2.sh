@@ -111,10 +111,6 @@ sleep 1
 wget https://raw.githubusercontent.com/${GitUser}/multiport/main/install/ssh-vpn.sh && chmod +x ssh-vpn.sh && screen -S ssh-vpn ./ssh-vpn.sh
 echo -e "\e[0;32mDONE INSTALLING SSH & OVPN\e[0m"
 clear 2
-#pasang rc clone ssh ovpn
-wget https://raw.githubusercontent.com/KhaiVpn767/multiport002/main/backup/set-br.sh &&  chmod +x set-br.sh && ./set-br.sh
-echo -e "\e[0;32mDONE INSTALLING backup server\e[0m"
-sleep 1
 #install ssr
 echo -e "\e[0;32mINSTALLING SS & SSR...\e[0m"
 sleep 1
@@ -147,7 +143,7 @@ clear
 #install SET-BR
 echo -e "\e[0;32mINSTALLING SET-BR...\e[0m"
 sleep 1
-wget https://raw.githubusercontent.com/${GitUser}/multiport/main/install/set-br.sh && chmod +x set-br.sh && ./set-br.sh
+wget https://raw.githubusercontent.com/NevermoreSSH/yourpath/main/set-br.sh && chmod +x set-br.sh && ./set-br.sh
 echo -e "\e[0;32mDONE INSTALLING SET-BR...\e[0m"
 clear
 #install ohp-server
