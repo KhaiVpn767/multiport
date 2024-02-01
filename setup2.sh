@@ -140,11 +140,13 @@ sleep 1
 wget https://raw.githubusercontent.com/${GitUser}/multiport/main/install/trojan-go.sh && chmod +x trojan-go.sh && screen -S trojan-go ./trojan-go.sh
 echo -e "\e[0;32mDONE INSTALLING TROJAN GO\e[0m"
 clear
-#install SET-BR
-echo -e "\e[0;32mINSTALLING SET-BR...\e[0m"
-sleep 1
-wget https://raw.githubusercontent.com/NevermoreSSH/yourpath/main/set-br.sh && chmod +x set-br.sh && ./set-br.sh
-echo -e "\e[0;32mDONE INSTALLING SET-BR...\e[0m"
+#pasang rc clone ssh ovpn
+echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e "$green      Memasang backup server              $NC"
+echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+sleep 2
+clear
+wget https://raw.githubusercontent.com/KhaiVpn767/MultiportV5/main/set-br.sh && chmod +x set-br.sh && ./set-br.sh
 clear
 #install ohp-server
 echo -e "\e[0;32mINSTALLING OHP PORT...\e[0m"
