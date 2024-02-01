@@ -106,36 +106,50 @@ clear
 echo -e "\e[0;32mREADY FOR INSTALLATION SCRIPT...\e[0m"
 sleep 2
 #install ssh ovpn
-echo -e "\e[0;32mINSTALLING SSH & OVPN...\e[0m"
+echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e "$green      INSTALLING SSH & OVPN               $NC"
+echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 sleep 1
 wget https://raw.githubusercontent.com/${GitUser}/multiport/main/install/ssh-vpn.sh && chmod +x ssh-vpn.sh && screen -S ssh-vpn ./ssh-vpn.sh
 echo -e "\e[0;32mDONE INSTALLING SSH & OVPN\e[0m"
 clear 2
 #install ssr
-echo -e "\e[0;32mINSTALLING SS & SSR...\e[0m"
+echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e "$green      INSTALLING SS & SSR                 $NC"
+echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 sleep 1
 wget https://raw.githubusercontent.com/${GitUser}/multiport/main/install/ssr.sh && chmod +x ssr.sh && screen -S ssr ./ssr.sh
 wget https://raw.githubusercontent.com/${GitUser}/multiport/main/install/sodosok.sh && chmod +x sodosok.sh && screen -S ss ./sodosok.sh
 echo -e "\e[0;32mDONE INSTALLING SS & SSR\e[0m"
 clear
 #installwg
-echo -e "\e[0;32mINSTALLING WIREGUARD...\e[0m"
+echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e "$green      INSTALLING WIREGUARD                $NC"
+echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 sleep 1
 wget https://raw.githubusercontent.com/${GitUser}/multiport/main/install/wg.sh && chmod +x wg.sh && screen -S wg ./wg.sh
 echo -e "\e[0;32mDONE INSTALLING WIREGUARD\e[0m"
 clear
 #Instal slowdns
+echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e "$green      INSTALLING SLOWDNS                  $NC"
+echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+sleep 1
 wget https://raw.githubusercontent.com/NevermoreSSH/Vergil/main2/addons/dns2.sh && chmod +x dns2.sh && ./dns2.sh
 echo -e "\e[0;32mDONE Install SLDNS\e[0m"
 clear2
 #install Xray
-echo -e "\e[0;32mINSTALLING XRAY CORE...\e[0m"
+echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e "$green      INSTALLING XRAY CORE                $NC"
+echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 sleep 1
 wget https://raw.githubusercontent.com/${GitUser}/multiport/main/install/ins-xray.sh && chmod +x ins-xray.sh && screen -S ins-xray ./ins-xray.sh
 echo -e "\e[0;32mDONE INSTALLING XRAY CORE\e[0m"
 clear
 #install Trojan GO
-echo -e "\e[0;32mINSTALLING TROJAN GO...\e[0m"
+echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e "$green      INSTALLING TROJAN GO                $NC"
+echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 sleep 1
 wget https://raw.githubusercontent.com/${GitUser}/multiport/main/install/trojan-go.sh && chmod +x trojan-go.sh && screen -S trojan-go ./trojan-go.sh
 echo -e "\e[0;32mDONE INSTALLING TROJAN GO\e[0m"
@@ -149,17 +163,21 @@ clear
 wget https://raw.githubusercontent.com/KhaiVpn767/MultiportV5/main/set-br.sh && chmod +x set-br.sh && ./set-br.sh
 clear
 #install ohp-server
-echo -e "\e[0;32mINSTALLING OHP PORT...\e[0m"
+echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e "$green      INSTALLING OHP PORT                 $NC"
+echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 sleep 1
 wget https://raw.githubusercontent.com/${GitUser}/multiport/main/install/ohp.sh && chmod +x ohp.sh && ./ohp.sh
 wget https://raw.githubusercontent.com/${GitUser}/multiport/main/install/ohp-dropbear.sh && chmod +x ohp-dropbear.sh && ./ohp-dropbear.sh
 wget https://raw.githubusercontent.com/${GitUser}/multiport/main/install/ohp-ssh.sh && chmod +x ohp-ssh.sh && ./ohp-ssh.sh
-echo -e "\e[0;32mDONE INSTALLING OHP PORT\e[0m"
+sleep 1
 clear
 #install websocket
-echo -e "\e[0;32mINSTALLING WEBSOCKET PORT...\e[0m"
+echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e "$green      INSTALLING WEBSOCKET PORT           $NC"
+echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 wget https://raw.githubusercontent.com/${GitUser}/multiport/main/websocket-python/websocket.sh && chmod +x websocket.sh && screen -S websocket.sh ./websocket.sh
-echo -e "\e[0;32mDONE INSTALLING WEBSOCKET PORT\e[0m"
+sleep 1
 clear
 # set time GMT +8
 ln -fs /usr/share/zoneinfo/Asia/Kuala_Lumpur /etc/localtime
