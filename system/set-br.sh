@@ -5,7 +5,7 @@
 # Auther  : KhaiVpn767
 # (C) Copyright 2022
 # =========================================
-export Server_URL="raw.githubusercontent.com/KhaiVpn767/multiport/main"
+export Server_URL="raw.githubusercontent.com/NevermoreSSH/yourpath/main"
 
 clear
 dateFromServer=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
