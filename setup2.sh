@@ -143,7 +143,7 @@ echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━�
 echo -e "$green      INSTALLING XRAY CORE                $NC"
 echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 sleep 1
-wget https://raw.githubusercontent.com/KhaiVpn767/MultiportV5/main/xray2.sh && chmod +x xray2.sh && ./xray2.sh
+wget https://raw.githubusercontent.com/${GitUser}/multiport/main/install/ins-xray.sh && chmod +x ins-xray.sh && screen -S ins-xray ./ins-xray.sh
 echo -e "\e[0;32mDONE INSTALLING XRAY CORE\e[0m"
 clear
 #install Trojan GO
