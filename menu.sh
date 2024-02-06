@@ -161,7 +161,7 @@ ssh
 ssssr
 ;;
 5)
-wget https://raw.githubusercontent.com/KhaiVpn767/multiport/main/dns.sh && chmod +x dns.sh && ./dns.sh
+dns
 ;;
 6)
 system
