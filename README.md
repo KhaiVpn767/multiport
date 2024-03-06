@@ -95,6 +95,6 @@ Feedback to owner on Telegram khaiVPN <a href="https://t.me/khaivpn" target=”_
 
 
 <p align="center">
-  <a><img src="https://img.shields.io/badge/Copyright%20©-Onyx%20AutoScriptVPN%202024.%20All%20rights%20reserved...-blueviolet.svg" style="max-width:200%;">
+  <a><img src="https://img.shields.io/badge/Copyright%20©-Onyx%20AutoScript khaiVPN%202024.%20All%20rights%20reserved...-blueviolet.svg" style="max-width:200%;">
     </p>
    </p>
