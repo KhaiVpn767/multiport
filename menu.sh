@@ -135,7 +135,7 @@ echo -e   "  \e[$number (•4)\e[m \e[$below PANEL SHADOWSOCKS\e[m           \e[
 echo -e   "  \e[$number (•5)\e[m \e[$below DNS Changer\e[m                 \e[$number (11)\e[m \e[$below TRAFFIC XRAY\e[m"
 echo -e   "  \e[$number (•6)\e[m \e[$below SYSTEM MENU\e[m                 \e[$number (12)\e[m \e[$below INFO ALL PORT\e[m"
 echo -e   " \e[$line════════════════════════════════════════════════════════════\e[m"
-echo -e   "  \e[$below 𝗩𝗲𝗿𝘀𝗶𝗼𝗻 :𝟮.𝟬"
+echo -e   "  \e[$below 𝗩𝗲𝗿𝘀𝗶𝗼𝗻 :1.5"
 echo -e   "  \e[$below 𝐒𝐜𝐫𝐢𝐩𝐓 𝐁𝐲 𝐊𝐡𝐚𝐢 𝐕 𝐏 𝐍"
 echo -e   ""
 echo -e   " \e[$line════════════════════════════════════════════════════════════\e[m"
