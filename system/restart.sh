@@ -1,35 +1,90 @@
 #!/bin/bash
 #wget https://github.com/${GitUser}/
 GitUser="KhaiVpn767"
+#Colour
+white='\e[0;37m'
+green='\e[0;32m'
+red='\e[0;31m'
+blue='\e[0;34m'
+cyan='\e[0;36m'
+yellow='\e[0;33m'
+NC='\e[0m'
+clear
 #IZIN SCRIPT
 MYIP=$(curl -sS ipv4.icanhazip.com)
+# Valid Script
+VALIDITY () {
+    today=`date -d "0 days" +"%Y-%m-%d"`
+    Exp1=$(curl https://raw.githubusercontent.com/${GitUser}/allow/main/ipvps.conf | grep $MYIP | awk '{print $4}')
+    if [[ $today < $Exp1 ]]; then
+    echo -e "\e[32mYOUR SCRIPT ACTIVE..\e[0m"
+    else
+    echo -e "\e[31mYOUR SCRIPT HAS EXPIRED!\e[0m";
+    echo -e "\e[31mPlease renew your ipvps first\e[0m"
+    exit 0
+fi
+}
+IZIN=$(curl https://raw.githubusercontent.com/${GitUser}/allow/main/ipvps.conf | awk '{print $5}' | grep $MYIP)
+if [ $MYIP = $IZIN ]; then
+echo -e "\e[32mPermission Accepted...\e[0m"
+VALIDITY
+else
+echo -e "\e[31mPermission Denied!\e[0m";
+echo -e "\e[31mPlease buy script first\e[0m"
+exit 0
+fi
+
+# // PROVIDED
+clear
+source /var/lib/premium-script/ipvps.conf
+export creditt=$(cat /root/provided)
+
+# // BANNER COLOUR
+export banner_colour=$(cat /etc/banner)
+
+# // TEXT ON BOX COLOUR
+export box=$(cat /etc/box)
+
+# // LINE COLOUR
+export line=$(cat /etc/line)
+
+# // TEXT COLOUR ON TOP
+export text=$(cat /etc/text)
+
+# // TEXT COLOUR BELOW
+export below=$(cat /etc/below)
+
+# // BACKGROUND TEXT COLOUR
+export back_text=$(cat /etc/back)
+
+# // NUMBER COLOUR
+export number=$(cat /etc/number)
+
+echo -e "\e[32mloading...\e[0m"
 clear
 echo -e ""
-echo -e "======================================"
-echo -e "         \e[0;32mRESTART VPN SERVICE\e[0m"
-echo -e "======================================"
-echo -e "  \e[0;32m[•1]\e[0m Restart All Services"
-echo -e "  \e[0;32m[•2]\e[0m Restart OpenSSH"
-echo -e "  \e[0;32m[•3]\e[0m Restart Dropbear"
-echo -e "  \e[0;32m[•4]\e[0m Restart Stunnel4"
-echo -e "  \e[0;32m[•5]\e[0m Restart OpenVPN"
-echo -e "  \e[0;32m[•6]\e[0m Restart Squid"
-echo -e "  \e[0;32m[•7]\e[0m Restart Nginx"
-echo -e "  \e[0;32m[•8]\e[0m Restart Vmess & Vless"
-echo -e "  \e[0;32m[•9]\e[0m Restart Trojan"
-echo -e "  \e[0;32m[10]\e[0m Restart ShadowsocksR"
-echo -e "  \e[0;32m[11]\e[0m Restart Wireguard"
-echo -e "  \e[0;32m[12]\e[0m Restart Badvpn"
-echo -e "  \e[0;32m[13]\e[0m Restart OHP Port"
-echo -e "  \e[0;32m[14]\e[0m Restart WebSocket Port"
-echo -e "======================================"
-echo -e "   \e[0;32m[x]\e[0m     \e[1;31mMain Menu\e[0m"
+echo -e   "  \e[$line══════════════════════════════════════\e[m"
+echo -e "  \e[$back_text    \e[30m[\e[$box RESTART VPN SERVICE\e[30m ]\e[1m           \e[m"
+echo -e   "  \e[$line══════════════════════════════════════\e[m"
+echo -e "    \e[$number (•1)\e[m \e[$below All Services\e[m"
+echo -e "    \e[$number (•2)\e[m \e[$below Restart OpenSSH\e[m"
+echo -e "    \e[$number (•3)\e[m \e[$below Restart Dropbear\e[m"
+echo -e "    \e[$number (•4)\e[m \e[$below Restart Stunnel4\e[m"
+echo -e "    \e[$number (•5)\e[m \e[$below Restart OpenVPN\e[m"
+echo -e "    \e[$number (•6)\e[m \e[$below Restart Squid\e[m"
+echo -e "    \e[$number (•7)\e[m \e[$below Restart Restart Nginx\e[m"
+echo -e "    \e[$number (•8)\e[m \e[$below Restart Xray Core\e[m"
+echo -e "    \e[$number (•9)\e[m \e[$below Restart Trojan Ws & Tcp Tls\e[m"
+echo -e "    \e[$number (10)\e[m \e[$below Restart Badvpn\e[m"
+echo -e "    \e[$number (11)\e[m \e[$below Restart OHP \e[m"
+echo -e "    \e[$number (12)\e[m \e[$below Restart WebSocket\e[m"
+echo -e   "  \e[$line══════════════════════════════════════\e[m"
+echo -e "   \e[$number (•0)\e[m \e[$below MENU\e[m"
 echo -e ""
-read -p "    Select From Options [1-14 or x] :" Restart
+echo -e "\e[$line"
 echo -e ""
-echo -e "======================================"
-sleep 1
-clear
+read -p "    Select From Options [1-12 or x] :" Restart
+echo -e ""
 case $Restart in
                 1)
                 clear
@@ -45,18 +100,15 @@ case $Restart in
                 /etc/init.d/squid restart
 				systemctl restart xray
 				systemctl restart xray@none
+				systemctl restart xray@tcp
 				systemctl restart xray@vless
-				systemctl restart xray@vnone
-                systemctl restart xray@trojanws
-                systemctl restart xray@trnone
-				systemctl restart xray@vmessgun
-				systemctl restart xray@vlessgun
-                systemctl restart xray@trojangun
-				systemctl restart xray@xtls
+				systemctl restart xray@vlessnone
+				systemctl restart xray@vmess
+				systemctl restart xray@vmessnone
 				systemctl restart xray@trojan
-				systemctl restart trojan-go
-				/etc/init.d/ssrmu restart
-				systemctl restart wg-quick@wg0
+				systemctl restart xray@trojannone
+				systemctl restart ws-http
+				systemctl restart ws-https
 				systemctl restart ohp
 				systemctl restart ohpd
 				systemctl restart ohps
@@ -66,7 +118,6 @@ case $Restart in
                 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 1000
                 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 1000
                 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 1000
-                echo -e ""
                 echo -e ""
                 echo -e "======================================"
                 echo -e ""
@@ -86,7 +137,7 @@ case $Restart in
                 echo -e "        \e[0;32mSSH Service Restarted\e[0m       "
                 echo -e ""
                 echo -e "======================================"
- 				echo ""
+				echo ""
 				read -n 1 -s -r -p "Press any key to back on menu"
 				menu
                 ;;
@@ -162,10 +213,9 @@ case $Restart in
 				systemctl restart xray
 				systemctl restart xray@none
 				systemctl restart xray@vless
-				systemctl restart xray@vnone
-				systemctl restart xray@trojanws
-                systemctl restart xray@trnone
-				systemctl restart xray@xtls
+				systemctl enable xray@vlessnone
+				systemctl restart xray@vmess
+				systemctl restart xray@vmessnone
                 echo -e ""
                 echo -e "======================================"
                 echo -e ""
@@ -178,7 +228,9 @@ case $Restart in
                 ;;
 				9)
 				clear
-				systemctl restart trojan-go
+				systemctl restart xray@tcp
+				systemctl restart xray@trojan
+				systemctl restart xray@trojannone
                 echo -e ""
                 echo -e "======================================"
                 echo -e ""
@@ -189,33 +241,7 @@ case $Restart in
 				read -n 1 -s -r -p "Press any key to back on menu"
 				menu
                 ;;
-				10)
-				clear
-                /etc/init.d/ssrmu restart
-                echo -e ""
-                echo -e "======================================"
-                echo -e ""
-                echo -e "      \e[0;32mShadowsockR Service Restart\e[0m     "
-                echo -e ""
-                echo -e "======================================"
-				echo ""
-				read -n 1 -s -r -p "Press any key to back on menu"
-				menu
-                ;;
-				11)
-				clear
-                systemctl restart wg-quick@wg0
-                echo -e ""
-                echo -e "======================================"
-                echo -e ""
-                echo -e "       \e[0;32mWireguard Service Restart\e[0m     "
-                echo -e ""
-                echo -e "======================================"
-				echo ""
-				read -n 1 -s -r -p "Press any key to back on menu"
-				menu
-                ;;
-                12)
+                10)
                 clear
                 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500
                 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500
@@ -236,7 +262,7 @@ case $Restart in
 				read -n 1 -s -r -p "Press any key to back on menu"
 				menu
                 ;;
-				13)
+				11)
 				clear
                 systemctl restart ohp
 				systemctl restart ohpd
@@ -251,8 +277,10 @@ case $Restart in
 				read -n 1 -s -r -p "Press any key to back on menu"
 				menu
 				;;
-				14)
+				12)
 				clear
+				systemctl restart ws-http
+				systemctl restart ws-https
                 systemctl restart cdn-dropbear
 				systemctl restart cdn-ovpn
 				systemctl restart cdn-ssl
@@ -261,7 +289,13 @@ case $Restart in
                 echo -e ""
                 echo -e "      \e[0;32mWebSocket Service Restarted\e[0m     "
                 echo -e ""
-                echo -e "======================================"
+	        echo -e "======================================"
 				echo ""
 				read -n 1 -s -r -p "Press any key to back on menu"
 				menu
+                ;;
+                x)
+                clear
+                menu
+                ;;
+                esac
