@@ -83,7 +83,7 @@ echo -e "   \e[$number (•0)\e[m \e[$below MENU\e[m"
 echo -e ""
 echo -e "\e[$line"
 echo -e ""
-read -p "    Select From Options [1-12 or x] :" Restart
+read -p "    Select From Options [1-12 or 0] :" Restart
 echo -e ""
 case $Restart in
                 1)
@@ -294,7 +294,7 @@ case $Restart in
 				read -n 1 -s -r -p "Press any key to back on menu"
 				menu
                 ;;
-                x)
+                0)
                 clear
                 menu
                 ;;
