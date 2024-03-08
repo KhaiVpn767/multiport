@@ -477,7 +477,7 @@ vlesslink3="vless://${uuid}@api.useinsider.com:$none?type=ws&encryption=none&sec
 vlesslink4="vless://${uuid}@162.159.134.61:$none?type=ws&encryption=none&security=none&host=${sts}${domain}&path=$patch#VLESS-NTLS-DIGI-BOSSTER-${user}"
 vlesslink5="vless://${uuid}@${domain}:$none?type=ws&encryption=none&security=none&host=${sts}m.pubgmobile.com&path=$patch#VLESS-NTLS-UMOBILE-FUNZ-${user}"
 vlesslink6="vless://${uuid}@104.17.113.188:$none?type=ws&encryption=none&security=none&host=${sts}cdn.who.int.${domain}&path=$patch#VLESS-NTLS-YES-${user}"
-vlesslink3="vless://${uuid}@104.18.203.232:$none?type=ws&encryption=none&security=none&host=${sts}www.speedtest.net.${domain}&path=$patch#VLESS-NTLS-SELCOM-0BASIC-${user}"
+vlesslink7="vless://${uuid}@104.18.203.232:$none?type=ws&encryption=none&security=none&host=${sts}www.speedtest.net.${domain}&path=$patch#VLESS-NTLS-SELCOM-0BASIC-${user}"
 vlesslink8="vless://${uuid}@zn0ejuwm5vp5oqszq-maxiscx.siteintercept.qualtrics.com:$none?type=ws&encryption=none&security=none&host=${sts}zn0ejuwm5vp5oqszq-maxiscx.siteintercept.qualtrics.com.${domain}&path=#VLESS-NTLS-MAXIS-REBORN-${user}"
 systemctl restart xray@vless
 systemctl restart xray@vnone
