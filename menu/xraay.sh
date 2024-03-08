@@ -631,6 +631,9 @@ echo " =========================="
 echo " Client Name : $user"
 echo " Expired On  : $exp"
 echo " =========================="
+echo ""
+read -n 1 -s -r -p "Press any key to back on menu xray"
+xraay
 }
 
 function menu7 () {
@@ -672,6 +675,9 @@ echo " =========================="
 echo " Client Name : $user"
 echo " Expired On  : $exp"
 echo " =========================="
+echo ""
+read -n 1 -s -r -p "Press any key to back on menu xray"
+xraay
 }
 
 function menu12 () {
@@ -710,6 +716,9 @@ echo " =========================="
 echo " Client Name : $user"
 echo " Expired On  : $exp"
 echo " =========================="
+echo ""
+read -n 1 -s -r -p "Press any key to back on menu xray"
+xraay
 }
 
 # FUCTION RENEW USER
@@ -757,6 +766,9 @@ echo " =========================="
 echo " Client Name : $user"
 echo " Expired On  : $exp4"
 echo " =========================="
+echo ""
+read -n 1 -s -r -p "Press any key to back on menu xray"
+xraay
 }
 
 function menu8 () {
@@ -803,6 +815,9 @@ echo " =========================="
 echo " Client Name : $user"
 echo " Expired On  : $exp4"
 echo " =========================="
+echo ""
+read -n 1 -s -r -p "Press any key to back on menu xray"
+xraay
 }
 
 function menu13 () {
@@ -849,6 +864,9 @@ echo " =========================="
 echo " Client Name : $user"
 echo " Expired On  : $exp4"
 echo " =========================="
+echo ""
+read -n 1 -s -r -p "Press any key to back on menu xray"
+xraay
 }
 
 function menu4 () {
