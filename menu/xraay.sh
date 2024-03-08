@@ -280,9 +280,14 @@ echo -e "Link BIRU      : ${vmesslink5}"
 echo -e "\e[$line═════════════════════════════════\e[m"
 echo -e "Link Yaml  : http://$MYIP:81/$user-VMESS-WS.yaml"
 echo -e "\e[$line═════════════════════════════════\e[m"
-echo -e "Created  : $harini"
-echo -e "Expired  : $exp"
-echo -e "Script By $creditt"
+echo -e "\e[$line════════════════════════\e[m"
+echo -e "Created   : $harini"
+echo -e "Expired   : $exp"
+echo -e "\e[$line════════════════════════\e[m"
+echo ""
+echo ""
+read -n 1 -s -r -p "Press any key to back on menu xray"
+xraay
 }
 
 function menu6 () {
@@ -507,10 +512,15 @@ echo -e "\e[$line═════════════════════
 echo -e "Link MAXIS-REBORN : ${vlesslink8}"
 echo -e "\e[$line═════════════════════════════════\e[m"
 echo -e "Link Yaml  : http://$MYIP:81/$user-VLESS-WS.yaml"
-echo -e "\e[$line═════════════════════════════════\e[m"
+echo -e "\e[$line════════════════════════e[m"
 echo -e "Created   : $harini"
 echo -e "Expired   : $exp"
 echo -e "Script By $creditt"
+echo -e "\e[$line════════════════════════\e[m"
+echo ""
+echo ""
+read -n 1 -s -r -p "Press any key to back on menu xray"
+xraay
 }
 
 function menu11 () {
@@ -567,9 +577,14 @@ echo -e "Link Xtls Splice  : ${vlesslink2}"
 echo -e "\e[$line═════════════════════════════════\e[m"
 echo -e "Link Xtls OREN  : ${vlesslink3}"
 echo -e "\e[$line═════════════════════════════════\e[m"
-echo -e "Created  : $harini"
-echo -e "Expired  : $exp"
-echo -e "Script By $creditt"
+echo -e "\e[$line════════════════════════\e[m"
+echo -e "Created   : $harini"
+echo -e "Expired   : $exp"
+echo -e "\e[$line════════════════════════\e[m"
+echo ""
+echo ""
+read -n 1 -s -r -p "Press any key to back on menu xray"
+xraay
 }
 
 # FUCTION DELETE USER
@@ -1076,9 +1091,14 @@ echo -e "Link BIRU      : ${vmesslink5}"
 echo -e "\e[$line═════════════════════════════════\e[m"
 echo -e "Link Yaml  : http://$MYIP:81/$user-VMESS-WS.yaml"
 echo -e "\e[$line═════════════════════════════════\e[m"
-echo -e "Created  : $harini"
-echo -e "Expired  : $exp"
-echo -e "Script By $creditt"
+echo -e "\e[$line════════════════════════\e[m"
+echo -e "Created   : $harini"
+echo -e "Expired   : $exp"
+echo -e "\e[$line════════════════════════\e[m"
+echo ""
+echo ""
+read -n 1 -s -r -p "Press any key to back on menu xray"
+xraay
 }
 
 function menu9 () {
@@ -1299,10 +1319,14 @@ echo -e "\e[$line═════════════════════
 echo -e "Link MAXIS-REBORN : ${vlesslink8}"
 echo -e "\e[$line═════════════════════════════════\e[m"
 echo -e "Link Yaml  : http://$MYIP:81/$user-VLESS-WS.yaml"
-echo -e "\e[$line═════════════════════════════════\e[m"
+echo -e "\e[$line════════════════════════\e[m"
 echo -e "Created   : $harini"
 echo -e "Expired   : $exp"
-echo -e "Script By $creditt"
+echo -e "\e[$line════════════════════════\e[m"
+echo ""
+echo ""
+read -n 1 -s -r -p "Press any key to back on menu xray"
+xraay
 }
 
 function menu14 () {
@@ -1356,9 +1380,14 @@ echo -e "Link Xtls Splice : ${vlesslink2}"
 echo -e "\e[$line═════════════════════════════════\e[m"
 echo -e "Link Xtls OREN  : ${vlesslink3}"
 echo -e "\e[$line═════════════════════════════════\e[m"
-echo -e "Created    : $harini"
-echo -e "Expired    : $exp"
-echo -e "Script By $creditt"
+echo -e "\e[$line════════════════════════\e[m"
+echo -e "Created   : $harini"
+echo -e "Expired   : $exp"
+echo -e "\e[$line════════════════════════\e[m"
+echo ""
+echo ""
+read -n 1 -s -r -p "Press any key to back on menu xray"
+xraay
 }
 
 # FUCTION CEK USER
