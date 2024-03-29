@@ -121,7 +121,7 @@ echo -e   " \e[$line════════════════════
 echo -e  "\e[0;33m Traffic\e[0m     \e[0;31mToday     Yesterday    Month   "
 echo -e  "\e[0;33m Download\e[0m    $dtoday    $dyest     $dmon   \e[0m"
 echo -e  "\e[0;33m Upload\e[0m      $utoday    $uyest     $umon   \e[0m"
-echo -e  "\e[0;33m Total\e[0m     \033[0;36m  $ttoday    $tyest     $tmon  \e[0m "
+echo -e  "\e[0;33m Total\e[0m     \033[0;36m  $ttoday   $tyest    $tmon  \e[0m "
 echo -e   " \e[$line════════════════════════════════════════════════════════════\e[m"
 echo -e  "  \e[$number Ssh/Ovpn    Vmess   Vless   VlessXtls   Trojan   Trojan-GO"
 echo -e  " \e[$below     $total_ssh          $totalvm       $totalvl         $totaltcp          $totaltr          $totalgo"
