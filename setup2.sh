@@ -130,14 +130,6 @@ sleep 1
 wget https://raw.githubusercontent.com/${GitUser}/multiport/main/install/wg.sh && chmod +x wg.sh && screen -S wg ./wg.sh
 echo -e "\e[0;32mDONE INSTALLING WIREGUARD\e[0m"
 clear
-#Instal slowdns
-echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-echo -e "$green      INSTALLING SLOWDNS                  $NC"
-echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-sleep 1
-wget https://raw.githubusercontent.com/KhaiVpn767/SlowDnsV1/main/dns2.sh && chmod +x dns2.sh && ./dns2.sh
-echo -e "\e[0;32mDONE Install SLDNS\e[0m"
-clear2
 #install Xray
 echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e "$green      INSTALLING XRAY CORE                $NC"
