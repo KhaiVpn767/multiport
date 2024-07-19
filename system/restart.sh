@@ -67,15 +67,12 @@ case $Restart in
                 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 1000
                 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 1000
                 echo -e ""
-                echo -e ""
                 echo -e "======================================"
                 echo -e ""
                 echo -e "          \e[0;32mALL Service Restarted\e[0m         "
                 echo -e ""
                 echo -e "======================================"
-				echo ""
-				read -n 1 -s -r -p "Press any key to back on menu"
-				menu
+                exit
                 ;;
                 2)
                 clear
@@ -86,9 +83,7 @@ case $Restart in
                 echo -e "        \e[0;32mSSH Service Restarted\e[0m       "
                 echo -e ""
                 echo -e "======================================"
- 				echo ""
-				read -n 1 -s -r -p "Press any key to back on menu"
-				menu
+                exit
                 ;;
                 3)
                 clear
@@ -99,9 +94,7 @@ case $Restart in
                 echo -e "       \e[0;32mDropbear Service Restarted\e[0m     "
                 echo -e ""
                 echo -e "======================================"
-				echo ""
-				read -n 1 -s -r -p "Press any key to back on menu"
-				menu
+                exit
                 ;;
                 4)
                 clear
@@ -112,9 +105,7 @@ case $Restart in
                 echo -e "        \e[0;32mStunnel4 Service Restarted\e[0m    "
                 echo -e ""
                 echo -e "======================================"
-				echo ""
-				read -n 1 -s -r -p "Press any key to back on menu"
-				menu
+                exit
                 ;;
                 5)
                 clear
@@ -127,9 +118,7 @@ case $Restart in
                 echo -e "       \e[0;32mOpenVPN Service Restarted\e[0m      "
                 echo -e ""
                 echo -e "======================================"
-				echo ""
-				read -n 1 -s -r -p "Press any key to back on menu"
-				menu
+                exit
                 ;;
                 6)
                 clear
@@ -140,9 +129,7 @@ case $Restart in
                 echo -e "        \e[0;32mSquid3 Service Restarted\e[0m      "
                 echo -e ""
                 echo -e "======================================"
-				echo ""
-				read -n 1 -s -r -p "Press any key to back on menu"
-				menu
+                exit
                 ;;
                 7)
                 clear
@@ -153,9 +140,7 @@ case $Restart in
                 echo -e "         \e[0;32mNginx Service Restarted\e[0m      "
                 echo -e ""
                 echo -e "======================================"
-				echo ""
-				read -n 1 -s -r -p "Press any key to back on menu"
-				menu
+                exit
                 ;;
 				8)
                 clear
@@ -172,9 +157,7 @@ case $Restart in
                 echo -e "         \e[0;32mXray Service Restart\e[0m         "
                 echo -e ""
                 echo -e "======================================"
-				echo ""
-				read -n 1 -s -r -p "Press any key to back on menu"
-				menu
+                exit
                 ;;
 				9)
 				clear
@@ -185,9 +168,7 @@ case $Restart in
                 echo -e "      \e[0;32mAll Trojan Service Restart\e[0m      "
                 echo -e ""
                 echo -e "======================================"
-				echo ""
-				read -n 1 -s -r -p "Press any key to back on menu"
-				menu
+                exit
                 ;;
 				10)
 				clear
@@ -198,9 +179,7 @@ case $Restart in
                 echo -e "      \e[0;32mShadowsockR Service Restart\e[0m     "
                 echo -e ""
                 echo -e "======================================"
-				echo ""
-				read -n 1 -s -r -p "Press any key to back on menu"
-				menu
+                exit
                 ;;
 				11)
 				clear
@@ -211,9 +190,7 @@ case $Restart in
                 echo -e "       \e[0;32mWireguard Service Restart\e[0m     "
                 echo -e ""
                 echo -e "======================================"
-				echo ""
-				read -n 1 -s -r -p "Press any key to back on menu"
-				menu
+                exit
                 ;;
                 12)
                 clear
@@ -232,9 +209,7 @@ case $Restart in
                 echo -e "       \e[0;32mBadvpn Service Restarted\e[0m     "
                 echo -e ""
                 echo -e "======================================"
-				echo ""
-				read -n 1 -s -r -p "Press any key to back on menu"
-				menu
+                exit
                 ;;
 				13)
 				clear
@@ -247,9 +222,7 @@ case $Restart in
                 echo -e "         \e[0;32mOHP Service Restarted\e[0m     "
                 echo -e ""
                 echo -e "======================================"
-				echo ""
-				read -n 1 -s -r -p "Press any key to back on menu"
-				menu
+                exit
 				;;
 				14)
 				clear
@@ -262,6 +235,10 @@ case $Restart in
                 echo -e "      \e[0;32mWebSocket Service Restarted\e[0m     "
                 echo -e ""
                 echo -e "======================================"
-				echo ""
-				read -n 1 -s -r -p "Press any key to back on menu"
-				menu
+                exit
+                ;;
+                x)
+                clear
+                menu
+                ;;
+                esac
