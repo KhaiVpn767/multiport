@@ -72,7 +72,9 @@ case $Restart in
                 echo -e "          \e[0;32mALL Service Restarted\e[0m         "
                 echo -e ""
                 echo -e "======================================"
-                exit
+				echo ""
+				read -n 1 -s -r -p "Press any key to back on menu"
+				menu
                 ;;
                 2)
                 clear
