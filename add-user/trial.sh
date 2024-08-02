@@ -94,5 +94,5 @@ echo -e "PAYLOAD WEBSOCKET 2 : GET wss://bug.com/ HTTP/1.1[crlf]Host: bug.com.$d
 echo -e ""
 echo -e "Script By $creditt"
 echo ""
-read -n 1 -s -r -p "Press any key to back on menu ssh"
-ssh
+read -n 1 -s -r -p "Press any key to back on menu"
+menu
