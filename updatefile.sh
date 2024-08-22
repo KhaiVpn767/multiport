@@ -158,4 +158,6 @@ chmod +x themes
 chmod +x dns
 echo -e " [INFO] Update Successfully"
 sleep 2
-exit
+echo ""
+read -p "Enter Back To menu"
+menu
