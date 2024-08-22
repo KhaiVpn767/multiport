@@ -54,6 +54,7 @@ rm -rf jam
 rm -rf up
 rm -rf trialvless
 rm -rf add-vless
+rm -rf xraay
 
 # download script
 cd /usr/bin
