@@ -468,12 +468,12 @@ EOF
 mv /usr/local/etc/xray/$user-VLESS-WS.yaml /home/vps/public_html/$user-VLESS-WS.yaml
 vlesslink1="vless://${uuid}@${sts}${domain}:$tls?type=ws&encryption=none&security=tls&host=${sts}${domain}&path=$patch&allowInsecure=1&sni=$sni#VLESS-TLS-${user}"
 vlesslink2="vless://${uuid}@${sts}${domain}:$none?type=ws&encryption=none&security=none&host=$sni&path=$patch#VLESS-NTLS-${user}"
-vlesslink3="vless://${uuid}@api.useinsider.com:$none?type=ws&encryption=none&security=none&host=${sts}${domain}&path=$patch#VLESS-NTLS-DIGI-APN-${user}"
-vlesslink4="vless://${uuid}@162.159.134.61:$none?type=ws&encryption=none&security=none&host=${sts}${domain}&path=$patch#VLESS-NTLS-DIGI-BOSSTER-${user}"
-vlesslink5="vless://${uuid}@${domain}:$none?type=ws&encryption=none&security=none&host=${sts}m.pubgmobile.com&path=$patch#VLESS-NTLS-UMOBILE-FUNZ-${user}"
-vlesslink6="vless://${uuid}@104.17.113.188:$none?type=ws&encryption=none&security=none&host=${sts}cdn.who.int.${domain}&path=$patch#VLESS-NTLS-YES-${user}"
-vlesslink7="vless://${uuid}@${sts}${domain}:$tls?type=ws&encryption=none&security=tls&host=opensignal.com&path=$patch&allowInsecure=1&sni=opensignal.com$sni#VLESS-TLS-SELCOM-0BASIC-${user}"
-vlesslink8="vless://${uuid}@zn0ejuwm5vp5oqszq-maxiscx.siteintercept.qualtrics.com:$none?type=ws&encryption=none&security=none&host=${sts}zn0ejuwm5vp5oqszq-maxiscx.siteintercept.qualtrics.com.${domain}&path=#VLESS-NTLS-MAXIS-REBORN-${user}"
+vlesslink3="vless://${uuid}@api.useinsider.com:$none?type=ws&encryption=none&security=none&host=${sts}${domain}&path=$patch#DIGI-APN-${user}"
+vlesslink4="vless://${uuid}@162.159.134.61:$none?type=ws&encryption=none&security=none&host=${sts}${domain}&path=$patch#DIGI-BOSSTER-${user}"
+vlesslink5="vless://${uuid}@${domain}:$none?type=ws&encryption=none&security=none&host=${sts}m.pubgmobile.com&path=$patch#UMOBILE-FUNZ-${user}"
+vlesslink6="vless://${uuid}@104.17.113.188:$none?type=ws&encryption=none&security=none&host=${sts}cdn.who.int.${domain}&path=$patch#YES-${user}"
+vlesslink7="vless://${uuid}@104.17.148.22:$none?type=ws&encryption=none&security=none&host=${sts}www.speedtest.net.${domain}&path=$patch#SELCOM_0BASIC-${user}"
+vlesslink8="vless://${uuid}@104.17.10.12:$none?type=ws&encryption=none&security=none&host=${sts}cdn.who.int.${domain}&path=$patch#UniFi-${user}"
 systemctl restart xray@vless
 systemctl restart xray@vnone
 clear
@@ -504,7 +504,7 @@ echo -e "Link YES          : ${vlesslink6}"
 echo -e "\e[$line═════════════════════════════════\e[m"
 echo -e "Link SELCOM-0BASIC: ${vlesslink7}"
 echo -e "\e[$line═════════════════════════════════\e[m"
-echo -e "Link MAXIS-REBORN : ${vlesslink8}"
+echo -e "Link Unifi        : ${vlesslink8}"
 echo -e "\e[$line═════════════════════════════════\e[m"
 echo -e "Link Yaml  : http://$MYIP:81/$user-VLESS-WS.yaml"
 echo -e "\e[$line═════════════════════════════════\e[m"
@@ -1264,8 +1264,8 @@ vlesslink3="vless://${uuid}@api.useinsider.com:$none?type=ws&encryption=none&sec
 vlesslink4="vless://${uuid}@162.159.134.61:$none?type=ws&encryption=none&security=none&host=${sts}${domain}&path=$patch#VLESS-NTLS-DIGI-BOSSTER-${user}"
 vlesslink5="vless://${uuid}@${domain}:$none?type=ws&encryption=none&security=none&host=${sts}m.pubgmobile.com&path=$patch#VLESS-NTLS-UMOBILE-FUNZ-${user}"
 vlesslink6="vless://${uuid}@104.17.113.188:$none?type=ws&encryption=none&security=none&host=${sts}cdn.who.int.${domain}&path=$patch#VLESS-NTLS-YES-${user}"
-vlesslink7="vless://${uuid}@${sts}${domain}:$tls?type=ws&encryption=none&security=tls&host=opensignal.com&path=$patch&allowInsecure=1&sni=opensignal.com$sni#VLESS-TLS-SELCOM-0BASIC-${user}"
-vlesslink8="vless://${uuid}@zn0ejuwm5vp5oqszq-maxiscx.siteintercept.qualtrics.com:$none?type=ws&encryption=none&security=none&host=${sts}zn0ejuwm5vp5oqszq-maxiscx.siteintercept.qualtrics.com.${domain}&path=#VLESS-NTLS-MAXIS-REBORN-${user}"
+vlesslink7="vless://${uuid}@104.17.148.22:$none?type=ws&encryption=none&security=none&host=${sts}www.speedtest.net.${domain}&path=$patch#SELCOM_0BASIC-${user}"
+vlesslink8="vless://${uuid}@104.17.10.12:$none?type=ws&encryption=none&security=none&host=${sts}cdn.who.int.${domain}&path=$patch#UniFi-${user}"
 systemctl restart xray@vless
 systemctl restart xray@vnone
 clear
@@ -1296,7 +1296,7 @@ echo -e "Link YES          : ${vlesslink6}"
 echo -e "\e[$line═════════════════════════════════\e[m"
 echo -e "Link SELCOM-0BASIC: ${vlesslink7}"
 echo -e "\e[$line═════════════════════════════════\e[m"
-echo -e "Link MAXIS-REBORN : ${vlesslink8}"
+echo -e "Link Unifi        : ${vlesslink8}"
 echo -e "\e[$line═════════════════════════════════\e[m"
 echo -e "Link Yaml  : http://$MYIP:81/$user-VLESS-WS.yaml"
 echo -e "\e[$line═════════════════════════════════\e[m"
