@@ -280,9 +280,16 @@ echo -e "Link BIRU      : ${vmesslink5}"
 echo -e "\e[$line═════════════════════════════════\e[m"
 echo -e "Link Yaml  : http://$MYIP:81/$user-VMESS-WS.yaml"
 echo -e "\e[$line═════════════════════════════════\e[m"
-echo -e "Created  : $harini"
-echo -e "Expired  : $exp"
-echo -e "Script By $creditt"
+echo -e "\e[$line══════════════════════\e[m"
+echo -e "Name      : ${user}"
+echo -e "Created   : $harini"
+echo -e "Expired   : $exp"
+echo -e "SerVer    : $creditt"
+echo -e "\e[$line══════════════════════\e[m"
+echo ""
+echo ""
+read -n 1 -s -r -p "Press any key to back on menu xray"
+xraay
 }
 
 function menu6 () {
@@ -508,9 +515,16 @@ echo -e "Link Unifi        : ${vlesslink8}"
 echo -e "\e[$line═════════════════════════════════\e[m"
 echo -e "Link Yaml  : http://$MYIP:81/$user-VLESS-WS.yaml"
 echo -e "\e[$line═════════════════════════════════\e[m"
+echo -e "\e[$line══════════════════════\e[m"
+echo -e "Name      : ${user}"
 echo -e "Created   : $harini"
 echo -e "Expired   : $exp"
-echo -e "Script By $creditt"
+echo -e "SerVer    : $creditt"
+echo -e "\e[$line══════════════════════\e[m"
+echo ""
+echo ""
+read -n 1 -s -r -p "Press any key to back on menu xray"
+xraay
 }
 
 function menu11 () {
@@ -567,9 +581,16 @@ echo -e "Link Xtls Splice  : ${vlesslink2}"
 echo -e "\e[$line═════════════════════════════════\e[m"
 echo -e "Link Xtls OREN  : ${vlesslink3}"
 echo -e "\e[$line═════════════════════════════════\e[m"
-echo -e "Created  : $harini"
-echo -e "Expired  : $exp"
-echo -e "Script By $creditt"
+echo -e "\e[$line══════════════════════\e[m"
+echo -e "Name      : ${user}"
+echo -e "Created   : $harini"
+echo -e "Expired   : $exp"
+echo -e "SerVer    : $creditt"
+echo -e "\e[$line══════════════════════\e[m"
+echo ""
+echo ""
+read -n 1 -s -r -p "Press any key to back on menu xray"
+xraay
 }
 
 # FUCTION DELETE USER
@@ -611,11 +632,14 @@ rm -f /home/vps/public_html/$user-VMESS-WS.yaml
 systemctl restart xray
 systemctl restart xray@none
 clear
-echo " Xray Vmess Ws Account Deleted Successfully"
+echo " Xray Vless Xtls Account Deleted Successfully"
 echo -e "\e[$line══════════════════════\e[m"
 echo -e "Client Name : $user"
 echo -e "Expired On  : $exp4"
 echo -e "\e[$line══════════════════════\e[m"
+echo ""
+read -n 1 -s -r -p "Press any key to back on menu xray"
+xraay
 }
 
 function menu7 () {
@@ -652,11 +676,14 @@ rm -f /home/vps/public_html/$user-VLESS-WS.yaml
 systemctl restart xray@vless
 systemctl restart xray@none
 clear
-echo " Xray Vless Ws Account Deleted Successfully"
+echo " Xray Vless Xtls Account Deleted Successfully"
 echo -e "\e[$line══════════════════════\e[m"
 echo -e "Client Name : $user"
 echo -e "Expired On  : $exp4"
 echo -e "\e[$line══════════════════════\e[m"
+echo ""
+read -n 1 -s -r -p "Press any key to back on menu xray"
+xraay
 }
 
 function menu12 () {
@@ -695,6 +722,9 @@ echo -e "\e[$line═════════════════════
 echo -e "Client Name : $user"
 echo -e "Expired On  : $exp4"
 echo -e "\e[$line══════════════════════\e[m"
+echo ""
+read -n 1 -s -r -p "Press any key to back on menu xray"
+xraay
 }
 
 # FUCTION RENEW USER
@@ -741,7 +771,11 @@ echo " Xray Vmess Ws Was Successfully Renewed"
 echo -e "\e[$line══════════════════════\e[m"
 echo -e "Client Name : $user"
 echo -e "Expired On  : $exp4"
+echo -e "SerVer      : $creditt"
 echo -e "\e[$line══════════════════════\e[m"
+echo ""
+read -n 1 -s -r -p "Press any key to back on menu xray"
+xraay
 }
 
 function menu8 () {
@@ -787,7 +821,11 @@ echo " Xray Vless Ws Was Successfully Renewed"
 echo -e "\e[$line══════════════════════\e[m"
 echo -e "Client Name : $user"
 echo -e "Expired On  : $exp4"
+echo -e "SerVer      : $creditt"
 echo -e "\e[$line══════════════════════\e[m"
+echo ""
+read -n 1 -s -r -p "Press any key to back on menu xray"
+xraay
 }
 
 function menu13 () {
@@ -833,7 +871,11 @@ echo " Xray Vless Xtls Account Was Successfully Renewed"
 echo -e "\e[$line══════════════════════\e[m"
 echo -e "Client Name : $user"
 echo -e "Expired On  : $exp4"
+echo -e "SerVer      : $creditt"
 echo -e "\e[$line══════════════════════\e[m"
+echo ""
+read -n 1 -s -r -p "Press any key to back on menu xray"
+xraay
 }
 
 function menu4 () {
@@ -1076,9 +1118,16 @@ echo -e "Link BIRU      : ${vmesslink5}"
 echo -e "\e[$line═════════════════════════════════\e[m"
 echo -e "Link Yaml  : http://$MYIP:81/$user-VMESS-WS.yaml"
 echo -e "\e[$line═════════════════════════════════\e[m"
-echo -e "Created  : $harini"
-echo -e "Expired  : $exp"
-echo -e "Script By $creditt"
+echo -e "\e[$line══════════════════════\e[m"
+echo -e "Name      : ${user}"
+echo -e "Created   : $harini"
+echo -e "Expired   : $exp"
+echo -e "SerVer    : $creditt"
+echo -e "\e[$line══════════════════════\e[m"
+echo ""
+echo ""
+read -n 1 -s -r -p "Press any key to back on menu xray"
+xraay
 }
 
 function menu9 () {
@@ -1300,9 +1349,16 @@ echo -e "Link Unifi        : ${vlesslink8}"
 echo -e "\e[$line═════════════════════════════════\e[m"
 echo -e "Link Yaml  : http://$MYIP:81/$user-VLESS-WS.yaml"
 echo -e "\e[$line═════════════════════════════════\e[m"
+echo -e "\e[$line══════════════════════\e[m"
+echo -e "Name      : ${user}"
 echo -e "Created   : $harini"
 echo -e "Expired   : $exp"
-echo -e "Script By $creditt"
+echo -e "SerVer    : $creditt"
+echo -e "\e[$line══════════════════════\e[m"
+echo ""
+echo ""
+read -n 1 -s -r -p "Press any key to back on menu xray"
+xraay
 }
 
 function menu14 () {
@@ -1356,9 +1412,16 @@ echo -e "Link Xtls Splice : ${vlesslink2}"
 echo -e "\e[$line═════════════════════════════════\e[m"
 echo -e "Link Xtls OREN  : ${vlesslink3}"
 echo -e "\e[$line═════════════════════════════════\e[m"
-echo -e "Created    : $harini"
-echo -e "Expired    : $exp"
-echo -e "Script By $creditt"
+echo -e "\e[$line══════════════════════\e[m"
+echo -e "Name      : ${user}"
+echo -e "Created   : $harini"
+echo -e "Expired   : $exp"
+echo -e "SerVer    : $creditt"
+echo -e "\e[$line══════════════════════\e[m"
+echo ""
+echo ""
+read -n 1 -s -r -p "Press any key to back on menu xray"
+xraay
 }
 
 # FUCTION CEK USER
