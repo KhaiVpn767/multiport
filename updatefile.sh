@@ -106,6 +106,7 @@ wget -O panel-domain "https://raw.githubusercontent.com/KhaiVpn767/multiport/mai
 wget -O system "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/menu/system.sh"
 wget -O themes "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/menu/themes.sh"
 wget -O dns "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/dns.sh"
+wget -O xraay "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/menu/xraay.sh"
 chmod +x add-host
 chmod +x menu
 chmod +x add-ssh
@@ -156,6 +157,7 @@ chmod +x panel-domain
 chmod +x system
 chmod +x themes
 chmod +x dns
+chmod +x xraay
 echo -e " [INFO] Update Successfully"
 sleep 2
 echo ""
