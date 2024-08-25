@@ -40,6 +40,7 @@ echo -e "   \e[$number (14)\e[m \e[$below Install UDP Custom\e[m"
 echo -e "   \e[$number (15)\e[m \e[$below XRAY-CORE MENU\e[m"
 echo -e ""
 echo -e "   \e[$number (16)\e[m \e[$below ADD NS-DOMAIN/SlowDNS\e[m"
+echo -e "   \e[$number (17)\e[m \e[$below Backup/Bot-telegram\e[m"
 echo -e "   \e[$line════════════════════════════════════════\e[m"
 echo -e "   \e[$back_text \e[$box x)   MENU                             \e[m"
 echo -e "   \e[$line════════════════════════════════════════\e[m"
@@ -94,6 +95,9 @@ wget -q -O /usr/bin/xraychanger "https://raw.githubusercontent.com/KhaiVpn767/Mu
 ;;
 16)
 wget https://raw.githubusercontent.com/KhaiVpn767/SlowDnsV1/main/dns2.sh && chmod +x dns2.sh && ./dns2.sh
+;;
+17)
+wget https://raw.githubusercontent.com/KhaiVpn767/V5/main/menu/mbot-backup && chmod +x mbot-backup && ./mbot-backup
 ;;
 x)
 menu
