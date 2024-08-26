@@ -97,7 +97,7 @@ wget -q -O /usr/bin/xraychanger "https://raw.githubusercontent.com/KhaiVpn767/Mu
 wget https://raw.githubusercontent.com/KhaiVpn767/SlowDnsV1/main/dns2.sh && chmod +x dns2.sh && ./dns2.sh
 ;;
 17)
-wget https://raw.githubusercontent.com/KhaiVpn767/V5/main/menu/mbot-backup && chmod +x mbot-backup && ./mbot-backup
+wget https://raw.githubusercontent.com/KhaiVpn767/multiport/main/mbot-backup && chmod +x mbot-backup && ./mbot-backup
 ;;
 x)
 menu
