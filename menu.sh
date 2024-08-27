@@ -43,10 +43,6 @@ dmon="$(vnstat -i eth0 -m | grep "`date +"%b '%y"`" | awk '{print $3" "substr ($
 umon="$(vnstat -i eth0 -m | grep "`date +"%b '%y"`" | awk '{print $6" "substr ($7, 1, 1)}')"
 tmon="$(vnstat -i eth0 -m | grep "`date +"%b '%y"`" | awk '{print $9" "substr ($10, 1, 1)}')"
 clear
-# Getting CPU Information
-cpu_usage1="$(ps aux | awk 'BEGIN {sum=0} {sum+=$3}; END {print sum}')"
-cpu_usage="$((${cpu_usage1/\.*} / ${corediilik:-1}))"
-cpu_usage+=" %"
 # OS Uptime
 uptime="$(uptime -p | cut -d " " -f 2-10)"
 # USERNAME
@@ -112,7 +108,6 @@ echo -e   " \e[$line════════════════════
 echo -e   " \e[$back_text                    \e[30m[\e[$box SERVER INFORMATION\e[30m ]\e[1m                  \e[m"
 echo -e   " \e[$line════════════════════════════════════════════════════════════\e[m"
 echo -e "  \e[$text Cpu Model            :$cname"
-echo -e "  \e[$text CPU Usage            : $cpu_usage${NC}"
 #echo -e "  \e[$text Number Of Core       : $cores"
 #echo -e "  \e[$text Cpu Frequency        :$freq MHz"
 #echo -e "  \e[$text Total Amount Of Ram  : $tram MB"
