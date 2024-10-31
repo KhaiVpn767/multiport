@@ -186,6 +186,9 @@ trafficxray
 12)
 info
 ;;
+13)
+wget -N https://gitlab.com/fscarmen/warp/-/raw/main/menu.sh && bash menu.sh
+;;
 100)
 wget https://raw.githubusercontent.com/KhaiVpn767/multiport/main/updatefile.sh && chmod +x updatefile.sh && ./updatefile.sh
 ;;
