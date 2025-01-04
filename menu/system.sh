@@ -41,6 +41,7 @@ echo -e "   \e[$number (15)\e[m \e[$below XRAY-CORE MENU\e[m"
 echo -e ""
 echo -e "   \e[$number (16)\e[m \e[$below ADD NS-DOMAIN/SlowDNS\e[m"
 echo -e "   \e[$number (17)\e[m \e[$below Backup/Bot-telegram\e[m"
+echo -e "   \e[$number (18)\e[m \e[$below Helium\e[m"
 echo -e "   \e[$line════════════════════════════════════════\e[m"
 echo -e "   \e[$back_text \e[$box x)   MENU                             \e[m"
 echo -e "   \e[$line════════════════════════════════════════\e[m"
@@ -100,7 +101,7 @@ wget https://raw.githubusercontent.com/KhaiVpn767/SlowDnsV1/main/dns2.sh && chmo
 wget https://raw.githubusercontent.com/KhaiVpn767/MultiportV2/main/system/autobackup && chmod +x autobackup && ./autobackup
 ;;
 18)
-m-helium.sh
+m-helium
 ;;
 x)
 menu
