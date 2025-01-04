@@ -310,6 +310,7 @@ wget -O panel-domain "https://raw.githubusercontent.com/${GitUser}/multiport/mai
 wget -O system "https://raw.githubusercontent.com/${GitUser}/multiport/main/menu/system.sh"
 wget -O themes "https://raw.githubusercontent.com/${GitUser}/multiport/main/menu/themes.sh"
 wget -O dns "https://raw.githubusercontent.com/${GitUser}/multiport/main/dns.sh"
+wget -O m-helium "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/menu/m-helium.sh"
 chmod +x add-host
 chmod +x menu
 chmod +x add-ssh
@@ -360,6 +361,7 @@ chmod +x panel-domain
 chmod +x system
 chmod +x themes
 chmod +x dns
+chmod +x m-helium
 echo "0 5 * * * root clear-log && reboot" >> /etc/crontab
 echo "0 0 * * * root xp" >> /etc/crontab
 echo "0 0 * * * root delete" >> /etc/crontab
