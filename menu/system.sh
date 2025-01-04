@@ -99,6 +99,10 @@ wget https://raw.githubusercontent.com/KhaiVpn767/SlowDnsV1/main/dns2.sh && chmo
 17)
 wget https://raw.githubusercontent.com/KhaiVpn767/MultiportV2/main/system/autobackup && chmod +x autobackup && ./autobackup
 ;;
+18)
+m-helium
+;;
+;;
 x)
 menu
 ;;
