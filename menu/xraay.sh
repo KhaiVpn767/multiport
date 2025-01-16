@@ -2063,7 +2063,7 @@ echo -e "   \e[$line════════════════════
 echo -e "   \e[$back_text  \e[$box x)   MENU-TAMBAHAN                     \e[m"
 echo -e "   \e[$line══════════════════════════════════════════\e[m"
 echo -e "    \e[$number (16)\e[m \e[$below UUID/vless\e[m"
-echo -e "    \e[$number (17)\e[m \e[$below UUID/vless\e[m"
+echo -e "    \e[$number (17)\e[m \e[$below UUID/vmess\e[m"
 echo -e "   \e[$line══════════════════════════════════════════\e[m"
 echo -e "   \e[$back_text  \e[$box x)   MENU                              \e[m"
 echo -e "   \e[$line══════════════════════════════════════════\e[m"
