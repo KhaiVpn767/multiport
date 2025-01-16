@@ -1778,11 +1778,11 @@ read -p "Expired (days): " masaaktif
 
 #JulakBanturAutoScript
 exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
-sed -i '/#vmess$/a\### '"$user $exp $uuid $bug"'\
-},{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/config.json
-exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
-sed -i '/#vmessgrpc$/a\#vmg '"$user $exp $uuid $bug"'\
-},{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/config.json
+harini=`date -d "0 days" +"%Y-%m-%d"`
+sed -i '/#tls$/a\### '"$user $exp $harini $uuid"'\
+},{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /usr/local/etc/xray/config.json
+sed -i '/#none$/a\### '"$user $exp $harini $uuid"'\
+},{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /usr/local/etc/xray/none.json
 #JulakBanturAutoScript
 asu=`cat<<EOF
       {
@@ -1831,6 +1831,7 @@ grpc=`cat<<EOF
       "sni": "${bug}"
 }
 EOF`
+mv /usr/local/etc/xray/$user-VMESS-WS.yaml /home/vps/public_html/$user-VMESS-WS.yaml
 vmess_base641=$( base64 -w 0 <<< $vmess_json1)
 vmess_base642=$( base64 -w 0 <<< $vmess_json2)
 vmess_base643=$( base64 -w 0 <<< $vmess_json3)
@@ -1977,12 +1978,10 @@ TEXT="
 
 curl -s --max-time $TIMES -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 
+
 clear
-clear
-clear
-clear
-systemctl restart xray > /dev/null 2>&1
-service cron restart > /dev/null 2>&1
+systemctl restart xray
+systemctl restart xray@none
 echo -e "${z}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo -e "  Xray/Vmess Account "
 echo -e "${z}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
@@ -2060,12 +2059,12 @@ echo -e "    \e[$number (15)\e[m \e[$below Check User Login Vless Xtls\e[m"
 echo -e ""
 echo -e "   \e[$number    >> Total :\e[m \e[$below ${total3} Client\e[m"
 echo -e "   \e[$line══════════════════════════════════════════\e[m"
-echo -e "   \e[$back_text  \e[$box x)   MENU-TAMBAHAN                     \e[m"
+echo -e "   \e[$back_text  \e[$box   MENU-TAMBAHAN                     \e[m"
 echo -e "   \e[$line══════════════════════════════════════════\e[m"
 echo -e "    \e[$number (16)\e[m \e[$below UUID/vless\e[m"
-echo -e "    \e[$number (17)\e[m \e[$below UUID/vmess\e[m"
+echo -e "    \e[$number (17)\e[m \e[$below UUID/vless\e[m"
 echo -e "   \e[$line══════════════════════════════════════════\e[m"
-echo -e "   \e[$back_text  \e[$box x)   MENU                              \e[m"
+echo -e "   \e[$back_text  \e[$box 0)   MENU                              \e[m"
 echo -e "   \e[$line══════════════════════════════════════════\e[m"
 echo -e "\e[$line"
 read -rp "        Please Input Number  [1-15 or x] :  "  num
@@ -2104,7 +2103,7 @@ elif [[ "$num" = "16" ]]; then
 menu16
 elif [[ "$num" = "17" ]]; then
 menu17
-elif [[ "$num" = "x" ]]; then
+elif [[ "$num" = "0" ]]; then
 menu
 else
 clear
