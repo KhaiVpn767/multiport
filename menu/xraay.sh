@@ -1779,7 +1779,7 @@ echo -e "    \e[$number (15)\e[m \e[$below Check User Login Vless Xtls\e[m"
 echo -e ""
 echo -e "   \e[$number    >> Total :\e[m \e[$below ${total3} Client\e[m"
 echo -e "   \e[$line══════════════════════════════════════════\e[m"
-echo -e "   \e[$back_text  \e[$box x)   MENU-TAMBAHAN                     \e[m"
+echo -e "   \e[$back_text  \e[$box   MENU-TAMBAHAN                     \e[m"
 echo -e "   \e[$line══════════════════════════════════════════\e[m"
 echo -e "    \e[$number (77)\e[m \e[$below UUID\e[m"
 echo -e "   \e[$line══════════════════════════════════════════\e[m"
@@ -1818,7 +1818,7 @@ elif [[ "$num" = "14" ]]; then
 menu14
 elif [[ "$num" = "15" ]]; then
 menu15
-elif [[ "$num" = "15" ]]; then
+elif [[ "$num" = "77" ]]; then
 menu77
 elif [[ "$num" = "x" ]]; then
 menu
