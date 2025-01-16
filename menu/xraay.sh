@@ -1552,9 +1552,8 @@ rm -rf /tmp/other.txt
 done
 }
 
-#FUNTION UUID
-function menu77 () {
-clear
+#FUNTION UUID/VLESS
+function menu16 () {
 clear
 until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
   echo -e "\033[1;93m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
@@ -1721,8 +1720,7 @@ echo -e "Port None TLS : 80"
 #echo -e "Port XrayDns  : 443,5300,53,80"
 echo -e "User ID       : ${uuid}"
 echo -e "Encryption    : none"
-echo -e "Path          : /vless ~ (/Multipath)"
-echo -e "ServiceName   : vless-grpc"
+echo -e "Path          : /vless"
 echo -e "${z}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo -e "Link TLS    :"
 echo -e "${vlesslink1}"
@@ -1730,12 +1728,295 @@ echo -e "${z}━━━━━━━━━━━━━━━━━━━━━━�
 echo -e "Link NTLS   :"
 echo -e "${vlesslink2}"
 echo -e "${z}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e "Link GRPC   :"
-echo -e "${vlesslink3}"
-echo -e "${z}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo -e "Link Yaml : http://$MYIP:81/$user-VLESS-WS.yaml"
 echo -e "${z}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e "Masa Aktif    : $expe"
+echo -e "\e[$line══════════════════════\e[m"
+echo -e "Name      : ${user}"
+echo -e "Created   : $harini"
+echo -e "Expired   : $exp"
+echo -e "SerVer    : $creditt"
+echo -e "\e[$line══════════════════════\e[m"
+echo -e "${z}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "        Script By khaiVPN             "
+echo -e "${z}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo ""
+echo ""
+read -n 1 -s -r -p "Press any key to back on menu xray"
+xraay
+}
+
+#FUNTION UUID/VMESS
+function menu17 () {
+clear
+until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
+echo -e "\033[1;93m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e "CREATE VMESS ACCOUNT           "
+echo -e "\033[1;93m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+
+		read -rp "Name User: " -e user
+		CLIENT_EXISTS=$(grep -w $user /etc/xray/config.json | wc -l)
+
+		if [[ ${CLIENT_EXISTS} == '1' ]]; then
+clear
+            echo -e "\033[1;93m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+            echo -e "CREATE VMESS ACCOUNT           "
+            echo -e "\033[1;93m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+            echo ""
+            echo -e " A client with the specified name was already created, please choose another name."
+            echo ""
+            echo -e "\033[1;93m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+            read -n 1 -s -r -p "Press any key to back on menu"
+m-vmess
+		fi
+	done
+#JulakBanturAutoScript
+read -p "Uuid (Manual): " uuid
+read -p "Expired (days): " masaaktif
+#read -p "Bug (Host): " bug
+#read -p "Limit (IP): " iplimit
+#read -p "Limit User (GB): " Quota
+
+#JulakBanturAutoScript
+exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
+sed -i '/#vmess$/a\### '"$user $exp $uuid $bug"'\
+},{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/config.json
+exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
+sed -i '/#vmessgrpc$/a\#vmg '"$user $exp $uuid $bug"'\
+},{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/config.json
+#JulakBanturAutoScript
+asu=`cat<<EOF
+      {
+      "v": "2",
+      "ps": "${user}",
+      "add": "${domain}",
+      "port": "443",
+      "id": "${uuid}",
+      "aid": "0",
+      "net": "ws",
+      "path": "/vmess",
+      "type": "none",
+      "host": "${domain}",
+      "tls": "tls",
+      "sni": "${bug}"
+}
+EOF`
+ask=`cat<<EOF
+      {
+      "v": "2",
+      "ps": "${user}",
+      "add": "${bug}",
+      "port": "80",
+      "id": "${uuid}",
+      "aid": "0",
+      "net": "ws",
+      "path": "/vmess",
+      "type": "none",
+      "host": "${domain}",
+      "tls": "none"
+}
+EOF`
+grpc=`cat<<EOF
+      {
+      "v": "2",
+      "ps": "${user}",
+      "add": "${domain}",
+      "port": "443",
+      "id": "${uuid}",
+      "aid": "0",
+      "net": "grpc",
+      "path": "vmess-grpc",
+      "type": "none",
+      "host": "${domain}",
+      "tls": "tls",
+      "sni": "${bug}"
+}
+EOF`
+vmess_base641=$( base64 -w 0 <<< $vmess_json1)
+vmess_base642=$( base64 -w 0 <<< $vmess_json2)
+vmess_base643=$( base64 -w 0 <<< $vmess_json3)
+vmesslink1="vmess://$(echo $asu | base64 -w 0)"
+vmesslink2="vmess://$(echo $ask | base64 -w 0)"
+vmesslink3="vmess://$(echo $grpc | base64 -w 0)"
+
+cat >/var/www/html/vmess-$user.txt <<-END
+
+---------------------
+# Format Vmess WS (CDN)
+---------------------
+
+- name: Vmess-$user-WS (CDN)
+  type: vmess
+  server: ${domain}
+  port: 443
+  uuid: ${uuid}
+  alterId: 0
+  cipher: auto
+  udp: true
+  tls: true
+  skip-cert-verify: true
+  servername: ${domain}
+  network: ws
+  ws-opts:
+    path: /vmess
+    headers:
+      Host: ${domain}
+---------------------
+# Format Vmess WS (CDN) Non TLS
+---------------------
+
+- name: Vmess-$user-WS (CDN) Non TLS
+  type: vmess
+  server: ${domain}
+  port: 80
+  uuid: ${uuid}
+  alterId: 0
+  cipher: auto
+  udp: true
+  tls: false
+  skip-cert-verify: false
+  servername: ${domain}
+  network: ws
+  ws-opts:
+    path: /vmess
+    headers:
+      Host: ${domain}
+---------------------
+# Format Vmess gRPC (SNI)
+---------------------
+
+- name: Vmess-$user-gRPC (SNI)
+  server: ${domain}
+  port: 443
+  type: vmess
+  uuid: ${uuid}
+  alterId: 0
+  cipher: auto
+  network: grpc
+  tls: true
+  servername: ${domain}
+  skip-cert-verify: true
+  grpc-opts:
+    grpc-service-name: vmess-grpc
+
+---------------------
+ Link Akun Vmess                   
+---------------------
+Link TLS         : 
+${vmesslink1}
+---------------------
+Link none TLS    : 
+${vmesslink2}
+---------------------
+Link GRPC        : 
+${vmesslink3}
+---------------------
+
+END
+
+if [ ! -e /etc/vmess ]; then
+  mkdir -p /etc/vmess
+fi
+
+if [[ $iplimit -gt 0 ]]; then
+mkdir -p /etc/kyt/limit/vmess/ip
+echo -e "$iplimit" > /etc/kyt/limit/vmess/ip/$user
+else
+echo > /dev/null
+fi
+
+if [ -z ${Quota} ]; then
+  Quota="0"
+fi
+
+c=$(echo "${Quota}" | sed 's/[^0-9]*//g')
+d=$((${c} * 1024 * 1024 * 1024))
+
+if [[ ${c} != "0" ]]; then
+  echo "${d}" >/etc/vmess/${user}
+fi
+
+DATADB=$(cat /etc/vmess/.vmess.db | grep "^###" | grep -w "${user}" | awk '{print $2}')
+if [[ "${DATADB}" != '' ]]; then
+  sed -i "/\b${user}\b/d" /etc/vmess/.vmess.db
+fi
+
+echo "### ${user} ${exp} ${uuid} ${iplimit}" >>/etc/vmess/.vmess.db
+
+TEXT="
+<code>──────────────────────</code>
+<code>    Xray/Vmess Account</code>
+<code>──────────────────────</code>
+<code>Remarks      : </code> <code>${user}</code>
+<code>Domain       : </code> <code>${domain}</code>
+<code>Limit IP     : </code> <code>${iplimit} Device</code>
+<code>Port TLS     : </code> <code>443</code>
+<code>Port NTLS    : </code> <code>80</code>
+<code>Port GRPC    : </code> <code>443</code>
+<code>User ID      : </code> <code>${uuid}</code>
+<code>AlterId      : 0</code>
+<code>Security     : auto</code>
+<code>Network      : WS or gRPC</code>
+<code>Path         : </code> <code>/vmess</code>
+<code>Path Custom  : </code> <code>Multipath</code>
+<code>ServiceName  : </code> <code>vmess-grpc</code>
+<code>──────────────────────</code>
+<code>Link TLS     :</code> 
+<code>${vmesslink1}</code>
+<code>──────────────────────</code>
+<code>Link NTLS    :</code> 
+<code>${vmesslink2}</code>
+<code>──────────────────────</code>
+<code>Link GRPC    :</code> 
+<code>${vmesslink3}</code>
+<code>──────────────────────</code>
+<code>Format OpenClash    : https://${domain}:81/vmess-$user.txt
+<code>──────────────────────</code>
+<code>Expired      : $exp</code>
+<code>──────────────────────</code>
+"
+
+curl -s --max-time $TIMES -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
+
+clear
+clear
+clear
+clear
+systemctl restart xray > /dev/null 2>&1
+service cron restart > /dev/null 2>&1
+echo -e "${z}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "  Xray/Vmess Account "
+echo -e "${z}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "Remarks        : ${user}"
+echo -e "Host           : ${domain}"
+#echo -e "Host XrayDns   : ${NS}"
+#echo -e "Public Key     : ${PUB}"
+#echo -e "Limit IP       : ${iplimit} Login"
+#echo -e "Limit Quota    : Unlimited GB"
+echo -e "Port TLS       : 443"
+echo -e "Port none TLS  : 80"
+echo -e "Port gRPC      : 443"
+#echo -e "Port Dns       : 443,5300,53,80"
+echo -e "Id             : ${uuid}"
+echo -e "AlterId        : 0"
+echo -e "Security       : auto"
+echo -e "Network        : ws"
+echo -e "Path           : /vmess"
+echo -e "${z}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "Link Websocket TLS      :"
+echo -e "${vmesslink1}"
+echo -e "${z}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "Link Websocket None TLS : "
+echo -e "${vmesslink2}"
+echo -e "${z}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "${z}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "Link Yaml  : http://$MYIP:81/$user-VMESS-WS.yaml"
+echo -e "${z}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "\e[$line══════════════════════\e[m"
+echo -e "Name      : ${user}"
+echo -e "Created   : $harini"
+echo -e "Expired   : $exp"
+echo -e "SerVer    : $creditt"
+echo -e "\e[$line══════════════════════\e[m"
 echo -e "${z}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo -e "        Script By khaiVPN             "
 echo -e "${z}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
@@ -1779,9 +2060,10 @@ echo -e "    \e[$number (15)\e[m \e[$below Check User Login Vless Xtls\e[m"
 echo -e ""
 echo -e "   \e[$number    >> Total :\e[m \e[$below ${total3} Client\e[m"
 echo -e "   \e[$line══════════════════════════════════════════\e[m"
-echo -e "   \e[$back_text  \e[$box   MENU-TAMBAHAN                     \e[m"
+echo -e "   \e[$back_text  \e[$box x)   MENU-TAMBAHAN                     \e[m"
 echo -e "   \e[$line══════════════════════════════════════════\e[m"
-echo -e "    \e[$number (77)\e[m \e[$below UUID\e[m"
+echo -e "    \e[$number (16)\e[m \e[$below UUID/vless\e[m"
+echo -e "    \e[$number (17)\e[m \e[$below UUID/vless\e[m"
 echo -e "   \e[$line══════════════════════════════════════════\e[m"
 echo -e "   \e[$back_text  \e[$box x)   MENU                              \e[m"
 echo -e "   \e[$line══════════════════════════════════════════\e[m"
@@ -1818,8 +2100,10 @@ elif [[ "$num" = "14" ]]; then
 menu14
 elif [[ "$num" = "15" ]]; then
 menu15
-elif [[ "$num" = "77" ]]; then
-menu77
+elif [[ "$num" = "16" ]]; then
+menu16
+elif [[ "$num" = "17" ]]; then
+menu17
 elif [[ "$num" = "x" ]]; then
 menu
 else
