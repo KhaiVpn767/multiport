@@ -70,15 +70,16 @@ tgl2=$(date +"%d")
 bln2=$(date +"%b")
 thn2=$(date +"%Y")
 tnggl="$tgl2 $bln2, $thn2"
-exp=$(date -d "$masaaktif days" +"%Y-%m-%d")
-sed -i '/#vless$/a\#& '"$user $exp $uuid"'\
-},{"id": "'""$uuid""'","email": "'""$user""'"' /etc/xray/config.json
-sed -i '/#vlessgrpc$/a\#vlg '"$user $exp $uuid"'\
-},{"id": "'""$uuid""'","email": "'""$user""'"' /etc/xray/config.json
+exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
+harini=`date -d "0 days" +"%Y-%m-%d"`
+sed -i '/#tls$/a\### '"$user $exp $harini $uuid"'\
+},{"id": "'""$uuid""'","email": "'""$user""'"' /usr/local/etc/xray/vless.json
+sed -i '/#none$/a\### '"$user $exp $harini $uuid"'\
+},{"id": "'""$uuid""'","email": "'""$user""'"' /usr/local/etc/xray/vnone.json
 #JanganLupaMakanYa
-vlesslink1="vless://${uuid}@${domain}:443?path=/vless&security=tls&encryption=none&host=${domain}&type=ws&sni=${bug}#${user}"
-vlesslink2="vless://${uuid}@${bug}:80?path=/vless&security=none&encryption=none&host=${domain}&type=ws#${user}"
-vlesslink3="vless://${uuid}@${domain}:443?mode=gun&security=tls&encryption=none&type=grpc&serviceName=vless-grpc&sni=${bug}#${user}"
+mv /usr/local/etc/xray/$user-VLESS-WS.yaml /home/vps/public_html/$user-VLESS-WS.yaml
+vlesslink1="vless://${uuid}@${sts}${domain}:$tls?type=ws&encryption=none&security=tls&host=${sts}${domain}&path=$patch&allowInsecure=1&sni=$sni#VLESS-TLS-${user}"
+vlesslink2="vless://${uuid}@${sts}${domain}:$none?type=ws&encryption=none&security=none&host=$sni&path=$patch#VLESS-NTLS-${user}"
 #JanganLupaMakanYa
 if [ ! -e /etc/vless ]; then
   mkdir -p /etc/vless
@@ -179,8 +180,8 @@ ${vlesslink3}
 
 END
 
-systemctl restart xray
-systemctl restart nginx
+systemctl restart xray@vless
+systemctl restart xray@vnone
 clear
 echo -e ""
 echo -e "${z}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
@@ -188,14 +189,14 @@ echo -e " CREATE VLESS ACCOUNT           "
 echo -e "${z}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo -e "Remarks       : ${user}"
 echo -e "Host          : ${domain}"
-echo -e "Host XrayDns  : ${NS}"
-echo -e "Public Key    : ${PUB}"
+#echo -e "Host XrayDns  : ${NS}"
+#echo -e "Public Key    : ${PUB}"
 echo -e "Limit Ip      : ${iplimit} Login"
 echo -e "Limit Quota : ${Quota} GB"
 echo -e "Port TLS      : 443"
 echo -e "Port gRPC     : 443"
 echo -e "Port None TLS : 80"
-echo -e "Port XrayDns  : 443,5300,53,80"
+#echo -e "Port XrayDns  : 443,5300,53,80"
 echo -e "User ID       : ${uuid}"
 echo -e "Encryption    : none"
 echo -e "Path          : /vless ~ (/Multipath)"
@@ -210,11 +211,11 @@ echo -e "${z}━━━━━━━━━━━━━━━━━━━━━━�
 echo -e "Link GRPC   :"
 echo -e "${vlesslink3}"
 echo -e "${z}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e "Format OpenClash : https://${domain}:81/vless-$user.txt"
+echo -e "Link Yaml : http://$MYIP:81/$user-VLESS-WS.yaml"
 echo -e "${z}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo -e "Masa Aktif    : $expe"
 echo -e "${z}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e "        Script By Malayaacx01 - Shop             "
+echo -e "        Script By khaiVPN             "
 echo -e "${z}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo -e ""
 read -n 1 -s -r -p "Press any key to back on menu"
