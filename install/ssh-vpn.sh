@@ -21,7 +21,7 @@ commonname="khaivpn"
 email="admin@khaivpn.xyz"
 
 # simple password minimal
-wget -O /etc/pam.d/common-password "https://raw.githubusercontent.com/${GitUser}/multiport/main/password"
+wget -O /etc/pam.d/common-password "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/password"
 chmod +x /etc/pam.d/common-password
 
 # go to root
@@ -88,14 +88,14 @@ apt -y install nginx
 cd
 rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
-wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/${GitUser}/multiport/main/nginx.conf"
+wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/nginx.conf"
 mkdir -p /home/vps/public_html
-wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/${GitUser}/multiport/main/vps.conf"
+wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/vps.conf"
 /etc/init.d/nginx restart
 
 # install badvpn
 cd
-wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/${GitUser}/multiport/main/badvpn-udpgw64"
+wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/badvpn-udpgw64"
 chmod +x /usr/bin/badvpn-udpgw
 sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500' /etc/rc.local
 sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500' /etc/rc.local
@@ -136,7 +136,7 @@ echo "/usr/sbin/nologin" >> /etc/shells
 apt -y install squid3
 # install squid for debian 11
 apt -y install squid
-wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/${GitUser}/multiport/main/squid3.conf"
+wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/squid3.conf"
 sed -i $MYIP2 /etc/squid/squid.conf
 
 # setting vnstat
@@ -196,10 +196,10 @@ systemctl start stunnel4
 /etc/init.d/stunnel4 restart
 
 #OpenVPN
-wget https://raw.githubusercontent.com/${GitUser}/multiport/main/vpn.sh &&  chmod +x vpn.sh && ./vpn.sh
+wget https://raw.githubusercontent.com/KhaiVpn767/multiport/main/vpn.sh &&  chmod +x vpn.sh && ./vpn.sh
 
 # install lolcat
-wget https://raw.githubusercontent.com/${GitUser}/multiport/main/lolcat.sh &&  chmod +x lolcat.sh && ./lolcat.sh
+wget https://raw.githubusercontent.com/KhaiVpn767/multiport/main/lolcat.sh &&  chmod +x lolcat.sh && ./lolcat.sh
 
 # install fail2ban
 apt -y install fail2ban
@@ -232,15 +232,15 @@ echo 'Config file is at /usr/local/ddos/ddos.conf'
 echo 'Please send in your comments and/or suggestions to zaf@vsnl.com'
 
 # banner /etc/issue.net
-wget -O /etc/issue.net "https://raw.githubusercontent.com/${GitUser}/multiport/main/banner/bannerssh.conf"
+wget -O /etc/issue.net "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/banner/bannerssh.conf"
 echo "Banner /etc/issue.net" >>/etc/ssh/sshd_config
 sed -i 's@DROPBEAR_BANNER=""@DROPBEAR_BANNER="/etc/issue.net"@g' /etc/default/dropbear
 
 #Bannerku menu
-wget -O /usr/bin/bannerku https://raw.githubusercontent.com/${GitUser}/multiport/main/banner/bannerku && chmod +x /usr/bin/bannerku
+wget -O /usr/bin/bannerku https://raw.githubusercontent.com/KhaiVpn767/multiport/main/banner/bannerku && chmod +x /usr/bin/bannerku
 
 #install bbr
-wget https://raw.githubusercontent.com/${GitUser}/multiport/main/system/bbr.sh && chmod +x bbr.sh && ./bbr.sh
+wget https://raw.githubusercontent.com/KhaiVpn767/multiport/main/system/bbr.sh && chmod +x bbr.sh && ./bbr.sh
 
 # blockir torrent
 iptables -A FORWARD -m string --string "get_peers" --algo bm -j DROP
@@ -261,55 +261,55 @@ netfilter-persistent reload
 
 # download script
 cd /usr/bin
-wget -O add-host "https://raw.githubusercontent.com/${GitUser}/multiport/main/system/add-host.sh"
-wget -O about "https://raw.githubusercontent.com/${GitUser}/multiport/main/system/about.sh"
-wget -O menu "https://raw.githubusercontent.com/${GitUser}/multiport/main/menu.sh"
-wget -O add-ssh "https://raw.githubusercontent.com/${GitUser}/multiport/main/add-user/add-ssh.sh"
-wget -O trial "https://raw.githubusercontent.com/${GitUser}/multiport/main/add-user/trial.sh"
-wget -O del-ssh "https://raw.githubusercontent.com/${GitUser}/multiport/main/delete-user/del-ssh.sh"
-wget -O member "https://raw.githubusercontent.com/${GitUser}/multiport/main/member.sh"
-wget -O delete "https://raw.githubusercontent.com/${GitUser}/multiport/main/delete-user/delete.sh"
-wget -O cek-ssh "https://raw.githubusercontent.com/${GitUser}/multiport/main/cek-user/cek-ssh.sh"
-wget -O restart "https://raw.githubusercontent.com/${GitUser}/multiport/main/system/restart.sh"
-wget -O speedtest "https://raw.githubusercontent.com/${GitUser}/multiport/main/system/speedtest_cli.py"
-wget -O info "https://raw.githubusercontent.com/${GitUser}/multiport/main/system/info.sh"
-wget -O ram "https://raw.githubusercontent.com/${GitUser}/multiport/main/system/ram.sh"
-wget -O renew-ssh "https://raw.githubusercontent.com/${GitUser}/multiport/main/renew-user/renew-ssh.sh"
-wget -O autokill "https://raw.githubusercontent.com/${GitUser}/multiport/main/autokill.sh"
-wget -O ceklim "https://raw.githubusercontent.com/${GitUser}/multiport/main/cek-user/ceklim.sh"
-wget -O tendang "https://raw.githubusercontent.com/${GitUser}/multiport/main/tendang.sh"
-wget -O clear-log "https://raw.githubusercontent.com/${GitUser}/multiport/main/clear-log.sh"
-wget -O change-port "https://raw.githubusercontent.com/${GitUser}/multiport/main/change.sh"
-wget -O port-ovpn "https://raw.githubusercontent.com/${GitUser}/multiport/main/change-port/port-ovpn.sh"
+wget -O add-host "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/system/add-host.sh"
+wget -O about "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/system/about.sh"
+wget -O menu "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/menu.sh"
+wget -O add-ssh "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/add-user/add-ssh.sh"
+wget -O trial "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/add-user/trial.sh"
+wget -O del-ssh "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/delete-user/del-ssh.sh"
+wget -O member "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/member.sh"
+wget -O delete "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/delete-user/delete.sh"
+wget -O cek-ssh "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/cek-user/cek-ssh.sh"
+wget -O restart "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/system/restart.sh"
+wget -O speedtest "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/system/speedtest_cli.py"
+wget -O info "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/system/info.sh"
+wget -O ram "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/system/ram.sh"
+wget -O renew-ssh "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/renew-user/renew-ssh.sh"
+wget -O autokill "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/autokill.sh"
+wget -O ceklim "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/cek-user/ceklim.sh"
+wget -O tendang "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/tendang.sh"
+wget -O clear-log "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/clear-log.sh"
+wget -O change-port "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/change.sh"
+wget -O port-ovpn "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/change-port/port-ovpn.sh"
 wget -O port-ssl "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/change-port/port-ssl.sh"
-wget -O port-wg "https://raw.githubusercontent.com/${GitUser}/multiport/main/change-port/port-wg.sh"
-wget -O port-squid "https://raw.githubusercontent.com/${GitUser}/multiport/main/change-port/port-squid.sh"
-wget -O port-websocket "https://raw.githubusercontent.com/${GitUser}/multiport/main/change-port/port-websocket.sh"
-wget -O wbmn "https://raw.githubusercontent.com/${GitUser}/multiport/main/webmin.sh"
-wget -O update "https://raw.githubusercontent.com/${GitUser}/multiport/main/update/update.sh"
-wget -O run-update "https://raw.githubusercontent.com/${GitUser}/multiport/main/update/run-update.sh"
-wget -O message-ssh "https://raw.githubusercontent.com/${GitUser}/multiport/main/update/message-ssh.sh"
-wget -O xp "https://raw.githubusercontent.com/${GitUser}/multiport/main/xp.sh"
-wget -O kernel-updt "https://raw.githubusercontent.com/${GitUser}/multiport/main/kernel.sh"
-wget -O user-list "https://raw.githubusercontent.com/${GitUser}/multiport/main/more-option/user-list.sh"
-wget -O user-lock "https://raw.githubusercontent.com/${GitUser}/multiport/main/more-option/user-lock.sh"
-wget -O user-unlock "https://raw.githubusercontent.com/${GitUser}/multiport/main/more-option/user-unlock.sh"
-wget -O user-password "https://raw.githubusercontent.com/${GitUser}/multiport/main/more-option/user-password.sh"
-wget -O antitorrent "https://raw.githubusercontent.com/${GitUser}/multiport/main/more-option/antitorrent.sh"
-wget -O cfa "https://raw.githubusercontent.com/${GitUser}/multiport/main/cloud/cfa.sh"
-wget -O cfd "https://raw.githubusercontent.com/${GitUser}/multiport/main/cloud/cfd.sh"
-wget -O cfp "https://raw.githubusercontent.com/${GitUser}/multiport/main/cloud/cfp.sh"
-wget -O swap "https://raw.githubusercontent.com/${GitUser}/multiport/main/swapkvm.sh"
-wget -O check-sc "https://raw.githubusercontent.com/${GitUser}/multiport/main/system/running.sh"
-wget -O ssh "https://raw.githubusercontent.com/${GitUser}/multiport/main/menu/ssh.sh"
-wget -O autoreboot "https://raw.githubusercontent.com/${GitUser}/multiport/main/system/autoreboot.sh"
-wget -O bbr "https://raw.githubusercontent.com/${GitUser}/multiport/main/system/bbr.sh"
-wget -O port-ohp "https://raw.githubusercontent.com/${GitUser}/multiport/main/change-port/port-ohp.sh"
-wget -O port-xray "https://raw.githubusercontent.com/${GitUser}/multiport/main/change-port/port-xray.sh"
-wget -O panel-domain "https://raw.githubusercontent.com/${GitUser}/multiport/main/menu/panel-domain.sh"
-wget -O system "https://raw.githubusercontent.com/${GitUser}/multiport/main/menu/system.sh"
-wget -O themes "https://raw.githubusercontent.com/${GitUser}/multiport/main/menu/themes.sh"
-wget -O dns "https://raw.githubusercontent.com/${GitUser}/multiport/main/dns.sh"
+wget -O port-wg "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/change-port/port-wg.sh"
+wget -O port-squid "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/change-port/port-squid.sh"
+wget -O port-websocket "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/change-port/port-websocket.sh"
+wget -O wbmn "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/webmin.sh"
+wget -O update "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/update/update.sh"
+wget -O run-update "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/update/run-update.sh"
+wget -O message-ssh "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/update/message-ssh.sh"
+wget -O xp "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/xp.sh"
+wget -O kernel-updt "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/kernel.sh"
+wget -O user-list "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/more-option/user-list.sh"
+wget -O user-lock "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/more-option/user-lock.sh"
+wget -O user-unlock "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/more-option/user-unlock.sh"
+wget -O user-password "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/more-option/user-password.sh"
+wget -O antitorrent "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/more-option/antitorrent.sh"
+wget -O cfa "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/cloud/cfa.sh"
+wget -O cfd "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/cloud/cfd.sh"
+wget -O cfp "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/cloud/cfp.sh"
+wget -O swap "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/swapkvm.sh"
+wget -O check-sc "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/system/running.sh"
+wget -O ssh "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/menu/ssh.sh"
+wget -O autoreboot "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/system/autoreboot.sh"
+wget -O bbr "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/system/bbr.sh"
+wget -O port-ohp "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/change-port/port-ohp.sh"
+wget -O port-xray "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/change-port/port-xray.sh"
+wget -O panel-domain "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/menu/panel-domain.sh"
+wget -O system "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/menu/system.sh"
+wget -O themes "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/menu/themes.sh"
+wget -O dns "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/dns.sh"
 wget -O m-helium "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/menu/m-helium.sh"
 chmod +x add-host
 chmod +x menu
