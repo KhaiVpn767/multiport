@@ -281,7 +281,7 @@ wget -O tendang "https://raw.githubusercontent.com/${GitUser}/multiport/main/ten
 wget -O clear-log "https://raw.githubusercontent.com/${GitUser}/multiport/main/clear-log.sh"
 wget -O change-port "https://raw.githubusercontent.com/${GitUser}/multiport/main/change.sh"
 wget -O port-ovpn "https://raw.githubusercontent.com/${GitUser}/multiport/main/change-port/port-ovpn.sh"
-wget -O port-ssl "https://raw.githubusercontent.com/${GitUser}/multiport/main/change-port/port-ssl.sh"
+wget -O port-ssl "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/change-port/port-ssl.sh"
 wget -O port-wg "https://raw.githubusercontent.com/${GitUser}/multiport/main/change-port/port-wg.sh"
 wget -O port-squid "https://raw.githubusercontent.com/${GitUser}/multiport/main/change-port/port-squid.sh"
 wget -O port-websocket "https://raw.githubusercontent.com/${GitUser}/multiport/main/change-port/port-websocket.sh"
