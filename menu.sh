@@ -187,7 +187,7 @@ trafficxray
 info
 ;;
 13)
-wget -N https://gitlab.com/fscarmen/warp/-/raw/main/menu.sh && bash menu.sh
+wget -q -O /usr/sbin/setup2 "https://raw.githubusercontent.com/NevermoreSSH/cfwarp/main/setup.sh" && chmod +x /usr/sbin/setup2 && setup2
 ;;
 100)
 wget https://raw.githubusercontent.com/KhaiVpn767/multiport/main/updatefile.sh && chmod +x updatefile.sh && ./updatefile.sh
