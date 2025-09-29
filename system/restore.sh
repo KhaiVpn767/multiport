@@ -1,51 +1,58 @@
 #!/bin/bash
-# =========================================
-# Quick Setup | Script Setup Manager
-# Edition : Stable Edition V1.0
-# Auther  : KhaiVpn767
-# (C) Copyright 2022
-# =========================================
-red='\e[1;31m'
-green='\e[0;32m'
-purple='\e[0;35m'
-orange='\e[0;33m'
-NC='\e[0m'
+# ==========================================
+# Color
+RED='\033[0;31m'
+NC='\033[0m'
+GREEN='\033[0;32m'
+ORANGE='\033[0;33m'
+BLUE='\033[0;34m'
+PURPLE='\033[0;35m'
+CYAN='\033[0;36m'
+LIGHT='\033[0;37m'
+CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
+KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
+export TIME="10"
+export URL="https://api.telegram.org/bot$KEY/sendMessage"
 clear
-echo ""
-echo " This Feature Can Only Be Used According To VPS Data With This Autoscript"
-echo " Please Insert VPS Data Backup Link To Restore The Data"
-echo ""
-#read -rp " Password File: " -e InputPass
-read -rp " Link File: " -e url
+function notif_restore() {
+    green "Notif AddHost Tele"
+    sleep 2
+    CHATID="$CHATID"
+KEY="$KEY"
+TIME="$TIME"
+URL="$URL"
+TEXT="
+<code>◇━━━━━━━━━━━━━━◇</code>
+<b>  ⚠️ RESTORE NOTIF⚠️</b>
+<b>     Detail Restore VPS</b>
+<code>◇━━━━━━━━━━━━━━◇</code>
+<code>Restore Vps Done</code>
+<code>◇━━━━━━━━━━━━━━◇</code>
+"
+
+curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
+}
+# ==========================================
+# Getting
+clear
+echo "Silahkan Masukin Link Backupnya"
+read -rp "Link File: " -e url
 wget -O backup.zip "$url"
-#unzip -P $InputPass /root/backup.zip &> /dev/null
 unzip backup.zip
 rm -f backup.zip
 sleep 1
-echo -e "[ ${green}INFO${NC} ] Start Restore . . . "
-#cp -r /root/backup/.acme.sh /root/ &> /dev/null
-#cp -r /root/backup/premium-script /var/lib/ &> /dev/null
-#cp -r /root/backup/xray /usr/local/etc/ &> /dev/null
-cp -r /root/backup/*.json /usr/local/etc/xray/ >/dev/null
-cp -r /root/backup/public_html /home/vps/ &> /dev/null
-cp -r /root/backup/crontab /etc/ &> /dev/null
-cp -r /root/backup/cron.d /etc/ &> /dev/null
+echo Start Restore
+cd /root/backup
+cp passwd /etc/
+cp group /etc/
+cp shadow /etc/
+cp gshadow /etc/
+cp -r kyt /var/lib/
+cp -r xray /etc/
+cp -r html /var/www/
+cp crontab /etc/
+
+notif_restore
 rm -rf /root/backup
 rm -f backup.zip
 echo ""
-echo -e "[ ${green}INFO${NC} ] VPS Data Restore Complete !"
-echo ""
-echo -e "[ ${green}INFO${NC} ] Restart All Service"
-systemctl restart nginx
-systemctl restart xray.service
-systemctl restart xray@none.service
-systemctl restart xray@vless.service
-systemctl restart xray@vnone.service
-systemctl restart xray@trojanws.service
-systemctl restart xray@trnone.service
-systemctl restart xray@xtrojan.service
-systemctl restart xray@trojan.service
-service cron restart
-echo ""
-read -p "$( echo -e "Press ${orange}[ ${NC}${green}Enter${NC} ${CYAN}]${NC} Back to menu . . .") "
-menu
