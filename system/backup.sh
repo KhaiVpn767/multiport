@@ -1,69 +1,96 @@
 #!/bin/bash
-# =========================================
-# Quick Setup | Script Setup Manager
-# Edition : Stable Edition V1.0
-# Auther  : KhaiVpn767
-# (C) Copyright 2022
-# =========================================
-
-red='\e[1;31m'
-green='\e[0;32m'
-purple='\e[0;35m'
-orange='\e[0;33m'
-NC='\e[0m'
+# ==========================================
+# Color
+RED='\033[0;31m'
+NC='\033[0m'
+GREEN='\033[0;32m'
+ORANGE='\033[0;33m'
+BLUE='\033[0;34m'
+PURPLE='\033[0;35m'
+CYAN='\033[0;36m'
+LIGHT='\033[0;37m'
+# ==========================================
+CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
+KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
+TIME="10"
+URL="https://api.telegram.org/bot$KEY/sendMessage"
 clear
-IP=$(wget -qO- icanhazip.com);
-IP=$(curl -s ipinfo.io/ip )
 IP=$(curl -sS ipv4.icanhazip.com)
-IP=$(curl -sS ifconfig.me )
-date=$(date +"%Y-%m-%d-%H:%M:%S")
-domain=$(cat /root/domain)
+domain=$(cat /etc/xray/domain)
+date=$(date +"%Y-%m-%d")
 clear
-echo " VPS Data Backup By KhaiVpn767 "
-sleep 1
-#echo ""
-#echo -e "[ ${green}INFO${NC} ] Please Insert Password To Secure Backup Data ."
-#echo ""
-#read -rp "Enter password : " -e InputPass
-#clear
-#sleep 1
-#if [[ -z $InputPass ]]; then
-#exit 0
-#fi
-echo -e "[ ${green}INFO${NC} ] Processing . . . "
-mkdir -p /root/backup
-sleep 1
+email=$(cat /root/email)
+if [[ "$email" = "" ]]; then
+echo "Masukkan Email Untuk Menerima Backup"
+read -rp "Email : " -e email
+cat <<EOF>>/root/email
+$email
+EOF
+fi
 clear
-echo " Please Wait VPS Data Backup In Progress . . . "
-#cp -r /root/.acme.sh /root/backup/ &> /dev/null
-#cp -r /var/lib/premium-script/ /root/backup/premium-script
-#cp -r /usr/local/etc/xray /root/backup/xray
-cp -r /usr/local/etc/xray/*.json /root/backup/ >/dev/null 2>&1
-cp -r /root/domain /root/backup/ &> /dev/null
-cp -r /home/vps/public_html /root/backup/public_html
-cp -r /etc/cron.d /root/backup/cron.d &> /dev/null
-cp -r /etc/crontab /root/backup/crontab &> /dev/null
+echo "Mohon Menunggu , Proses Backup sedang berlangsung !!"
+rm -rf /root/backup
+mkdir /root/backup
+cp /etc/passwd backup/
+cp /etc/group backup/
+cp /etc/shadow backup/
+cp /etc/gshadow backup/
+cp /etc/crontab backup/
+cp /etc/vmess/.vmess.db backup/
+cp /etc/ssh/.ssh.db backup/
+cp /etc/vless/.vless.db backup/
+cp /etc/trojan/.trojan.db backup/
+cp /etc/bot/.bot.db backup/
+cp -r /etc/kyt/limit backup/
+cp -r /etc/limit backup/qt/
+cp -r /etc/vmess backup/
+cp -r /etc/trojan backup/
+cp -r /etc/vless backup/
+cp -r /etc/slowdns backup/
+cp -r /var/lib/kyt/ backup/kyt 
+cp -r /etc/xray backup/xray
+cp -r /var/www/html/ backup/html
 cd /root
-zip -r $InputPass $IP-$date-$domain-multiport.zip backup > /dev/null 2>&1
-rclone copy /root/$IP-$date-$domain-multiport.zip dr:backup/
-url=$(rclone link dr:backup/$IP-$date-$domain-multiport.zip)
+zip -r $IP.zip backup > /dev/null 2>&1
+zip -r $IP-$date.zip backup > /dev/null 2>&1
+rclone copy /root/$IP-$date.zip dr:backup/
+url=$(rclone link dr:backup/$IP-$date.zip)
 id=(`echo $url | grep '^https' | cut -d'=' -f2`)
 link="https://drive.google.com/u/4/uc?id=${id}&export=download"
-clear
-echo -e "\033[1;37mVPS Data Backup By KhaiVPN\033[0m
-\033[1;37mTelegram : https://t.me/khaivpn / @khaivpn\033[0m"
-echo ""
-echo "Please Copy Link Below & Save In Notepad"
-echo ""
-echo -e "Your VPS IP ( \033[1;37m$IP\033[0m )"
-#echo ""
-#echo -e "Your VPS Data Backup Password : \033[1;37m$InputPass\033[0m"
-echo ""
-echo -e "\033[1;37m$link\033[0m"
-echo ""
-echo "If you want to restore data, please enter the link above"
+echo -e "
+Detail Backup 
+==================================
+IP VPS        : $IP
+Link Backup   : $link
+Tanggal       : $date
+==================================
+" | mail -s "Backup Data" $email
 rm -rf /root/backup
-rm -r /root/$IP-$date-$domain-multiport.zip
+rm -r /root/$IP-$date.zip
+clear
+curl -F chat_id="$CHATID" -F document=@"$IP.zip" -F caption="◇━━━━━━━━━━━━━━◇
+   ⚠️BACKUP NOTIF⚠️
+     Detail Backup VPS
+◇━━━━━━━━━━━━━━◇
+IP VPS  : ${IP} 
+DOMAIN  : ${domain}
+Tanggal : $date
+◇━━━━━━━━━━━━━━◇
+Link Backup   : $link
+◇━━━━━━━━━━━━━━◇
+Silahkan copy Link dan restore di VPS baru
+" https://api.telegram.org/bot$KEY/sendDocument &> /dev/null
 echo ""
-read -p "$( echo -e "Press ${orange}[ ${NC}${green}Enter${NC} ${CYAN}]${NC} Back to menu . . .") "
-menu
+rm -r /root/$IP.zip
+clear
+echo -e "
+Detail Backup 
+==================================
+IP VPS        : $IP
+Link Backup   : $link
+Tanggal       : $date
+==================================
+"
+echo "Silahkan copy Link dan restore di VPS baru"
+echo ""
+
