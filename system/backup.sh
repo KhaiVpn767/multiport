@@ -33,16 +33,29 @@ mkdir -p /root/backup
 sleep 1
 clear
 echo " Please Wait VPS Data Backup In Progress . . . "
-cp -r /usr/local/etc/xray/*.json /root/backup/ >/dev/null 2>&1
-cp -r /root/domain /root/backup/ &> /dev/null
-cp -r /home/vps/public_html /root/backup/public_html
-cp -r /etc/cron.d /root/backup/cron.d &> /dev/null
-cp -r /etc/crontab /root/backup/crontab &> /dev/null
-cp /etc/xray/user.db /root/backup/user.db.bak &> /dev/null
-cp /etc/passwd /root/backup/passwd.bak &> /dev/null
-cp /etc/shadow /root/backup/shadow.bak &> /dev/null
-mkdir -p /root/backup/bin
-cp -r /usr/local/bin/* /root/backup/bin/ &> /dev/null
+echo -e "[ ${green}INFO${NC} ] • VPS Data Backup... "
+    sleep 1
+    echo -e "[ ${green}INFO${NC} ] • Directory Created... "
+    mkdir /root/backup &>/dev/null
+    sleep 1
+    echo -e "[ ${green}INFO${NC} ] • VPS Data Backup Start Now... "
+    echo -e "[ ${green}INFO${NC} ] • Please Wait , Backup In Process Now... "
+    sleep 1
+    cp /etc/passwd backup/ &>/dev/null
+    echo -e "[ ${green}INFO${NC} ] • Backup passwd data..."
+    sleep 1
+    cp /etc/group backup/ &>/dev/null
+    echo -e "[ ${green}INFO${NC} ] • Backup group data..."
+    sleep 1
+    cp /etc/shadow backup/ &>/dev/null
+    echo -e "[ ${green}INFO${NC} ] • Backup shadow data..."
+    sleep 1
+    cp /etc/gshadow backup/ &>/dev/null
+    echo -e "[ ${green}INFO${NC} ] • Backup gshadow data..."
+    sleep 1
+    cp -r /var/lib/premium-script/ backup/premium-script &>/dev/null
+    cp -r /usr/local/etc/xray backup/xray &>/dev/null
+    cp -r /home/vps/public_html backup/public_html &>/dev/null
 
 cd /root
 zip_filename="backup-$domain.zip"
