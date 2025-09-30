@@ -1,96 +1,71 @@
 #!/bin/bash
-# ==========================================
-# Color
-RED='\033[0;31m'
-NC='\033[0m'
-GREEN='\033[0;32m'
-ORANGE='\033[0;33m'
-BLUE='\033[0;34m'
-PURPLE='\033[0;35m'
-CYAN='\033[0;36m'
-LIGHT='\033[0;37m'
-# ==========================================
-CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
-KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
-TIME="10"
-URL="https://api.telegram.org/bot$KEY/sendMessage"
-clear
-IP=$(curl -sS ipv4.icanhazip.com)
-domain=$(cat /etc/xray/domain)
-date=$(date +"%Y-%m-%d")
-clear
-email=$(cat /root/email)
-if [[ "$email" = "" ]]; then
-echo "Masukkan Email Untuk Menerima Backup"
-read -rp "Email : " -e email
-cat <<EOF>>/root/email
-$email
-EOF
-fi
-clear
-echo "Mohon Menunggu , Proses Backup sedang berlangsung !!"
-rm -rf /root/backup
-mkdir /root/backup
-cp /etc/passwd backup/
-cp /etc/group backup/
-cp /etc/shadow backup/
-cp /etc/gshadow backup/
-cp /etc/crontab backup/
-cp /etc/vmess/.vmess.db backup/
-cp /etc/ssh/.ssh.db backup/
-cp /etc/vless/.vless.db backup/
-cp /etc/trojan/.trojan.db backup/
-cp /etc/bot/.bot.db backup/
-cp -r /etc/kyt/limit backup/
-cp -r /etc/limit backup/qt/
-cp -r /etc/vmess backup/
-cp -r /etc/trojan backup/
-cp -r /etc/vless backup/
-cp -r /etc/slowdns backup/
-cp -r /var/lib/kyt/ backup/kyt 
-cp -r /etc/xray backup/xray
-cp -r /var/www/html/ backup/html
-cd /root
-zip -r $IP.zip backup > /dev/null 2>&1
-zip -r $IP-$date.zip backup > /dev/null 2>&1
-rclone copy /root/$IP-$date.zip dr:backup/
-url=$(rclone link dr:backup/$IP-$date.zip)
-id=(`echo $url | grep '^https' | cut -d'=' -f2`)
-link="https://drive.google.com/u/4/uc?id=${id}&export=download"
-echo -e "
-Detail Backup 
-==================================
-IP VPS        : $IP
-Link Backup   : $link
-Tanggal       : $date
-==================================
-" | mail -s "Backup Data" $email
-rm -rf /root/backup
-rm -r /root/$IP-$date.zip
-clear
-curl -F chat_id="$CHATID" -F document=@"$IP.zip" -F caption="◇━━━━━━━━━━━━━━◇
-   ⚠️BACKUP NOTIF⚠️
-     Detail Backup VPS
-◇━━━━━━━━━━━━━━◇
-IP VPS  : ${IP} 
-DOMAIN  : ${domain}
-Tanggal : $date
-◇━━━━━━━━━━━━━━◇
-Link Backup   : $link
-◇━━━━━━━━━━━━━━◇
-Silahkan copy Link dan restore di VPS baru
-" https://api.telegram.org/bot$KEY/sendDocument &> /dev/null
-echo ""
-rm -r /root/$IP.zip
-clear
-echo -e "
-Detail Backup 
-==================================
-IP VPS        : $IP
-Link Backup   : $link
-Tanggal       : $date
-==================================
-"
-echo "Silahkan copy Link dan restore di VPS baru"
-echo ""
+# =========================================
+# Quick Setup | vpn autoscript xray
+# Edition : vless only + websocket + tls + vision
+# SC by khaiVPN
+# BACKUP TOOLS BY khaiVPN
+# =========================================
 
+red='\e[1;31m'
+green='\e[0;32m'
+purple='\e[0;35m'
+orange='\e[0;33m'
+NC='\e[0m'
+clear
+
+IPVPS=$(curl -s https://checkip.amazonaws.com)
+date=$(date +"%d-%m-%Y-%H:%M:%S")
+domain=$(cat /root/yoloautosc/domain)
+
+# TOTAL ACC XRAYS WS & XTLS
+
+tvless=$(grep -c -E "^### $user" "/usr/local/etc/xray/vless.json")
+ttxtls=$(grep -c -E "^### $user" "/usr/local/etc/xray/config.json")
+
+
+Total_User=$(($tvless + $ttxtls))
+
+clear
+echo " VPS Data Backup By YOLONET "
+sleep 1
+echo -e "[ ${green}INFO${NC} ] Processing . . . "
+mkdir -p /root/backup
+sleep 1
+clear
+echo " Please Wait VPS Data Backup In Progress . . . "
+cp -r /usr/local/etc/xray/*.json /root/backup/ >/dev/null 2>&1
+cp -r /root/domain /root/backup/ &> /dev/null
+cp -r /home/vps/public_html /root/backup/public_html
+cp -r /etc/cron.d /root/backup/cron.d &> /dev/null
+cp -r /etc/crontab /root/backup/crontab &> /dev/null
+
+cd /root
+zip_filename="backup-$domain.zip"
+zip -r $zip_filename /root/backup > /dev/null 2>&1
+
+# Replace the following values with your own Telegram bot token and chat ID
+TELEGRAM_BOT_TOKEN=$(cat /root/yoloautosc/tele_token.txt)
+TELEGRAM_CHAT_ID=$(cat /root/yoloautosc/tele_id.txt)
+
+# Use the following URL to send a file to Telegram using the bot API
+TELEGRAM_API_URL="https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendDocument"
+
+# caption for the backup file
+CAPTION="
+SERVER IP:$IPVPS
+CREATED ON:$date
+DOMAIN:$domain
+Total ID: $Total_User"
+
+# Send the backup file to Telegram with the zip file name as caption
+curl -s -F "chat_id=${TELEGRAM_CHAT_ID}" -F "document=@/root/${zip_filename}" -F "caption=${CAPTION}" "${TELEGRAM_API_URL}" > /dev/null
+
+clear
+echo -e "\033[1;37mVPS Data Backup By YOLONET\033[0m"
+echo ""
+echo "Backup has been sent to Telegram bot."
+rm -rf /root/backup
+rm -r /root/${zip_filename}
+echo ""
+read -p "$( echo -e "Press ${orange}[ ${NC}${green}Enter${NC} ${CYAN}]${NC} Back to menu . . .") "
+clear
