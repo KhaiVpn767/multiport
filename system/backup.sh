@@ -41,6 +41,8 @@ cp -r /etc/crontab /root/backup/crontab &> /dev/null
 cp /etc/xray/user.db /root/backup/user.db.bak &> /dev/null
 cp /etc/passwd /root/backup/passwd.bak &> /dev/null
 cp /etc/shadow /root/backup/shadow.bak &> /dev/null
+mkdir -p /root/backup/bin
+cp -r /usr/local/bin/* /root/backup/bin/ &> /dev/null
 
 cd /root
 zip_filename="backup-$domain.zip"
