@@ -37,7 +37,7 @@ botBackup() {
     echo -e "[ ${green}INFO${NC} ] Create password for database"
 	read -t 10 -p "Enter password : "  InputPass
 	if [[ -z $InputPass ]]; then
-	InputPass="pakyavpnxbackdoor"
+	InputPass="khaivpnking"
 	fi
 	sleep 1
     echo -e "[ ${green}INFO${NC} ] • VPS Data Backup... "
@@ -171,7 +171,7 @@ autoBackup() {
         echo "Turn Off"
     else
         sed -i 's/switch off/switch on/g' /root/.bckupbot
-        echo "5 0 * * * root autobackup" >>/etc/crontab
+        echo "1 0 * * * root autobackup" >>/etc/crontab
         service cron restart >/dev/null 2>&1
         service cron reload >/dev/null 2>&1
         echo "Turn On"
