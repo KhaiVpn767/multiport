@@ -38,6 +38,9 @@ cp -r /root/domain /root/backup/ &> /dev/null
 cp -r /home/vps/public_html /root/backup/public_html
 cp -r /etc/cron.d /root/backup/cron.d &> /dev/null
 cp -r /etc/crontab /root/backup/crontab &> /dev/null
+cp /etc/xray/user.db /root/backup/user.db.bak &> /dev/null
+cp /etc/passwd /root/backup/passwd.bak &> /dev/null
+cp /etc/shadow /root/backup/shadow.bak &> /dev/null
 
 cd /root
 zip_filename="backup-$domain.zip"
