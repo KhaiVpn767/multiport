@@ -22,10 +22,10 @@ unzip -P $InputPass /root/backup.zip &> /dev/null
 rm -f backup.zip
 sleep 1
 echo -e "[ ${green}INFO${NC} ] Start Restore . . . "
-#cp -r /root/backup/.acme.sh /root/ &> /dev/null
-#cp -r /root/backup/premium-script /var/lib/ &> /dev/null
-#cp -r /root/backup/xray /usr/local/etc/ &> /dev/null
-#cp -r /root/backup/public_html /home/vps/ &> /dev/null
+cp -r /root/backup/.acme.sh /root/ &> /dev/null
+cp -r /root/backup/premium-script /var/lib/ &> /dev/null
+cp -r /root/backup/xray /usr/local/etc/ &> /dev/null
+cp -r /root/backup/public_html /home/vps/ &> /dev/null
 cp -r /root/backup/xray/ /usr/local/etc/ >/dev/null
 cp -r /root/backup/crontab /etc/ &> /dev/null
 cp -r /root/backup/cron.d /etc/ &> /dev/null
