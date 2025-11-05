@@ -1,58 +1,71 @@
 #!/bin/bash
-# ==========================================
-# Color
-RED='\033[0;31m'
-NC='\033[0m'
-GREEN='\033[0;32m'
-ORANGE='\033[0;33m'
-BLUE='\033[0;34m'
-PURPLE='\033[0;35m'
-CYAN='\033[0;36m'
-LIGHT='\033[0;37m'
-CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
-KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
-export TIME="10"
-export URL="https://api.telegram.org/bot$KEY/sendMessage"
+#Autoscript-Lite By KhaiVpn767
+red='\e[1;31m'
+green='\e[0;32m'
+purple='\e[0;35m'
+orange='\e[0;33m'
+NC='\e[0m'
 clear
-function notif_restore() {
-    green "Notif AddHost Tele"
-    sleep 2
-    CHATID="$CHATID"
-KEY="$KEY"
-TIME="$TIME"
-URL="$URL"
-TEXT="
-<code>◇━━━━━━━━━━━━━━◇</code>
-<b>  ⚠️ RESTORE NOTIF⚠️</b>
-<b>     Detail Restore VPS</b>
-<code>◇━━━━━━━━━━━━━━◇</code>
-<code>Restore Vps Done</code>
-<code>◇━━━━━━━━━━━━━━◇</code>
-"
-
-curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
-}
-# ==========================================
-# Getting
-clear
-echo "Silahkan Masukin Link Backupnya"
-read -rp "Link File: " -e url
+echo ""
+echo " This Feature Can Only Be Used According To VPS Data With This Autoscript"
+echo " Please Insert VPS Data Backup Link To Restore The Data"
+echo ""
+read -rp " Password File: " -e InputPass
+read -rp " Link File: " -e url
 wget -O backup.zip "$url"
-unzip backup.zip
+unzip -P $InputPass /root/backup.zip &>/dev/null
 rm -f backup.zip
 sleep 1
-echo Start Restore
-cd /root/backup
-cp passwd /etc/
-cp group /etc/
-cp shadow /etc/
-cp gshadow /etc/
-cp -r kyt /var/lib/
-cp -r xray /etc/
-cp -r html /var/www/
-cp crontab /etc/
-
-notif_restore
+echo " Start Restore . . . "
+cp /root/backup/.acme.sh /root/ &>/dev/null
+echo -e "[ ${green}INFO${NC} ] Restoring passwd data..."
+sleep 1
+cp /root/backup/passwd /etc/ &>/dev/null
+echo -e "[ ${green}INFO${NC} ] Restoring group data..."
+sleep 1
+cp /root/backup/group /etc/ &>/dev/null
+echo -e "[ ${green}INFO${NC} ] Restoring shadow data..."
+sleep 1
+cp /root/backup/shadow /etc/ &>/dev/null
+echo -e "[ ${green}INFO${NC} ] Restoring chap-secrets data..."
+sleep 1
+cp /root/backup/chap-secrets /etc/ppp/ &>/dev/null
+echo -e "[ ${green}INFO${NC} ] Restoring passwd data..."
+sleep 1
+cp /root/backup/passwd1 /etc/ipsec.d/passwd &>/dev/null
+cp -r /root/backup/premium-script /var/lib/ &>/dev/null
+cp -r /root/backup/xray /usr/local/etc/ &>/dev/null
+cp -r /root/backup/public_html /home/vps/ &>/dev/null
+cp /root/backup/crontab /etc/ &>/dev/null
+cp -r /root/backup/cron.d /etc/ &>/dev/null
 rm -rf /root/backup
 rm -f backup.zip
+echo ""
+echo -e "[ ${green}INFO${NC} ] VPS Data Restore Complete !"
+echo ""
+echo -e "[ ${green}ok${NC} ] Restarting XRAY Vmess WS"
+systemctl restart xray.service
+sleep 0.2
+echo -e "[ ${green}ok${NC} ] Restarting XRAY Vless WS"
+systemctl restart xray@vless.service
+sleep 0.2
+echo -e "[ ${green}ok${NC} ] Restarting XRAY Trojan WS"
+systemctl restart xray@trojanws.service
+sleep 0.2
+echo -e "[ ${green}ok${NC} ] Restarting Nginx"
+/etc/init.d/nginx restart >/dev/null 2>&1
+sleep 0.2
+echo -e "[ ${green}ok${NC} ] Restarting Cron "
+/etc/init.d/cron restart >/dev/null 2>&1
+sleep 0.2
+echo -e "[ ${green}ok${NC} ] Restarting SSH "
+/etc/init.d/ssh restart >/dev/null 2>&1
+sleep 0.2
+echo -e "[ ${green}ok${NC} ] Restarting Dropbear "
+/etc/init.d/dropbear restart >/dev/null 2>&1
+sleep 0.2
+echo -e "[ ${green}ok${NC} ] Restarting stunnel4 "
+/etc/init.d/stunnel4 restart >/dev/null 2>&1
+sleep 0.2
+clear
 echo ""
