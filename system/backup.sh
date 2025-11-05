@@ -38,7 +38,7 @@ cp /etc/gshadow backup/
 cp /etc/crontab backup/
 cp /etc/vmess/.vmess.db backup/
 cp /etc/ssh/.ssh.db backup/
-cp /etc/vless/.vless.db backup/
+cp /etc/xray/vless.json backup/
 cp /etc/trojan/.trojan.db backup/
 cp /etc/bot/.bot.db backup/
 cp -r /etc/kyt/limit backup/
