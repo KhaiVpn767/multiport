@@ -45,7 +45,7 @@ cp -r /etc/kyt/limit backup/
 cp -r /etc/limit backup/qt/
 cp -r /etc/vmess backup/
 cp -r /etc/trojan backup/
-cp -r /etc/vless backup/
+cp -r /etc/xray/vless.json backup/
 cp -r /etc/slowdns backup/
 cp -r /var/lib/kyt/ backup/kyt 
 cp -r /etc/xray backup/xray
