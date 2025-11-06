@@ -35,6 +35,11 @@ sleep 1
 cp /root/backup/passwd1 /etc/ipsec.d/passwd &>/dev/null
 cp -r /root/backup/premium-script /var/lib/ &>/dev/null
 cp -r /root/backup/xray /usr/local/etc/ &>/dev/null
+
+# Pemulihan fail vless.json dan trojan.json
+cp /root/backup/xray/vless.json /usr/local/etc/xray/vless.json &>/dev/null
+cp /root/backup/xray/trojan.json /usr/local/etc/xray/trojan.json &>/dev/null
+
 cp -r /root/backup/public_html /home/vps/ &>/dev/null
 cp /root/backup/crontab /etc/ &>/dev/null
 cp -r /root/backup/cron.d /etc/ &>/dev/null
