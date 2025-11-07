@@ -1,69 +1,90 @@
 #!/bin/bash
-#Autoscript-Lite By KhaiVpn767
-red='\e[1;31m'
-green='\e[0;32m'
-purple='\e[0;35m'
-orange='\e[0;33m'
-NC='\e[0m'
+# My Telegram : https://t.me/khaivpn
+# ==========================================
+# Color
+RED='\033[0;31m'
+NC='\033[0m'
+GREEN='\033[0;32m'
+ORANGE='\033[0;33m'
+BLUE='\033[0;34m'
+PURPLE='\033[0;35m'
+CYAN='\033[0;36m'
+LIGHT='\033[0;37m'
+# ==========================================
+# Getting
+CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
+KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
+export TIME="10"
+export URL="https://api.telegram.org/bot$KEY/sendMessage"
 clear
-IP=$(wget -qO- icanhazip.com)
+IP=$(curl -sS ipv4.icanhazip.com)
+domain=$(cat /etc/xray/domain)
 date=$(date +"%Y-%m-%d")
 clear
-echo " VPS Data Backup By KhaiVpn767 "
-sleep 1
-echo ""
-echo -e "[ ${green}INFO${NC} ] Please Insert Password To Secure Backup Data ."
-echo ""
-read -rp "Enter password : " -e InputPass
-clear
-sleep 1
-
-if [[ -z $InputPass ]]; then
-	exit 0
+email=$(cat /root/email)
+if [[ "$email" = "" ]]; then
+echo "Masukkan Email Untuk Menerima Backup"
+read -rp "Email : " -e email
+cat <<EOF>>/root/email
+$email
+EOF
 fi
-
-echo -e "[ ${green}INFO${NC} ] Processing . . . "
-mkdir -p /root/backup
-sleep 1
 clear
-echo " Please Wait VPS Data Backup In Progress . . . "
-
-cp -r /root/.acme.sh /root/backup/ &>/dev/null
-cp /etc/passwd /root/backup/ &>/dev/null
-cp /etc/group /root/backup/ &>/dev/null
-cp /etc/shadow /root/backup/ &>/dev/null
-cp /etc/ppp/chap-secrets /root/backup/chap-secrets &>/dev/null
-cp /etc/ipsec.d/passwd /root/backup/passwd1 &>/dev/null
-cp -r /var/lib/premium-script/ /root/backup/premium-script
-cp -r /usr/local/etc/xray /root/backup/xray
-cp /usr/local/etc/xray/vless.json /root/backup/xray/vless.json &>/dev/null
-cp /usr/local/etc/xray/trojan.json /root/backup/xray/trojan.json &>/dev/null
-cp -r /home/vps/public_html /root/backup/public_html
-cp -r /etc/cron.d /root/backup/cron.d &>/dev/null
-cp /etc/crontab /root/backup/crontab &>/dev/null
-
+echo "Mohon Menunggu , Proses Backup sedang berlangsung !!"
+rm -rf /root/backup
+mkdir /root/backup
+cp /etc/passwd backup/
+cp /etc/group backup/
+cp /etc/shadow backup/
+cp /etc/gshadow backup/
+cp /etc/crontab backup/
+cp -r /var/lib/kyt/ backup/kyt 
+cp -r /etc/xray backup/xray
+cp -r /var/www/html/ backup/html
 cd /root
-zip -rP $InputPass $IP-$date.zip backup >/dev/null 2>&1
+zip -r $IP-$date.zip backup > /dev/null 2>&1
 rclone copy /root/$IP-$date.zip dr:backup/
-
 url=$(rclone link dr:backup/$IP-$date.zip)
-id=($(echo $url | grep '^https' | cut -d'=' -f2))
+id=(`echo $url | grep '^https' | cut -d'=' -f2`)
 link="https://drive.google.com/u/4/uc?id=${id}&export=download"
-
-clear
-echo -e "\033[1;37mVPS Data Backup By KhaiVpn767\033[0m
-\033[1;37mTelegram : https://t.me/KhaiVpn767 / @KhaiVpn767\033[0m"
-echo ""
-echo "Please Copy Link Below & Save In Notepad"
-echo ""
-echo -e "Your VPS IP ( \033[1;37m$IP\033[0m )"
-echo ""
-echo -e "Your VPS Data Backup Password : \033[1;37m$InputPass\033[0m"
-echo ""
-echo -e "\033[1;37m$link\033[0m"
-echo ""
-echo "If you want to restore data, please enter the link above"
-
+echo -e "
+Detail Backup 
+==================================
+IP VPS        : $IP
+Link Backup   : $link
+Tanggal       : $date
+==================================
+" | mail -s "Backup Data" $email
 rm -rf /root/backup
 rm -r /root/$IP-$date.zip
+clear
+CHATID="$CHATID"
+KEY="$KEY"
+TIME="$TIME"
+URL="$URL"
+TEXT="
+<code>◇━━━━━━━━━━━━━━◇</code>
+<b>   ⚠️BACKUP NOTIF⚠️</b>
+<b>     Detail Backup VPS</b>
+<code>◇━━━━━━━━━━━━━━◇</code>
+<b>IP VPS  :</b> <code>${IP} </code>
+<b>DOMAIN :</b> <code>${domain}</code>
+<b>Tanggal : $date</b>
+<code>◇━━━━━━━━━━━━━━◇</code>
+<b>Link Backup   :</b> $link
+<code>◇━━━━━━━━━━━━━━◇</code>
+<code>Silahkan copy Link dan restore di VPS baru</code>
+"
+curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
+echo ""
+clear
+echo -e "
+Detail Backup 
+==================================
+IP VPS        : $IP
+Link Backup   : $link
+Tanggal       : $date
+==================================
+"
+echo "Silahkan copy Link dan restore di VPS baru"
 echo ""
