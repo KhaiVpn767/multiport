@@ -1,72 +1,116 @@
 #!/bin/bash
-#Optimasi Speed By comingsoon
-#wget https://github.com/${GitUser}/
-GitUser="KhaiVpn767"
-#IZIN SCRIPT
-MYIP=$(curl -sS ipv4.icanhazip.com)
+# Set-Backup Installation
+# By KhaiVpn767
+#-----------------------------
+dateFromServer=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
+biji=$(date +"%Y-%m-%d" -d "$dateFromServer")
+#########################
+MYIP=$(curl -sS https://raw.githubusercontent.com/KhaiVpn767/MultiportV3/main/LICENSE/access | awk '{print $2}')
 clear
-Add_To_New_Line(){
-	if [ "$(tail -n1 $1 | wc -l)" == "0"  ];then
-		echo "" >> "$1"
-	fi
-	echo "$2" >> "$1"
-}
+red='\e[1;31m'
+green='\e[0;32m'
+purple='\e[0;35m'
+orange='\e[0;33m'
+NC='\e[0m'
 
-Check_And_Add_Line(){
-	if [ -z "$(cat "$1" | grep "$2")" ];then
-		Add_To_New_Line "$1" "$2"
-	fi
-}
+purple() { echo -e "\\033[35;1m${*}\\033[0m"; }
+tyblue() { echo -e "\\033[36;1m${*}\\033[0m"; }
+yellow() { echo -e "\\033[33;1m${*}\\033[0m"; }
+green() { echo -e "\\033[32;1m${*}\\033[0m"; }
+red() { echo -e "\\033[31;1m${*}\\033[0m"; }
 
-Install_BBR(){
-echo -e "\e[32;1m================================\e[0m"
-echo -e "\e[32;1mInstall TCP BBR...\e[0m"
-if [ -n "$(lsmod | grep bbr)" ];then
-echo -e "\e[0;32mSuccesfully Installed TCP BBR.\e[0m"
-echo -e "\e[32;1m================================\e[0m"
-return 1
-fi
-echo -e "\e[0;32mMulai menginstall TCP_BBR...\e[0m"
-modprobe tcp_bbr
-Add_To_New_Line "/etc/modules-load.d/modules.conf" "tcp_bbr"
-Add_To_New_Line "/etc/sysctl.conf" "net.core.default_qdisc = fq"
-Add_To_New_Line "/etc/sysctl.conf" "net.ipv4.tcp_congestion_control = bbr"
-sysctl -p
-if [ -n "$(sysctl net.ipv4.tcp_available_congestion_control | grep bbr)" ] && [ -n "$(sysctl net.ipv4.tcp_congestion_control | grep bbr)" ] && [ -n "$(lsmod | grep "tcp_bbr")" ];then
-	echo -e "\e[0;32mTCP_BBR Install Success.\e[0m"
+cek=$(curl -sS https://raw.githubusercontent.com/KhaiVpn767/MultiportV3/main/LICENSE/access | awk '{print $2}' | grep $MYIP)
+Name=$(curl -sS https://raw.githubusercontent.com/KhaiVpn767/MultiportV3/main/LICENSE/access | grep $MYIP | awk '{print $4}')
+
+if [[ $cek = $MYIP ]]; then
+	echo -e "${green}Permission Accepted...${NC}"
 else
-	echo -e "\e[1;31mGagal menginstall TCP_BBR.\e[0m"
+	echo -e "${red}Permission Denied!${NC}"
+	echo ""
+	echo -e "Your IP is ${red}NOT REGISTER${NC} @ ${red}EXPIRED${NC}"
+	echo ""
+	echo -e "Please Contact ${green}Admin${NC}"
+	echo -e "Telegram : t.me/KhaiVpn767"
+	exit 0
 fi
-echo -e "\e[32;1m================================\e[0m"
+clear
+
+BURIQ() {
+	curl -sS https://raw.githubusercontent.com/KhaiVpn767/MultiportV3/main/LICENSE/access >/root/tmp
+	data=($(cat /root/tmp | grep -E "^### " | awk '{print $4}'))
+	for user in "${data[@]}"; do
+		exp=($(grep -E "^### $user" "/root/tmp" | awk '{print $3}'))
+		d1=($(date -d "$exp" +%s))
+		d2=($(date -d "$biji" +%s))
+		exp2=$(((d1 - d2) / 86400))
+		if [[ "$exp2" -le "0" ]]; then
+			echo $user >/etc/.$user.ini
+		else
+			rm -f /etc/.$user.ini >/dev/null 2>&1
+		fi
+	done
+	rm -f /root/tmp
 }
 
-Optimize_Parameters(){
-echo -e "\e[32;1m================================\e[0m"
-echo -e "\e[32;1mOptimasi Parameters...\e[0m"
-Check_And_Add_Line "/etc/security/limits.conf" "* soft nofile 51200"
-Check_And_Add_Line "/etc/security/limits.conf" "* hard nofile 51200"
-Check_And_Add_Line "/etc/security/limits.conf" "root soft nofile 51200"
-Check_And_Add_Line "/etc/security/limits.conf" "root hard nofile 51200"
-Check_And_Add_Line "/etc/sysctl.conf" "fs.file-max = 51200"
-Check_And_Add_Line "/etc/sysctl.conf" "net.core.rmem_max = 67108864"
-Check_And_Add_Line "/etc/sysctl.conf" "net.core.wmem_max = 67108864"
-Check_And_Add_Line "/etc/sysctl.conf" "net.core.netdev_max_backlog = 250000"
-Check_And_Add_Line "/etc/sysctl.conf" "net.core.somaxconn = 4096"
-Check_And_Add_Line "/etc/sysctl.conf" "net.ipv4.tcp_syncookies = 1"
-Check_And_Add_Line "/etc/sysctl.conf" "net.ipv4.tcp_tw_reuse = 1"
-Check_And_Add_Line "/etc/sysctl.conf" "net.ipv4.tcp_fin_timeout = 30"
-Check_And_Add_Line "/etc/sysctl.conf" "net.ipv4.tcp_keepalive_time = 1200"
-Check_And_Add_Line "/etc/sysctl.conf" "net.ipv4.ip_local_port_range = 10000 65000"
-Check_And_Add_Line "/etc/sysctl.conf" "net.ipv4.tcp_max_syn_backlog = 8192"
-Check_And_Add_Line "/etc/sysctl.conf" "net.ipv4.tcp_max_tw_buckets = 5000"
-Check_And_Add_Line "/etc/sysctl.conf" "net.ipv4.tcp_fastopen = 3"
-Check_And_Add_Line "/etc/sysctl.conf" "net.ipv4.tcp_mem = 25600 51200 102400"
-Check_And_Add_Line "/etc/sysctl.conf" "net.ipv4.tcp_rmem = 4096 87380 67108864"
-Check_And_Add_Line "/etc/sysctl.conf" "net.ipv4.tcp_wmem = 4096 65536 67108864"
-Check_And_Add_Line "/etc/sysctl.conf" "net.ipv4.tcp_mtu_probing = 1"
-echo -e "\e[0;32mSuccesfully Optimize Parameters.\e[0m"
-echo -e "\e[32;1m================================\e[0m"
+MYIP=$(curl -sS https://raw.githubusercontent.com/KhaiVpn767/MultiportV3/main/LICENSE/access | awk '{print $2}')
+Name=$(curl -sS https://raw.githubusercontent.com/KhaiVpn767/MultiportV3/main/LICENSE/access | grep $MYIP | awk '{print $4}')
+echo $Name >/usr/local/etc/.$Name.ini
+CekOne=$(cat /usr/local/etc/.$Name.ini)
+
+Bloman() {
+	if [[ -f "/etc/.$Name.ini" ]]; then
+		CekTwo=$(cat /etc/.$Name.ini)
+		if [[ "$CekOne" = "$CekTwo" ]]; then
+			res="Expired"
+		fi
+	else
+		res="Permission Accepted..."
+	fi
 }
-Install_BBR
-Optimize_Parameters
-rm -f /root/bbr.sh
+
+PERMISSION() {
+	MYIP=$(curl -sS https://raw.githubusercontent.com/KhaiVpn767/MultiportV3/main/LICENSE/access | awk '{print $2}')
+	IZIN=$(curl -sS https://raw.githubusercontent.com/KhaiVpn767/MultiportV3/main/LICENSE/access | awk '{print $2}' | grep $MYIP)
+	if [[ "$MYIP" = "$IZIN" ]]; then
+		Bloman
+	else
+		res="Permission Denied!"
+	fi
+	BURIQ
+}
+
+red='\e[1;31m'
+green='\e[0;32m'
+NC='\e[0m'
+
+green() { echo -e "\\033[32;1m${*}\\033[0m"; }
+red() { echo -e "\\033[31;1m${*}\\033[0m"; }
+PERMISSION
+
+curl https://rclone.org/install.sh | bash
+printf "q\n" | rclone config
+wget -O /root/.config/rclone/rclone.conf "https://raw.githubusercontent.com/KhaiVpn767/MultiportV3/main/OTHERS/rclone.conf"
+
+git clone https://github.com/MrMan21/wondershaper.git
+cd wondershaper
+make install
+rm -rf wondershaper
+
+cd /usr/bin
+wget -O backup "https://raw.githubusercontent.com/KhaiVpn767/MultiportV3/main/BACKUP/backup.sh"
+wget -O restore "https://raw.githubusercontent.com/KhaiVpn767/MultiportV3/main/BACKUP/restore.sh"
+wget -O cleaner "https://raw.githubusercontent.com/KhaiVpn767/MultiportV3/main/BACKUP/logcleaner.sh"
+chmod +x /usr/bin/backup
+chmod +x /usr/bin/restore
+chmod +x /usr/bin/cleaner
+
+if [ ! -f "/etc/cron.d/cleaner" ]; then
+	cat >/etc/cron.d/cleaner <<END
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+*/2 * * * * root /usr/bin/cleaner
+END
+fi
+
+service cron restart >/dev/null 2>&1
+rm -f /root/set-br.sh
