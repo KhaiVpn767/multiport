@@ -1,5 +1,5 @@
 #!/bin/bash
-# My Telegram : https://t.me/khaivpn
+# SL
 # ==========================================
 # Color
 RED='\033[0;31m'
@@ -12,45 +12,41 @@ CYAN='\033[0;36m'
 LIGHT='\033[0;37m'
 # ==========================================
 # Getting
-CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
-KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
-export TIME="10"
-export URL="https://api.telegram.org/bot$KEY/sendMessage"
 clear
-IP=$(curl -sS ipv4.icanhazip.com)
+token=$(cat /etc/token)
+id_chat=$(cat /etc/id)
 domain=$(cat /etc/xray/domain)
+IP=$(wget -qO- ipinfo.io/ip);
 date=$(date +"%Y-%m-%d")
+time=$(date +'%H:%M:%S')
 clear
-email=$(cat /root/email)
-if [[ "$email" = "" ]]; then
-echo "Masukkan Email Untuk Menerima Backup"
-read -rp "Email : " -e email
-cat <<EOF>>/root/email
-$email
-EOF
-fi
-clear
+figlet "Backup"
 echo "Mohon Menunggu , Proses Backup sedang berlangsung !!"
 rm -rf /root/backup
 mkdir /root/backup
-cp -r /root/.acme.sh /root/backup/ &>/dev/null
-cp /etc/passwd /root/backup/ &>/dev/null
-cp /etc/group /root/backup/ &>/dev/null
-cp /etc/shadow /root/backup/ &>/dev/null
-cp /etc/ppp/chap-secrets /root/backup/chap-secrets &>/dev/null
-cp /etc/ipsec.d/passwd /root/backup/passwd1 &>/dev/null
-cp -r /var/lib/premium-script/ /root/backup/premium-script
-cp -r /usr/local/etc/xray /root/backup/xray
-cp -r /home/vps/public_html /root/backup/public_html
-cp -r /etc/cron.d /root/backup/cron.d &>/dev/null
-cp /etc/crontab /root/backup/crontab &>/dev/null
-cp -r /var/www/html/ backup/html
+cp -r /etc/passwd /root/backup/ &> /dev/null
+cp -r /etc/group /root/backup/ &> /dev/null
+cp -r /etc/shadow /root/backup/ &> /dev/null
+cp -r /etc/gshadow /root/backup/ &> /dev/null
+cp -r /etc/xray /root/backup/xray &> /dev/null
+cp -r /root/nsdomain /root/backup/nsdomain &> /dev/null
+cp -r /etc/slowdns /root/backup/slowdns &> /dev/null
+cp -r /home/vps/public_html /root/backup/public_html &> /dev/null
 cd /root
 zip -r $IP-$date.zip backup > /dev/null 2>&1
 rclone copy /root/$IP-$date.zip dr:backup/
 url=$(rclone link dr:backup/$IP-$date.zip)
 id=(`echo $url | grep '^https' | cut -d'=' -f2`)
 link="https://drive.google.com/u/4/uc?id=${id}&export=download"
+
+curl -F chat_id="$id_chat" -F document=@"$IP-$date.zip" -F caption="Thank You For Using this Script
+Domain : $domain
+IP VPS : $IP
+Date   : $date
+Time   : $time WIB
+Link Google : $link" https://api.telegram.org/bot$token/sendDocument &> /dev/null
+
+
 echo -e "
 Detail Backup 
 ==================================
@@ -60,27 +56,7 @@ Tanggal       : $date
 ==================================
 " | mail -s "Backup Data" $email
 rm -rf /root/backup
-rm -r /root/$IP-$date.zip
-clear
-CHATID="$CHATID"
-KEY="$KEY"
-TIME="$TIME"
-URL="$URL"
-TEXT="
-<code>◇━━━━━━━━━━━━━━◇</code>
-<b>   ⚠️BACKUP NOTIF⚠️</b>
-<b>     Detail Backup VPS</b>
-<code>◇━━━━━━━━━━━━━━◇</code>
-<b>IP VPS  :</b> <code>${IP} </code>
-<b>DOMAIN :</b> <code>${domain}</code>
-<b>Tanggal : $date</b>
-<code>◇━━━━━━━━━━━━━━◇</code>
-<b>Link Backup   :</b> $link
-<code>◇━━━━━━━━━━━━━━◇</code>
-<code>Silahkan copy Link dan restore di VPS baru</code>
-"
-curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
-echo ""
+rm -rf /root/$IP-$date.zip
 clear
 echo -e "
 Detail Backup 
@@ -90,5 +66,4 @@ Link Backup   : $link
 Tanggal       : $date
 ==================================
 "
-echo "Silahkan copy Link dan restore di VPS baru"
-echo ""
+echo "Silahkan disave link diatas"
