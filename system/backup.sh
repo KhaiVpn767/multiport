@@ -33,13 +33,17 @@ clear
 echo "Mohon Menunggu , Proses Backup sedang berlangsung !!"
 rm -rf /root/backup
 mkdir /root/backup
-cp /etc/passwd backup/
-cp /etc/group backup/
-cp /etc/shadow backup/
-cp /etc/gshadow backup/
-cp /etc/crontab backup/
-cp -r /var/lib/kyt/ backup/kyt 
-cp -r /etc/xray backup/xray
+cp -r /root/.acme.sh /root/backup/ &>/dev/null
+cp /etc/passwd /root/backup/ &>/dev/null
+cp /etc/group /root/backup/ &>/dev/null
+cp /etc/shadow /root/backup/ &>/dev/null
+cp /etc/ppp/chap-secrets /root/backup/chap-secrets &>/dev/null
+cp /etc/ipsec.d/passwd /root/backup/passwd1 &>/dev/null
+cp -r /var/lib/premium-script/ /root/backup/premium-script
+cp -r /usr/local/etc/xray /root/backup/xray
+cp -r /home/vps/public_html /root/backup/public_html
+cp -r /etc/cron.d /root/backup/cron.d &>/dev/null
+cp /etc/crontab /root/backup/crontab &>/dev/null
 cp -r /var/www/html/ backup/html
 cd /root
 zip -r $IP-$date.zip backup > /dev/null 2>&1
