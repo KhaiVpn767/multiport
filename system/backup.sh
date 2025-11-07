@@ -1,69 +1,67 @@
 #!/bin/bash
-# SL
-# ==========================================
-# Color
-RED='\033[0;31m'
-NC='\033[0m'
-GREEN='\033[0;32m'
-ORANGE='\033[0;33m'
-BLUE='\033[0;34m'
-PURPLE='\033[0;35m'
-CYAN='\033[0;36m'
-LIGHT='\033[0;37m'
-# ==========================================
-# Getting
+#Autoscript-Lite By KhaiVpn767
+red='\e[1;31m'
+green='\e[0;32m'
+purple='\e[0;35m'
+orange='\e[0;33m'
+NC='\e[0m'
 clear
-token=$(cat /etc/token)
-id_chat=$(cat /etc/id)
-domain=$(cat /etc/xray/domain)
-IP=$(wget -qO- ipinfo.io/ip);
+IP=$(wget -qO- icanhazip.com)
 date=$(date +"%Y-%m-%d")
-time=$(date +'%H:%M:%S')
 clear
-figlet "Backup"
-echo "Mohon Menunggu , Proses Backup sedang berlangsung !!"
-rm -rf /root/backup
-mkdir /root/backup
-cp -r /etc/passwd /root/backup/ &> /dev/null
-cp -r /etc/group /root/backup/ &> /dev/null
-cp -r /etc/shadow /root/backup/ &> /dev/null
-cp -r /etc/gshadow /root/backup/ &> /dev/null
-cp -r /etc/xray /root/backup/xray &> /dev/null
-cp -r /root/nsdomain /root/backup/nsdomain &> /dev/null
-cp -r /etc/slowdns /root/backup/slowdns &> /dev/null
-cp -r /home/vps/public_html /root/backup/public_html &> /dev/null
+echo " VPS Data Backup By KhaiVpn767 "
+sleep 1
+echo ""
+echo -e "[ ${green}INFO${NC} ] Please Insert Password To Secure Backup Data ."
+echo ""
+read -rp "Enter password : " -e InputPass
+clear
+sleep 1
+
+if [[ -z $InputPass ]]; then
+	exit 0
+fi
+
+echo -e "[ ${green}INFO${NC} ] Processing . . . "
+mkdir -p /root/backup
+sleep 1
+clear
+echo " Please Wait VPS Data Backup In Progress . . . "
+
+cp -r /root/.acme.sh /root/backup/ &>/dev/null
+cp /etc/passwd /root/backup/ &>/dev/null
+cp /etc/group /root/backup/ &>/dev/null
+cp /etc/shadow /root/backup/ &>/dev/null
+cp /etc/ppp/chap-secrets /root/backup/chap-secrets &>/dev/null
+cp /etc/ipsec.d/passwd /root/backup/passwd1 &>/dev/null
+cp -r /var/lib/premium-script/ /root/backup/premium-script
+cp -r /usr/local/etc/xray /root/backup/xray
+cp -r /home/vps/public_html /root/backup/public_html
+cp -r /etc/cron.d /root/backup/cron.d &>/dev/null
+cp /etc/crontab /root/backup/crontab &>/dev/null
+
 cd /root
-zip -r $IP-$date.zip backup > /dev/null 2>&1
+zip -rP $InputPass $IP-$date.zip backup >/dev/null 2>&1
 rclone copy /root/$IP-$date.zip dr:backup/
+
 url=$(rclone link dr:backup/$IP-$date.zip)
-id=(`echo $url | grep '^https' | cut -d'=' -f2`)
+id=($(echo $url | grep '^https' | cut -d'=' -f2))
 link="https://drive.google.com/u/4/uc?id=${id}&export=download"
 
-curl -F chat_id="$id_chat" -F document=@"$IP-$date.zip" -F caption="Thank You For Using this Script
-Domain : $domain
-IP VPS : $IP
-Date   : $date
-Time   : $time WIB
-Link Google : $link" https://api.telegram.org/bot$token/sendDocument &> /dev/null
-
-
-echo -e "
-Detail Backup 
-==================================
-IP VPS        : $IP
-Link Backup   : $link
-Tanggal       : $date
-==================================
-" | mail -s "Backup Data" $email
-rm -rf /root/backup
-rm -rf /root/$IP-$date.zip
 clear
-echo -e "
-Detail Backup 
-==================================
-IP VPS        : $IP
-Link Backup   : $link
-Tanggal       : $date
-==================================
-"
-echo "Silahkan disave link diatas"
+echo -e "\033[1;37mVPS Data Backup By KhaiVpn767\033[0m
+\033[1;37mTelegram : https://t.me/KhaiVpn767 / @KhaiVpn767\033[0m"
+echo ""
+echo "Please Copy Link Below & Save In Notepad"
+echo ""
+echo -e "Your VPS IP ( \033[1;37m$IP\033[0m )"
+echo ""
+echo -e "Your VPS Data Backup Password : \033[1;37m$InputPass\033[0m"
+echo ""
+echo -e "\033[1;37m$link\033[0m"
+echo ""
+echo "If you want to restore data, please enter the link above"
+
+rm -rf /root/backup
+rm -r /root/$IP-$date.zip
+echo ""
