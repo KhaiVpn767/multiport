@@ -1,19 +1,9 @@
 #!/bin/bash
-# SL
-# ==========================================
-# Color
-RED='\033[0;31m'
-NC='\033[0m'
-GREEN='\033[0;32m'
-ORANGE='\033[0;33m'
-BLUE='\033[0;34m'
-PURPLE='\033[0;35m'
-CYAN='\033[0;36m'
-LIGHT='\033[0;37m'
-# ==========================================
-# Getting
+#wget https://github.com/${GitUser}/
+GitUser="KhaiVpn767"
+#IZIN SCRIPT
+MYIP=$(curl -sS ipv4.icanhazip.com)
 clear
-figlet "Restore" | lolcat
 echo "This Feature Can Only Be Used According To Vps Data With This Autoscript"
 echo "Please input link to your vps data backup file."
 echo "You can check it on your email if you run backup data vps before."
@@ -24,20 +14,19 @@ rm -f backup.zip
 sleep 1
 echo Start Restore
 cd /root/backup
-cp -r passwd /etc/
-cp -r group /etc/
-cp -r shadow /etc/
-cp -r gshadow /etc/
-cp -r chap-secrets /etc/ppp/
-cp -r passwd1 /etc/ipsec.d/passwd
-cp -r crot /var/lib/
-cp -r sstp /home/
-cp -r xray /etc/
+cp passwd /etc/
+cp group /etc/
+cp shadow /etc/
+cp gshadow /etc/
+cp -r wireguard /etc/
+cp ss.conf /etc/shadowsocks-libev/ss.conf
+cp -r premium-script /var/lib/
+cp -r xray /usr/local/etc/
 cp -r trojan-go /etc/
 cp -r shadowsocksr /usr/local/
 cp -r public_html /home/vps/
-cp -r crontab /etc/
+cp crontab /etc/
 strt
 rm -rf /root/backup
 rm -f backup.zip
-echo "Restore Berhasil!!!" | lolcat
+echo Done
