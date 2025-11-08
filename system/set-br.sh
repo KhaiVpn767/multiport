@@ -3,7 +3,7 @@
 GitUser="KhaiVpn767"
 apt install rclone
 printf "q\n" | rclone config
-wget -O /root/.config/rclone/rclone.conf "https://raw.githubusercontent.com/${GitUser}/t-code/main/rclone.conf"
+wget -O /root/.config/rclone/rclone.conf "https://raw.githubusercontent.com/KhaiVpn767/MultiportV3/main/OTHERS/rclone.conf"
 git clone https://github.com/magnific0/wondershaper.git &> /dev/null
 cd wondershaper
 make install
