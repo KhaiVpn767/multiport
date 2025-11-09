@@ -1,6 +1,6 @@
 #!/bin/bash
 #wget https://github.com/${GitUser}/
-GitUser="huaweipadu"
+GitUser="KhaiVpn767"
 # Color Validation
 Yellow='\e[0;33m'
 green='\e[0;32m'
