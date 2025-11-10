@@ -245,7 +245,7 @@ botbckpBot_menu() {
         sts="\033[1;31m[Off]\033[0m"
     fi
     echo -e   " \e[$line══════════════════════════════════════════════════════\e[m"
-    echo -e "   \e[$back_text       \e[30m═[\e[$box Telegram Bot (AutoBackup)\e[30m ]\e[1m                       \e[m"
+    echo -e "  \e[$back_text       \e[30m═[\e[$box Telegram Bot (AutoBackup)\e[30m ]\e[1m                  \e[m"
     echo -e   " \e[$line══════════════════════════════════════════════════════\e[m"
     echo -e "  \e[$text VPS Data Backup By khaiVPN"
     echo -e "  \e[$text Telegram : https://t.me/khaivpn / @khaivpn"
@@ -257,7 +257,7 @@ botbckpBot_menu() {
     echo -e " \e[$number (•4)\e[m \e[$below Restore Data [URL]\e[m          \e[$number"
     echo -e " \e[$number (•5)\e[m \e[$below Restore Data\e[m          \e[$number"
     echo -e   " \e[$line══════════════════════════════════════════════════════\e[m"
-    echo -e "   \e[$back_text  \e[$box x)   MENU                                         \e[m"
+    echo -e "  \e[$back_text  \e[$box x)   MENU                                         \e[m"
     echo -e   " \e[$line══════════════════════════════════════════════════════\e[m"
     echo -e ""
     echo -ne "Select From Options [ 1-4 or x ] : "
