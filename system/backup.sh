@@ -7,7 +7,8 @@ orange='\e[0;33m'
 NC='\e[0m'
 clear
 IP=$(wget -qO- icanhazip.com)
-date=$(date +"%Y-%m-%d")
+dateToday=$(date +"%Y-%m-%d")
+Name=$(curl https://raw.githubusercontent.com/KhaiVpn767/allow/main/ipvps.conf | grep $MYIP | awk '{print $2}')
 clear
 echo " VPS Data Backup By KhaiVpn767 "
 sleep 1
@@ -28,17 +29,32 @@ sleep 1
 clear
 echo " Please Wait VPS Data Backup In Progress . . . "
 
-cp -r /root/.acme.sh /root/backup/ &>/dev/null
-cp /etc/passwd /root/backup/ &>/dev/null
-cp /etc/group /root/backup/ &>/dev/null
-cp /etc/shadow /root/backup/ &>/dev/null
-cp /etc/ppp/chap-secrets /root/backup/chap-secrets &>/dev/null
-cp /etc/ipsec.d/passwd /root/backup/passwd1 &>/dev/null
-cp -r /var/lib/premium-script/ /root/backup/premium-script
-cp -r /usr/local/etc/xray /root/backup/xray
-cp -r /home/vps/public_html /root/backup/public_html
-cp -r /etc/cron.d /root/backup/cron.d &>/dev/null
-cp /etc/crontab /root/backup/crontab &>/dev/null
+    sleep 1
+    echo -e "[ ${green}INFO${NC} ] • VPS Data Backup... "
+    sleep 1
+    echo -e "[ ${green}INFO${NC} ] • Directory Created... "
+    mkdir /root/backup &>/dev/null
+    sleep 1
+    echo -e "[ ${green}INFO${NC} ] • VPS Data Backup Start Now... "
+    echo -e "[ ${green}INFO${NC} ] • Please Wait , Backup In Process Now... "
+    sleep 1
+    cp /etc/passwd backup/ &>/dev/null
+    echo -e "[ ${green}INFO${NC} ] • Backup passwd data..."
+    sleep 1
+    cp /etc/group backup/ &>/dev/null
+    echo -e "[ ${green}INFO${NC} ] • Backup group data..."
+    sleep 1
+    cp /etc/shadow backup/ &>/dev/null
+    echo -e "[ ${green}INFO${NC} ] • Backup shadow data..."
+    sleep 1
+    cp /etc/gshadow backup/ &>/dev/null
+    echo -e "[ ${green}INFO${NC} ] • Backup gshadow data..."
+    sleep 1
+    cp -r /var/lib/premium-script/ backup/premium-script &>/dev/null
+    cp -r /usr/local/etc/xray backup/xray &>/dev/null
+    cp -r /home/vps/public_html backup/public_html &>/dev/null
+    cd /root &>/dev/null
+    zip -rP "$InputPass" "$IP.zip" backup >/dev/null 2>&1
 
 cd /root
 zip -rP $InputPass $IP-$date.zip backup >/dev/null 2>&1
