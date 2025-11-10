@@ -112,7 +112,7 @@ wget -O xraay "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/menu/
 wget -O m-helium "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/menu/m-helium.sh"
 wget -O xraychanger "https://raw.githubusercontent.com/KhaiVpn767/MultiportV5/refs/heads/main/xraychanger.sh"
 wget -O ram "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/ram.sh"
-wget -O autobackup "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/autobackup"
+wget -O autobackup "https://raw.githubusercontent.com/KhaiVpn767/multiport/main/autobackup.sh"
 chmod +x add-host
 chmod +x menu
 chmod +x add-ssh
