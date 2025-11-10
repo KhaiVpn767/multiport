@@ -245,7 +245,7 @@ botbckpBot_menu() {
         sts="\033[1;31m[Off]\033[0m"
     fi
     echo -e   " \e[$line══════════════════════════════════════════════════════\e[m"
-    echo -e "  \e[$back_text       \e[30m═[\e[$box Telegram Bot (AutoBackup)\e[30m ]\e[1m                  \e[m"
+    echo -e "  \e[$back_text       \e[30m═[\e[$box Telegram Bot (AutoBackup)\e[30m ]\e[1m                \e[m"
     echo -e   " \e[$line══════════════════════════════════════════════════════\e[m"
     echo -e "  \e[$text VPS Data Backup By khaiVPN"
     echo -e "  \e[$text Telegram : https://t.me/khaivpn / @khaivpn"
