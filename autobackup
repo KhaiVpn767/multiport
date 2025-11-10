@@ -15,6 +15,23 @@ NC='\e[0m'
 MYIP=$(curl -sS ipv4.icanhazip.com)
 echo -e "\e[32mloading...\e[0m"
 clear
+banner_colour=$(cat /etc/banner)
+# TEXT ON BOX COLOUR
+box=$(cat /etc/box)
+# LINE COLOUR
+line=$(cat /etc/line)
+# TEXT COLOUR ON TOP
+text=$(cat /etc/text)
+# TEXT COLOUR BELOW
+below=$(cat /etc/below)
+# BACKGROUND TEXT COLOUR
+back_text=$(cat /etc/back)
+# NUMBER COLOUR
+number=$(cat /etc/number)
+# BANNER
+banner=$(cat /usr/bin/bannerku)
+ascii=$(cat /usr/bin/test)
+clear
 # Valid Script
 VALIDITY() {
     today=$(date -d "0 days" +"%Y-%m-%d")
@@ -227,9 +244,9 @@ botbckpBot_menu() {
     else
         sts="\033[1;31m[Off]\033[0m"
     fi
-    echo -e "\033[0;34m══════════════════════════════════════════════════════\033[0m"
+    echo -e   " \e[$line══════════════════════════════════════════════════════\e[m"
     echo -e "\\E[0;44;37m               Telegram Bot (AutoBackup)              \E[0m"
-    echo -e "\033[0;34m══════════════════════════════════════════════════════\033[0m"
+    echo -e   " \e[$line══════════════════════════════════════════════════════\e[m"
     echo -e "$green VPS Data Backup By khaiVPN"
     echo -e "$green Telegram : https://t.me/khaivpn / @khaivpn"
     echo -e ""
@@ -239,9 +256,9 @@ botbckpBot_menu() {
     echo -e " $green [•3 ]${NC} $CYAN Backup VPS (Telegram Bot) \e[0m"
     echo -e " $green [•4 ]${NC} $CYAN Restore Data [URL]\e[0m"
     echo -e " $green [•5 ]${NC} $CYAN Restore Data \e[0m"
-    echo -e "\033[0;34m══════════════════════════════════════════════════════\033[0m"
+    echo -e "\033[0;34m══════════════════════════════════════════════════════\e[m"
     echo -e "\\E[0;44;37m          x)   MENU                                   \E[0m"
-    echo -e "\033[0;34m══════════════════════════════════════════════════════\033[0m"
+    echo -e "\033[0;34m══════════════════════════════════════════════════════\e[m"
     echo -e ""
     echo -ne "Select From Options [ 1-4 or x ] : "
     read botch
