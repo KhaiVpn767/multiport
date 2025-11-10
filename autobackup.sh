@@ -256,9 +256,9 @@ botbckpBot_menu() {
     echo -e " $green [•3 ]${NC} $CYAN Backup VPS (Telegram Bot) \e[0m"
     echo -e " $green [•4 ]${NC} $CYAN Restore Data [URL]\e[0m"
     echo -e " $green [•5 ]${NC} $CYAN Restore Data \e[0m"
-    echo -e "\033[0;34m══════════════════════════════════════════════════════\e[m"
+    echo -e   " \e[$line══════════════════════════════════════════════════════\e[m"
     echo -e "\\E[0;44;37m          x)   MENU                                   \E[0m"
-    echo -e "\033[0;34m══════════════════════════════════════════════════════\e[m"
+    echo -e   " \e[$line══════════════════════════════════════════════════════\e[m"
     echo -e ""
     echo -ne "Select From Options [ 1-4 or x ] : "
     read botch
