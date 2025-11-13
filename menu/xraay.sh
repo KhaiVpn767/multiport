@@ -483,6 +483,7 @@ vlesslink7="vless://${uuid}@104.18.6.178:$none?type=ws&encryption=none&security=
 vlesslink8="vless://${uuid}@104.18.6.178:$none?type=ws&encryption=none&security=none&host=opensignal.com&path=ws://${domain}#UniFi-${user}"
 vlesslink9="vless://${uuid}@104.17.147.22:$none?type=ws&encryption=none&security=none&host=www.speedtest.net.${domain}&path=$patch#SELCOM-Boster-3MBPS-${user}"
 vlesslink10="vless://${uuid}@mgm.maxis.com.my.siteintercept.qualtrics.com:$none?type=ws&encryption=none&security=none&host=strx-payload://${domain}/&path=GET /cdn-cgi/trace HTTP/1.1[crlf]Host: mgm.maxis.com.my[crlf][crlf][split]STRX / HTTP/1.1[crlf]Host: [host][crlf]Upgrade: websocket[crlf]Sec-WebSocket-Key: K4vEMLAxh27PNePuLDwBAQ [crlf]Connection: Upgrade[crlf]Sec-WebSocket-Version: 13[crlf][crlf]#MAXIS-${user}"
+vlesslink11="vless://${uuid}@cdn.opensignal.com:$none?type=ws&encryption=none&security=none&host=strx-payload://${domain}/&path=GET /cdn-cgi/trace HTTP/1.1[crlf]Host: wap.u.com.my[crlf][crlf][split]STRX / HTTP/1.1[crlf]Host: [host][crlf]Upgrade: websocket[crlf]Sec-WebSocket-Key: K4vEMLAxh27PNePuLDwBAQ [crlf]Connection: Upgrade[crlf]Sec-WebSocket-Version: 13[crlf][crlf]#UMOBILE-${user}"
 systemctl restart xray@vless
 systemctl restart xray@vnone
 clear
@@ -526,6 +527,9 @@ echo -e "  ${vlesslink9}"
 echo -e "\e[$line═════════════════════════════════\e[m"
 echo -e "Link MAXIS-EXP"
 echo -e "  ${vlesslink10}"
+echo -e "\e[$line═════════════════════════════════\e[m"
+echo -e "Link UMOBILE-EXP"
+echo -e "  ${vlesslink11}"
 echo -e "\e[$line═════════════════════════════════\e[m"
 echo -e "Link Yaml  : http://$MYIP:81/$user-VLESS-WS.yaml"
 echo -e "\e[$line═════════════════════════════════\e[m"
@@ -1338,6 +1342,7 @@ vlesslink7="vless://${uuid}@104.18.6.178:$none?type=ws&encryption=none&security=
 vlesslink8="vless://${uuid}@104.18.6.178:$none?type=ws&encryption=none&security=none&host=opensignal.com&path=ws://${domain}#UniFi-${user}"
 vlesslink9="vless://${uuid}@104.17.147.22:$none?type=ws&encryption=none&security=none&host=www.speedtest.net.${domain}&path=$patch#SELCOM-Boster-3MBPS-${user}"
 vlesslink10="vless://${uuid}@mgm.maxis.com.my.siteintercept.qualtrics.com:$none?type=ws&encryption=none&security=none&host=strx-payload://${domain}/&path=GET /cdn-cgi/trace HTTP/1.1[crlf]Host: mgm.maxis.com.my[crlf][crlf][split]STRX / HTTP/1.1[crlf]Host: [host][crlf]Upgrade: websocket[crlf]Sec-WebSocket-Key: K4vEMLAxh27PNePuLDwBAQ [crlf]Connection: Upgrade[crlf]Sec-WebSocket-Version: 13[crlf][crlf]#MAXIS-${user}"
+vlesslink11="vless://${uuid}@cdn.opensignal.com:$none?type=ws&encryption=none&security=none&host=strx-payload://${domain}/&path=GET /cdn-cgi/trace HTTP/1.1[crlf]Host: wap.u.com.my[crlf][crlf][split]STRX / HTTP/1.1[crlf]Host: [host][crlf]Upgrade: websocket[crlf]Sec-WebSocket-Key: K4vEMLAxh27PNePuLDwBAQ [crlf]Connection: Upgrade[crlf]Sec-WebSocket-Version: 13[crlf][crlf]#UMOBILE-${user}"
 systemctl restart xray@vless
 systemctl restart xray@vnone
 clear
@@ -1382,6 +1387,9 @@ echo -e "  ${vlesslink9}"
 echo -e "\e[$line═════════════════════════════════\e[m"
 echo -e "Link MAXIS-EXP"
 echo -e "  ${vlesslink10}"
+echo -e "\e[$line═════════════════════════════════\e[m"
+echo -e "Link UMOBILE-EXP"
+echo -e "  ${vlesslink11}"
 echo -e "\e[$line═════════════════════════════════\e[m"
 echo -e "Link Yaml  : http://$MYIP:81/$user-VLESS-WS.yaml"
 echo -e "\e[$line═════════════════════════════════\e[m"
