@@ -59,7 +59,7 @@ done
 read -p "Uuid (Manual): " uuid
 read -p "Expired (days): " masaaktif
 #read -p "Bug (Host): " bug
-read -p "Limit User (IP): " iplimit
+#read -p "Limit User (IP): " iplimit
 #read -p "Limit User (GB): " Quota
 #JanganLupaMakanYa
 tgl=$(date -d "$masaaktif days" +"%d")
@@ -173,9 +173,6 @@ ${vlesslink1}
 Link none TLS : 
 ${vlesslink2}
 ---------------------
-Link GRPC     : 
-${vlesslink3}
----------------------
 
 
 END
@@ -199,8 +196,7 @@ echo -e "Port None TLS : 80"
 #echo -e "Port XrayDns  : 443,5300,53,80"
 echo -e "User ID       : ${uuid}"
 echo -e "Encryption    : none"
-echo -e "Path          : /vless ~ (/Multipath)"
-echo -e "ServiceName   : vless-grpc"
+echo -e "Path          : /vless"
 echo -e "${z}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo -e "Link TLS    :"
 echo -e "${vlesslink1}"
@@ -208,15 +204,19 @@ echo -e "${z}━━━━━━━━━━━━━━━━━━━━━━�
 echo -e "Link NTLS   :"
 echo -e "${vlesslink2}"
 echo -e "${z}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e "Link GRPC   :"
-echo -e "${vlesslink3}"
-echo -e "${z}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo -e "Link Yaml : http://$MYIP:81/$user-VLESS-WS.yaml"
 echo -e "${z}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e "Masa Aktif    : $expe"
+echo -e "\e[$line══════════════════════\e[m"
+echo -e "Name      : ${user}"
+echo -e "Created   : $harini"
+echo -e "Expired   : $exp"
+echo -e "SerVer    : $creditt"
+echo -e "User ID   : ${uuid}"
+echo -e "\e[$line══════════════════════\e[m"
 echo -e "${z}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo -e "        Script By khaiVPN             "
 echo -e "${z}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e ""
-read -n 1 -s -r -p "Press any key to back on menu"
-m-vless
+echo ""
+echo ""
+read -n 1 -s -r -p "Press any key to back on menu xray"
+xraay
